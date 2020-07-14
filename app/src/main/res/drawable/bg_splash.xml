@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/brand" />
+    <item
+        android:drawable="@drawable/img_spray_app"
+        android:gravity="center" />
+</layer-list>

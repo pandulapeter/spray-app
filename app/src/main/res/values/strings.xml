@@ -1,0 +1,12 @@
+<resources>
+
+    <!-- General -->
+    <string name="app_name">SprayApp</string>
+    <string name="back">Back</string>
+
+    <!-- Main -->
+    <string name="main_work">Work</string>
+    <string name="main_statistics">Stats</string>
+    <string name="main_help">Help</string>
+
+</resources>

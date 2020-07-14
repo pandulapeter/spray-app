@@ -1,0 +1,9 @@
+<resources>
+
+    <!-- General -->
+    <dimen name="splash_icon">108dp</dimen>
+    <dimen name="small_content_padding">4dp</dimen>
+    <dimen name="content_padding">8dp</dimen>
+    <dimen name="large_content_padding">16dp</dimen>
+
+</resources>
