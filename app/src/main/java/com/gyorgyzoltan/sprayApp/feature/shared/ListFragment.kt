@@ -6,7 +6,6 @@ import androidx.annotation.CallSuper
 import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.gyorgyzoltan.sprayApp.BR
 import com.gyorgyzoltan.sprayApp.R
 import com.gyorgyzoltan.sprayApp.databinding.FragmentListBinding
@@ -14,8 +13,6 @@ import com.gyorgyzoltan.sprayApp.feature.shared.list.BaseAdapter
 import com.gyorgyzoltan.sprayApp.feature.shared.list.ListItem
 import com.gyorgyzoltan.sprayApp.utils.color
 import com.gyorgyzoltan.sprayApp.utils.observe
-import com.pandulapeter.beagle.Beagle
-import com.pandulapeter.beagle.common.contracts.module.Module
 
 abstract class ListFragment<VM : ListViewModel<LI>, LI : ListItem>(
     @StringRes protected val titleResourceId: Int,
@@ -24,11 +21,7 @@ abstract class ListFragment<VM : ListViewModel<LI>, LI : ListItem>(
 
     protected abstract val viewModel: VM
 
-    protected abstract fun getBeagleModules(): List<Module<*>>
-
     protected abstract fun createAdapter(): BaseAdapter<LI>
-
-    protected open fun createLayoutManager(): RecyclerView.LayoutManager = LinearLayoutManager(context)
 
     @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,15 +29,6 @@ abstract class ListFragment<VM : ListViewModel<LI>, LI : ListItem>(
         binding.root.setBackgroundColor(requireContext().color(backgroundColorResourceId))
         binding.appBar.setup(titleResourceId, parentFragment?.childFragmentManager?.backStackEntryCount ?: 0 <= 1, requireActivity())
         setupRecyclerView()
-        refreshBeagle()
-    }
-
-    protected fun refreshBeagle() {
-        getBeagleModules().let { newModules ->
-            if (newModules.isNotEmpty()) {
-                Beagle.set(*newModules.toTypedArray())
-            }
-        }
     }
 
     private fun setupRecyclerView() {
@@ -52,7 +36,7 @@ abstract class ListFragment<VM : ListViewModel<LI>, LI : ListItem>(
         viewModel.items.observe(viewLifecycleOwner) { listAdapter.submitList(it, ::onListUpdated) }
         binding.recyclerView.run {
             adapter = listAdapter
-            layoutManager = createLayoutManager()
+            layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
         }
     }

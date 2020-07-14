@@ -25,10 +25,5 @@ abstract class BaseFragment<B : ViewDataBinding>(
             binding = it
         }.root
 
-    final override fun startPostponedEnterTransition() {
-        super.startPostponedEnterTransition()
-        parentFragment?.startPostponedEnterTransition()
-    }
-
     open fun onBackPressed(): Boolean = if (currentFragment?.onBackPressed() != true) childFragmentManager.popBackStackImmediate() else true
 }

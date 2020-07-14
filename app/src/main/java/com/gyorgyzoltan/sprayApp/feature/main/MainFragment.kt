@@ -4,8 +4,12 @@ import android.os.Bundle
 import android.view.View
 import com.gyorgyzoltan.sprayApp.R
 import com.gyorgyzoltan.sprayApp.databinding.FragmentMainBinding
+import com.gyorgyzoltan.sprayApp.feature.main.help.HelpContainerFragment
+import com.gyorgyzoltan.sprayApp.feature.main.statistics.StatisticsContainerFragment
+import com.gyorgyzoltan.sprayApp.feature.main.work.WorkContainerFragment
 import com.gyorgyzoltan.sprayApp.feature.shared.BaseFragment
 import com.gyorgyzoltan.sprayApp.utils.consume
+import com.gyorgyzoltan.sprayApp.utils.handleReplace
 
 class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
@@ -14,9 +18,9 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
         binding.bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             consume {
                 when (item.itemId) {
-                    R.id.work -> Unit //TODO childFragmentManager.handleReplace(addToBackStack = true, newInstance = SetupContainerFragment.Companion::newInstance)
-                    R.id.statistics -> Unit //TODO childFragmentManager.handleReplace(addToBackStack = true, newInstance = ExamplesContainerFragment.Companion::newInstance)
-                    R.id.help -> Unit //TODO childFragmentManager.handleReplace(addToBackStack = true, newInstance = PlaygroundContainerFragment.Companion::newInstance)
+                    R.id.work -> childFragmentManager.handleReplace(addToBackStack = true, newInstance = WorkContainerFragment.Companion::newInstance)
+                    R.id.statistics -> childFragmentManager.handleReplace(addToBackStack = true, newInstance = StatisticsContainerFragment.Companion::newInstance)
+                    R.id.help -> childFragmentManager.handleReplace(addToBackStack = true, newInstance = HelpContainerFragment.Companion::newInstance)
                     else -> throw  IllegalArgumentException("Unsupported bottom navigation item.")
                 }
             }
