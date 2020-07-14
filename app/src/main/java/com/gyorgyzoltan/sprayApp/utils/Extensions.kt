@@ -2,6 +2,7 @@ package com.gyorgyzoltan.sprayApp.utils
 
 import android.content.Context
 import android.graphics.PorterDuff
+import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.ColorInt
@@ -47,6 +48,10 @@ fun View.hideKeyboard() {
 }
 
 fun View.showSnackbar(@StringRes messageResourceId: Int) = Snackbar.make(this, messageResourceId, Snackbar.LENGTH_SHORT).show()
+
+inline fun <T : Fragment> T.withArguments(bundleOperations: (Bundle) -> Unit): T = apply {
+    arguments = Bundle().apply { bundleOperations(this) }
+}
 
 inline fun <reified T : Fragment> FragmentManager.handleReplace(
     tag: String = T::class.java.name,
