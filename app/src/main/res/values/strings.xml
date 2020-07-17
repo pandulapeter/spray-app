@@ -13,4 +13,7 @@
     <string name="main_statistics">Stats</string>
     <string name="main_help">Help</string>
 
+    <!-- Help -->
+    <string name="help_show_tutorial"><b>Show tutorial</b>\nSee how to use the app</string>
+
 </resources>

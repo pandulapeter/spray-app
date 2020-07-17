@@ -9,6 +9,7 @@ import com.gyorgyzoltan.sprayApp.databinding.ActivitySprayAppBinding
 import com.gyorgyzoltan.sprayApp.feature.main.MainFragment
 import com.gyorgyzoltan.sprayApp.feature.shared.BaseFragment
 import com.gyorgyzoltan.sprayApp.feature.tutorial.TutorialFragment
+import com.gyorgyzoltan.sprayApp.utils.TransitionType
 import com.gyorgyzoltan.sprayApp.utils.handleReplace
 import com.pandulapeter.beagle.Beagle
 import org.koin.android.ext.android.inject
@@ -24,12 +25,22 @@ class SprayAppActivity : AppCompatActivity() {
         DataBindingUtil.setContentView<ActivitySprayAppBinding>(this, R.layout.activity_spray_app)
         if (savedInstanceState == null) {
             if (preferenceManager.hasSeenTutorial) {
-                supportFragmentManager.handleReplace(transitionType = null, newInstance = MainFragment.Companion::newInstance)
+                navigateToMain()
             } else {
-                supportFragmentManager.handleReplace(transitionType = null) { TutorialFragment.newInstance(true) }
+                navigateToTutorial(true)
             }
         }
     }
+
+    fun navigateToTutorial(isFirstTutorial: Boolean) = supportFragmentManager.handleReplace(
+        addToBackStack = !isFirstTutorial,
+        transitionType = if (isFirstTutorial) null else TransitionType.MODAL
+    ) { TutorialFragment.newInstance(isFirstTutorial) }
+
+    private fun navigateToMain() = supportFragmentManager.handleReplace(
+        transitionType = null,
+        newInstance = MainFragment.Companion::newInstance
+    )
 
     override fun onBackPressed() {
         if (!Beagle.hide() && currentFragment?.onBackPressed() != true) {

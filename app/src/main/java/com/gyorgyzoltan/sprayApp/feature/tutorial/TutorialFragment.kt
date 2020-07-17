@@ -9,6 +9,7 @@ import com.gyorgyzoltan.sprayApp.feature.main.MainFragment
 import com.gyorgyzoltan.sprayApp.feature.shared.BaseFragment
 import com.gyorgyzoltan.sprayApp.utils.BundleArgumentDelegate
 import com.gyorgyzoltan.sprayApp.utils.handleReplace
+import com.gyorgyzoltan.sprayApp.utils.visible
 import com.gyorgyzoltan.sprayApp.utils.withArguments
 import org.koin.android.ext.android.inject
 
@@ -17,12 +18,20 @@ class TutorialFragment : BaseFragment<FragmentTutorialBinding>(R.layout.fragment
     private val preferenceManager by inject<PreferenceManager>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val isFirstTutorial = arguments?.isFirstTutorial == true
         binding.skipButton.setOnClickListener {
-            if (arguments?.isFirstTutorial == true) {
+            if (isFirstTutorial) {
                 preferenceManager.hasSeenTutorial = true
                 activityFragmentManager?.handleReplace(newInstance = MainFragment.Companion::newInstance)
             } else {
                 activityFragmentManager?.popBackStack()
+            }
+        }
+        binding.closeButton.run {
+            if (isFirstTutorial) {
+                visible = false
+            } else {
+                setOnClickListener { activityFragmentManager?.popBackStack() }
             }
         }
     }
