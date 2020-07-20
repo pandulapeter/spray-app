@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.gyorgyzoltan.sprayApp.R
+import com.gyorgyzoltan.sprayApp.data.model.Dependency
 import com.gyorgyzoltan.sprayApp.databinding.ItemLicencesDependencyBinding
 import com.gyorgyzoltan.sprayApp.feature.shared.list.BaseViewHolder
 

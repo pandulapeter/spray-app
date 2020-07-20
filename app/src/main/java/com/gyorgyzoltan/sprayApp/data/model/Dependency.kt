@@ -1,4 +1,4 @@
-package com.gyorgyzoltan.sprayApp.feature.main.help.licences.list
+package com.gyorgyzoltan.sprayApp.data.model
 
 import androidx.annotation.StringRes
 import com.gyorgyzoltan.sprayApp.R

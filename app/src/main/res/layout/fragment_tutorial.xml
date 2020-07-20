@@ -84,7 +84,7 @@
             app:piv_padding="@dimen/content_padding"
             app:piv_radius="@dimen/tutorial_pager_indicator_dot_size"
             app:piv_selectedColor="@color/brand"
-            app:piv_unselectedColor="?android:attr/textColorHint" />
+            app:piv_unselectedColor="?attr/colorControlHighlight" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

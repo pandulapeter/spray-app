@@ -9,15 +9,21 @@
     <string name="tutorial_skip">Skip</string>
     <string name="tutorial_next">Next</string>
     <string name="tutorial_done">Done</string>
-    <string name="tutorial_page_1"><b>Page 1</b>\nWe could add a short tutorial to these pages about how to set up the hardware part</string>
-    <string name="tutorial_page_2"><b>Page 2</b>\n…or important information about the app, just an overview about the first steps</string>
-    <string name="tutorial_page_3"><b>Page 3</b>\n…or various tips and tricks on how to use the product</string>
-    <string name="tutorial_page_4"><b>Page 4</b>\nAll of these pages should contain illustrations / animations</string>
+    <string name="tutorial_page_1"><b>Page 1</b>\n\nWe could add a short tutorial to these pages about how to set up the hardware part</string>
+    <string name="tutorial_page_2"><b>Page 2</b>\n\n…or important information about the app, just an overview about the first steps</string>
+    <string name="tutorial_page_3"><b>Page 3</b>\n\n…or various tips and tricks on how to use the product</string>
+    <string name="tutorial_page_4"><b>Page 4</b>\n\nAll of these pages should contain illustrations / animations</string>
 
     <!-- Main -->
     <string name="main_work">Work</string>
     <string name="main_statistics">Stats</string>
     <string name="main_help">Help</string>
+
+    <!-- Work -->
+    <string name="work_placeholder"><b>Coming soon…</b>\n\n• Pairing / connection flow\n• Create / load configuration\n• Work mode (automatic / manual / test)</string>
+
+    <!-- Statistics -->
+    <string name="statistics_placeholder"><b>Coming soon…</b>\n\nThis page will contain locally stored, historical logs about the work sessions tracked by the device. It could be divided into multiple sections to offer different view modes (for example individual sessions by date / aggregated data over a configurable period of time)</string>
 
     <!-- Help -->
     <string name="help_show_tutorial"><b>Show tutorial</b>\nSee how to use the app</string>
