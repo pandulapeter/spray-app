@@ -5,7 +5,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
         android:clipToPadding="false">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/pager_indicator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/close_button"
@@ -22,26 +32,59 @@
             app:srcCompat="@drawable/ic_close"
             app:tint="?android:attr/textColorPrimary" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:gravity="center"
-            android:text="@string/tutorial_text"
-            app:layout_constraintBottom_toTopOf="@+id/skip_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/skip_button"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/large_content_padding"
+            android:layout_marginStart="@dimen/large_content_padding"
             android:layout_marginBottom="@dimen/large_content_padding"
             android:text="@string/tutorial_skip"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/next_button"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/large_content_padding"
+            android:layout_marginBottom="@dimen/large_content_padding"
+            android:text="@string/tutorial_next"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/done_button"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/large_content_padding"
+            android:layout_marginEnd="@dimen/large_content_padding"
+            android:layout_marginBottom="@dimen/content_padding"
+            android:text="@string/tutorial_done"
+            app:layout_constraintBottom_toBottomOf="@+id/view_pager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_max="@dimen/maximum_button_width"
+            app:layout_goneMarginBottom="@dimen/content_padding" />
+
+        <com.rd.PageIndicatorView
+            android:id="@+id/pager_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/large_content_padding"
+            android:paddingBottom="@dimen/tutorial_pager_indicator_bottom_padding"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:piv_animationType="drop"
+            app:piv_dynamicCount="true"
+            app:piv_interactiveAnimation="true"
+            app:piv_padding="@dimen/content_padding"
+            app:piv_radius="@dimen/tutorial_pager_indicator_dot_size"
+            app:piv_selectedColor="@color/brand"
+            app:piv_unselectedColor="?android:attr/textColorHint" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

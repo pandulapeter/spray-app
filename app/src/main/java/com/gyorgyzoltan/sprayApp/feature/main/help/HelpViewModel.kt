@@ -11,7 +11,9 @@ class HelpViewModel : ListViewModel<HelpListItem>() {
 
     override val items: LiveData<List<HelpListItem>> = MutableLiveData(
         listOf(
-            ClickableItemViewHolder.UiModel(R.string.help_show_tutorial, R.drawable.ic_help)
+            ClickableItemViewHolder.UiModel(R.string.help_show_tutorial, R.drawable.ic_help),
+            ClickableItemViewHolder.UiModel(R.string.help_call_customer_support, R.drawable.ic_phone),
+            ClickableItemViewHolder.UiModel(R.string.help_contact_us, R.drawable.ic_mail)
         )
     )
 }

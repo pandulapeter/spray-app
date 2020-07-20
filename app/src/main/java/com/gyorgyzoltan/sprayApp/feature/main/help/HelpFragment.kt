@@ -1,5 +1,7 @@
 package com.gyorgyzoltan.sprayApp.feature.main.help
 
+import android.content.Intent
+import android.net.Uri
 import androidx.lifecycle.viewModelScope
 import com.gyorgyzoltan.sprayApp.R
 import com.gyorgyzoltan.sprayApp.feature.SprayAppActivity
@@ -20,11 +22,30 @@ class HelpFragment : ListFragment<HelpViewModel, HelpListItem>(R.string.main_hel
 
     private fun onItemClicked(uiModel: ClickableItemViewHolder.UiModel) {
         when (uiModel.textResourceId) {
-            R.string.help_show_tutorial -> (activity as? SprayAppActivity?)?.navigateToTutorial(false)
+            R.string.help_show_tutorial -> navigateToTutorial()
+            R.string.help_call_customer_support -> callCustomerSupport()
+            R.string.help_contact_us -> openEmailComposer()
         }
     }
 
+    private fun navigateToTutorial() = (activity as? SprayAppActivity?)?.navigateToTutorial(false)
+
+    private fun callCustomerSupport() = startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:$CUSTOMER_SUPPORT_PHONE_NUMBER")))
+
+    private fun openEmailComposer() = startActivity(
+        Intent.createChooser(
+            Intent().apply {
+                action = Intent.ACTION_SENDTO
+                type = "text/plain"
+                data = Uri.parse("mailto:$CUSTOMER_SUPPORT_EMAIL_ADDRESS?subject=${Uri.encode(getString(R.string.app_name))}")
+            }.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK), null
+        )
+    )
+
     companion object {
+        private const val CUSTOMER_SUPPORT_PHONE_NUMBER = "0748545931"
+        private const val CUSTOMER_SUPPORT_EMAIL_ADDRESS = "gyorgy3zoltan@yahoo.com"
+
         fun newInstance() = HelpFragment()
     }
 }

@@ -5,8 +5,13 @@
     <string name="back">Back</string>
 
     <!-- Tutorial -->
-    <string name="tutorial_text">Tutorial / onboarding</string>
     <string name="tutorial_skip">Skip</string>
+    <string name="tutorial_next">Next</string>
+    <string name="tutorial_done">Done</string>
+    <string name="tutorial_page_1"><b>Page 1</b>\nWe could add a short tutorial to these pages about how to set up the hardware part</string>
+    <string name="tutorial_page_2"><b>Page 2</b>\n…or important information about the app, just an overview about the first steps</string>
+    <string name="tutorial_page_3"><b>Page 3</b>\n…or various tips or trick on how to use the product</string>
+    <string name="tutorial_page_4"><b>Page 4</b>\nAll of these pages should contain illustrations / animations</string>
 
     <!-- Main -->
     <string name="main_work">Work</string>
@@ -15,5 +20,7 @@
 
     <!-- Help -->
     <string name="help_show_tutorial"><b>Show tutorial</b>\nSee how to use the app</string>
+    <string name="help_call_customer_support"><b>Call customer support</b>\nGet instant help when needed</string>
+    <string name="help_contact_us"><b>Contact us</b>\nGet in touch via email</string>
 
 </resources>

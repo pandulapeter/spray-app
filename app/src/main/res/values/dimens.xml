@@ -6,5 +6,11 @@
     <dimen name="content_padding">8dp</dimen>
     <dimen name="large_content_padding">16dp</dimen>
     <dimen name="extra_large_content_padding">24dp</dimen>
+    <dimen name="maximum_button_width">320dp</dimen>
+
+    <!-- Tutorial -->
+    <dimen name="tutorial_text_horizontal_margin">72dp</dimen>
+    <dimen name="tutorial_pager_indicator_dot_size">4dp</dimen>
+    <dimen name="tutorial_pager_indicator_bottom_padding">20dp</dimen>
 
 </resources>
