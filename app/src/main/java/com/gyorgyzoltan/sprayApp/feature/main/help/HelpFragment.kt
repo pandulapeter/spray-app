@@ -32,6 +32,7 @@ class HelpFragment : ListFragment<HelpViewModel, HelpListItem>(R.string.main_hel
             R.string.help_check_for_updates -> openStoreListing()
             R.string.help_call_customer_support -> callCustomerSupport()
             R.string.help_contact_us -> openEmailComposer()
+            R.string.help_share -> openShareSheet()
             R.string.help_open_source_licences -> navigateToLicences()
         }
     }
@@ -58,6 +59,15 @@ class HelpFragment : ListFragment<HelpViewModel, HelpListItem>(R.string.main_hel
         )
     )
 
+    private fun openShareSheet() = startActivity(
+        Intent.createChooser(
+            Intent().apply {
+                action = Intent.ACTION_SEND
+                type = "text/plain"
+            }.putExtra(Intent.EXTRA_TEXT, getString(R.string.help_share_text, WEBSITE_URL)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK), null
+        )
+    )
+
     private fun navigateToLicences() = parentFragment?.childFragmentManager?.handleReplace(
         transitionType = TransitionType.MODAL,
         addToBackStack = true,
@@ -68,6 +78,7 @@ class HelpFragment : ListFragment<HelpViewModel, HelpListItem>(R.string.main_hel
         private const val CUSTOMER_SUPPORT_PHONE_NUMBER = "0748545931"
         private const val CUSTOMER_SUPPORT_EMAIL_ADDRESS = "gyorgy3zoltan@yahoo.com"
         private const val PACKAGE_NAME = BuildConfig.APPLICATION_ID
+        private const val WEBSITE_URL = "https://play.google.com/store/apps/details?id=$PACKAGE_NAME"
 
         fun newInstance() = HelpFragment()
     }

@@ -15,6 +15,7 @@ class HelpViewModel : ListViewModel<HelpListItem>() {
             ClickableItemViewHolder.UiModel(R.string.help_check_for_updates, R.drawable.ic_update),
             ClickableItemViewHolder.UiModel(R.string.help_call_customer_support, R.drawable.ic_phone),
             ClickableItemViewHolder.UiModel(R.string.help_contact_us, R.drawable.ic_mail),
+            ClickableItemViewHolder.UiModel(R.string.help_share, R.drawable.ic_share),
             ClickableItemViewHolder.UiModel(R.string.help_open_source_licences, R.drawable.ic_licences)
         )
     )

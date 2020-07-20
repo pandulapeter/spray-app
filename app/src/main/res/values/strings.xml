@@ -24,6 +24,8 @@
     <string name="help_check_for_updates"><b>Check for updates</b>\nMake sure that you\'re using the latest version</string>
     <string name="help_call_customer_support"><b>Call customer support</b>\nGet instant help when needed</string>
     <string name="help_contact_us"><b>Contact us</b>\nGet in touch via email</string>
+    <string name="help_share"><b>Share</b>\nSpread the word about SprayApp</string>
+    <string name="help_share_text">Check out SprayApp! %s</string>
     <string name="help_open_source_licences"><b>Open source licences</b>\nLegal information regarding dependencies</string>
 
     <!-- Licences -->
