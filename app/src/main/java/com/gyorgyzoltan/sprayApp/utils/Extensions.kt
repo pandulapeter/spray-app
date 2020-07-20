@@ -1,7 +1,9 @@
 package com.gyorgyzoltan.sprayApp.utils
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.PorterDuff
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -48,6 +50,14 @@ fun View.hideKeyboard() {
 }
 
 fun View.showSnackbar(@StringRes messageResourceId: Int) = Snackbar.make(this, messageResourceId, Snackbar.LENGTH_SHORT).show()
+
+fun View.openUrl(url: String) = Intent(Intent.ACTION_VIEW, Uri.parse(url)).let { intent ->
+    if (intent.resolveActivity(context.packageManager) != null) {
+        context.startActivity(intent)
+    } else {
+        showSnackbar(R.string.app_not_found)
+    }
+}
 
 inline fun <T : Fragment> T.withArguments(bundleOperations: (Bundle) -> Unit): T = apply {
     arguments = Bundle().apply { bundleOperations(this) }

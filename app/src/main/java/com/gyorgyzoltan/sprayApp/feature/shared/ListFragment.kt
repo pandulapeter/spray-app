@@ -1,9 +1,9 @@
 package com.gyorgyzoltan.sprayApp.feature.shared
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.CallSuper
-import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gyorgyzoltan.sprayApp.BR
@@ -11,12 +11,10 @@ import com.gyorgyzoltan.sprayApp.R
 import com.gyorgyzoltan.sprayApp.databinding.FragmentListBinding
 import com.gyorgyzoltan.sprayApp.feature.shared.list.BaseAdapter
 import com.gyorgyzoltan.sprayApp.feature.shared.list.ListItem
-import com.gyorgyzoltan.sprayApp.utils.color
 import com.gyorgyzoltan.sprayApp.utils.observe
 
 abstract class ListFragment<VM : ListViewModel<LI>, LI : ListItem>(
-    @StringRes protected val titleResourceId: Int,
-    @ColorRes private val backgroundColorResourceId: Int = R.color.transparent
+    @StringRes protected val titleResourceId: Int
 ) : BaseFragment<FragmentListBinding>(R.layout.fragment_list) {
 
     protected abstract val viewModel: VM
@@ -26,7 +24,7 @@ abstract class ListFragment<VM : ListViewModel<LI>, LI : ListItem>(
     @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.setVariable(BR.viewModel, viewModel)
-        binding.root.setBackgroundColor(requireContext().color(backgroundColorResourceId))
+        binding.root.setBackgroundColor(Color.TRANSPARENT)
         binding.appBar.setup(titleResourceId, parentFragment?.childFragmentManager?.backStackEntryCount ?: 0 <= 1, requireActivity())
         setupRecyclerView()
     }

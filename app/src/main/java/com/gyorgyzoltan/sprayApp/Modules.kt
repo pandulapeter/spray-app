@@ -2,6 +2,7 @@ package com.gyorgyzoltan.sprayApp
 
 import com.gyorgyzoltan.sprayApp.data.PreferenceManager
 import com.gyorgyzoltan.sprayApp.feature.main.help.HelpViewModel
+import com.gyorgyzoltan.sprayApp.feature.main.help.licences.LicencesViewModel
 import com.gyorgyzoltan.sprayApp.feature.main.statistics.StatisticsViewModel
 import com.gyorgyzoltan.sprayApp.feature.main.work.WorkViewModel
 import org.koin.android.ext.koin.androidContext
@@ -16,6 +17,7 @@ private val featureModule = module {
     viewModel { WorkViewModel() }
     viewModel { StatisticsViewModel() }
     viewModel { HelpViewModel() }
+    viewModel { LicencesViewModel() }
 }
 
 val modules = dataModule + featureModule

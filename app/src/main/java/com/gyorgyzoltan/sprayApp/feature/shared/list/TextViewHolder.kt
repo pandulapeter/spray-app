@@ -6,6 +6,7 @@ import androidx.annotation.StringRes
 import androidx.databinding.DataBindingUtil
 import com.gyorgyzoltan.sprayApp.R
 import com.gyorgyzoltan.sprayApp.databinding.ItemTextBinding
+import com.gyorgyzoltan.sprayApp.feature.main.help.licences.list.LicencesListItem
 
 class TextViewHolder private constructor(
     binding: ItemTextBinding
@@ -14,7 +15,7 @@ class TextViewHolder private constructor(
     data class UiModel(
         @StringRes val textResourceId: Int,
         override val id: String = "text_$textResourceId"
-    ) : ListItem
+    ) : ListItem, LicencesListItem
 
     companion object {
         fun create(
