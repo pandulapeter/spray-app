@@ -2,11 +2,13 @@ package com.gyorgyzoltan.sprayApp
 
 import android.app.Application
 import com.pandulapeter.beagle.Beagle
+import com.pandulapeter.beagle.common.configuration.Appearance
 import com.pandulapeter.beagle.modules.AppInfoButtonModule
+import com.pandulapeter.beagle.modules.DeviceInfoModule
+import com.pandulapeter.beagle.modules.DividerModule
 import com.pandulapeter.beagle.modules.HeaderModule
 import com.pandulapeter.beagle.modules.KeylineOverlaySwitchModule
-import com.pandulapeter.beagle.modules.ScreenRecordingButtonModule
-import com.pandulapeter.beagle.modules.ScreenshotButtonModule
+import com.pandulapeter.beagle.modules.ScreenCaptureToolboxModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -19,7 +21,13 @@ class SprayApp : Application() {
             androidContext(this@SprayApp)
             modules(modules)
         }
-        Beagle.initialize(this)
+        Beagle.initialize(
+            application = this,
+            appearance = Appearance(
+                themeResourceId = R.style.AppTheme,
+                applyInsets = { Appearance.Insets() }
+            )
+        )
         Beagle.set(
             HeaderModule(
                 title = getString(R.string.app_name),
@@ -27,9 +35,10 @@ class SprayApp : Application() {
                 text = "v${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE}) built on ${BuildConfig.BUILD_DATE}"
             ),
             AppInfoButtonModule(),
-            ScreenshotButtonModule(),
-            ScreenRecordingButtonModule(),
-            KeylineOverlaySwitchModule()
+            KeylineOverlaySwitchModule(),
+            DividerModule(),
+            ScreenCaptureToolboxModule(),
+            DeviceInfoModule()
         )
     }
 }
