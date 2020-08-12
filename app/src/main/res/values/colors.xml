@@ -11,4 +11,9 @@
     <!-- Widgets -->
     <color name="toolbar_text">@color/brand</color>
 
+    <!-- Nozzle type -->
+    <color name="nozzle_type_orange">#EF6C00</color>
+    <color name="nozzle_type_green">#208E02</color>
+    <color name="nozzle_type_yellow">#FFC800</color>
+
 </resources>
