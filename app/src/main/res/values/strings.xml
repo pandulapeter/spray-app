@@ -21,11 +21,11 @@
 
     <!-- Configuration -->
     <string name="configuration_title">Configuration</string>
-    <string name="configuration_placeholder"><b>Coming soon…</b>\n\n</string>
+    <string name="configuration_placeholder"><b>Coming soon…</b>\n\nThis screen will be used to configure the constants for all calculations</string>
     <string name="configuration_done">Done</string>
 
     <!-- Work -->
-    <string name="work_placeholder"><b>Coming soon…</b>\n\n• Pairing / connection flow\n• Create / load configuration\n• Work mode (automatic / manual / test)</string>
+    <string name="work_placeholder"><b>Coming soon…</b>\n\n• Work mode (automatic / manual / test)\n• Pairing / connection flow</string>
 
     <!-- Statistics -->
     <string name="statistics_placeholder"><b>Coming soon…</b>\n\nThis page will contain locally stored, historical logs about the work sessions tracked by the device. It could be divided into multiple sections to offer different view modes (for example individual sessions by date / aggregated data over a configurable period of time)</string>

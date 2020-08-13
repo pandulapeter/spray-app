@@ -5,11 +5,14 @@ import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.LinearLayout
 import androidx.annotation.StringRes
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.FragmentActivity
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.gyorgyzoltan.sprayApp.R
+import com.gyorgyzoltan.sprayApp.utils.dimension
 import com.gyorgyzoltan.sprayApp.utils.visible
 
 class AppBarView @JvmOverloads constructor(
@@ -32,11 +35,34 @@ class AppBarView @JvmOverloads constructor(
         }
     }
 
-    fun setup(@StringRes titleResourceId: Int, isRoot: Boolean, activity: FragmentActivity) {
-        findViewById<MaterialToolbar>(R.id.toolbar).title = context.getString(titleResourceId)
+    fun setup(
+        @StringRes titleResourceId: Int,
+        actions: List<Pair<Int, () -> Unit>>,
+        isRoot: Boolean,
+        activity: FragmentActivity
+    ) {
+        findViewById<MaterialToolbar>(R.id.toolbar).run {
+            title = context.getString(titleResourceId)
+        }
         findViewById<View>(R.id.back_button).run {
             visible = !isRoot
             setOnClickListener { activity.onBackPressed() }
+        }
+        findViewById<LinearLayout>(R.id.actions_container).run {
+            val smallContentPadding = context.dimension(R.dimen.small_content_padding)
+            if (actions.isNotEmpty()) {
+                setPadding(0, 0, context.dimension(R.dimen.content_padding), 0)
+            }
+            actions.forEach { action ->
+                addView(AppCompatImageView(context).apply {
+                    setImageResource(action.first)
+                    setPadding(smallContentPadding, smallContentPadding, smallContentPadding, smallContentPadding)
+                    val outValue = TypedValue()
+                    context.theme.resolveAttribute(android.R.attr.selectableItemBackgroundBorderless, outValue, true)
+                    setBackgroundResource(outValue.resourceId)
+                    setOnClickListener { action.second() }
+                }, LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT))
+            }
         }
     }
 }

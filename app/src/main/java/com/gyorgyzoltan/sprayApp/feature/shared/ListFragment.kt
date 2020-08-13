@@ -14,10 +14,11 @@ import com.gyorgyzoltan.sprayApp.feature.shared.list.ListItem
 import com.gyorgyzoltan.sprayApp.utils.observe
 
 abstract class ListFragment<VM : ListViewModel<LI>, LI : ListItem>(
-    @StringRes protected val titleResourceId: Int
+    @StringRes private val titleResourceId: Int
 ) : BaseFragment<FragmentListBinding>(R.layout.fragment_list) {
 
     protected abstract val viewModel: VM
+    protected open val actions: List<Pair<Int, () -> Unit>> = emptyList()
 
     protected abstract fun createAdapter(): BaseAdapter<LI>
 
@@ -25,7 +26,7 @@ abstract class ListFragment<VM : ListViewModel<LI>, LI : ListItem>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.setVariable(BR.viewModel, viewModel)
         binding.root.setBackgroundColor(Color.TRANSPARENT)
-        binding.appBar.setup(titleResourceId, parentFragment?.childFragmentManager?.backStackEntryCount ?: 0 <= 1, requireActivity())
+        binding.appBar.setup(titleResourceId, actions, parentFragment?.childFragmentManager?.backStackEntryCount ?: 0 <= 1, requireActivity())
         setupRecyclerView()
     }
 
