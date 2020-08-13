@@ -19,6 +19,11 @@
     <string name="main_statistics">Stats</string>
     <string name="main_help">Help</string>
 
+    <!-- Configuration -->
+    <string name="configuration_title">Configuration</string>
+    <string name="configuration_placeholder"><b>Coming soon…</b>\n\n</string>
+    <string name="configuration_done">Done</string>
+
     <!-- Work -->
     <string name="work_placeholder"><b>Coming soon…</b>\n\n• Pairing / connection flow\n• Create / load configuration\n• Work mode (automatic / manual / test)</string>
 

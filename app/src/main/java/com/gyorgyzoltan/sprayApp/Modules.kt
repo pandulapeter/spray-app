@@ -5,6 +5,7 @@ import com.gyorgyzoltan.sprayApp.feature.main.help.HelpViewModel
 import com.gyorgyzoltan.sprayApp.feature.main.help.licences.LicencesViewModel
 import com.gyorgyzoltan.sprayApp.feature.main.statistics.StatisticsViewModel
 import com.gyorgyzoltan.sprayApp.feature.main.work.WorkViewModel
+import com.gyorgyzoltan.sprayApp.feature.main.work.configuration.ConfigurationViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -14,6 +15,7 @@ private val dataModule = module {
 }
 
 private val featureModule = module {
+    viewModel { ConfigurationViewModel(get()) }
     viewModel { WorkViewModel() }
     viewModel { StatisticsViewModel() }
     viewModel { HelpViewModel() }

@@ -88,7 +88,7 @@ dependencies {
     implementation "com.romandanylyk:pageindicatorview:1.0.3"
 
     // Debug menu
-    def beagleVersion = "2.0.0-beta13"
+    def beagleVersion = "2.0.0-beta14"
     debugImplementation "com.github.pandulapeter.beagle:ui-drawer:$beagleVersion"
     internalImplementation "com.github.pandulapeter.beagle:ui-drawer:$beagleVersion"
     releaseImplementation "com.github.pandulapeter.beagle:noop:$beagleVersion"

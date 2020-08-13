@@ -8,6 +8,7 @@ class PreferenceManager(context: Context) {
 
     private val preferences = context.applicationContext.getSharedPreferences("preferences", Context.MODE_PRIVATE)
     var hasSeenTutorial by MutablePreferenceFieldDelegate.Boolean("hasSeenTutorial")
+    var isConfigurationSet by MutablePreferenceFieldDelegate.Boolean("isConfigurationSet")
 
     private sealed class MutablePreferenceFieldDelegate<T>(protected val key: String) : ReadWriteProperty<PreferenceManager, T> {
 

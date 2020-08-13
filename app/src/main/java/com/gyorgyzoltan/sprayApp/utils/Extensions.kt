@@ -59,6 +59,13 @@ fun View.openUrl(url: String) = Intent(Intent.ACTION_VIEW, Uri.parse(url)).let {
     }
 }
 
+inline fun <T> LiveData<Consumable<T>>.observeEvents(viewLifecycleOwner: LifecycleOwner, crossinline blockNonNullValueFunction: (T) -> Unit) {
+    observe(viewLifecycleOwner) {
+        val value: T = it.consume() ?: return@observe
+        blockNonNullValueFunction(value)
+    }
+}
+
 inline fun <T : Fragment> T.withArguments(bundleOperations: (Bundle) -> Unit): T = apply {
     arguments = Bundle().apply { bundleOperations(this) }
 }

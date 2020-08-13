@@ -3,6 +3,7 @@ package com.gyorgyzoltan.sprayApp
 import android.app.Application
 import com.pandulapeter.beagle.Beagle
 import com.pandulapeter.beagle.common.configuration.Appearance
+import com.pandulapeter.beagle.common.configuration.Insets
 import com.pandulapeter.beagle.modules.AppInfoButtonModule
 import com.pandulapeter.beagle.modules.DeviceInfoModule
 import com.pandulapeter.beagle.modules.DividerModule
@@ -25,7 +26,7 @@ class SprayApp : Application() {
             application = this,
             appearance = Appearance(
                 themeResourceId = R.style.AppTheme,
-                applyInsets = { Appearance.Insets() }
+                applyInsets = { Insets() }
             )
         )
         Beagle.set(
@@ -35,7 +36,9 @@ class SprayApp : Application() {
                 text = "v${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE}) built on ${BuildConfig.BUILD_DATE}"
             ),
             AppInfoButtonModule(),
-            KeylineOverlaySwitchModule(),
+            KeylineOverlaySwitchModule(
+                applyInsets = { Insets() }
+            ),
             DividerModule(),
             ScreenCaptureToolboxModule(),
             DeviceInfoModule()
