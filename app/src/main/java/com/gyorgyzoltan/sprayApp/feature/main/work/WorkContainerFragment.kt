@@ -3,6 +3,7 @@ package com.gyorgyzoltan.sprayApp.feature.main.work
 import com.gyorgyzoltan.sprayApp.data.PreferenceManager
 import com.gyorgyzoltan.sprayApp.feature.main.ContainerFragment
 import com.gyorgyzoltan.sprayApp.feature.main.work.configuration.ConfigurationFragment
+import com.gyorgyzoltan.sprayApp.feature.main.work.configuration.nozzlePicker.NozzlePickerFragment
 import com.gyorgyzoltan.sprayApp.utils.TransitionType
 import com.gyorgyzoltan.sprayApp.utils.handleReplace
 import org.koin.core.context.KoinContextHandler
@@ -16,6 +17,8 @@ class WorkContainerFragment : ContainerFragment({
     }
 }) {
 
+    fun navigateBack() = childFragmentManager.popBackStack()
+
     fun navigateToWork() = childFragmentManager.run {
         if (backStackEntryCount > 1) {
             popBackStack()
@@ -28,6 +31,12 @@ class WorkContainerFragment : ContainerFragment({
         addToBackStack = true,
         transitionType = TransitionType.MODAL,
         newInstance = ConfigurationFragment.Companion::newInstance
+    )
+
+    fun navigateToNozzlePicker() = childFragmentManager.handleReplace(
+        addToBackStack = true,
+        transitionType = TransitionType.MODAL,
+        newInstance = NozzlePickerFragment.Companion::newInstance
     )
 
     companion object {

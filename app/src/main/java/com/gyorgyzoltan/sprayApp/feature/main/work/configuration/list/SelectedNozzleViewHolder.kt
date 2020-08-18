@@ -5,16 +5,17 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.gyorgyzoltan.sprayApp.R
-import com.gyorgyzoltan.sprayApp.databinding.ItemConfigurationDoneButtonBinding
+import com.gyorgyzoltan.sprayApp.data.model.Nozzle
+import com.gyorgyzoltan.sprayApp.databinding.ItemConfigurationSelectedNozzleBinding
 import com.gyorgyzoltan.sprayApp.feature.shared.list.BaseViewHolder
 
-class DoneButtonViewHolder private constructor(
-    binding: ItemConfigurationDoneButtonBinding,
+class SelectedNozzleViewHolder private constructor(
+    binding: ItemConfigurationSelectedNozzleBinding,
     onItemClicked: () -> Unit
-) : BaseViewHolder<ItemConfigurationDoneButtonBinding, DoneButtonViewHolder.UiModel>(binding) {
+) : BaseViewHolder<ItemConfigurationSelectedNozzleBinding, SelectedNozzleViewHolder.UiModel>(binding) {
 
     init {
-        binding.button.setOnClickListener {
+        binding.nozzle.setOnClickListener {
             if (bindingAdapterPosition != RecyclerView.NO_POSITION) {
                 onItemClicked()
             }
@@ -22,18 +23,19 @@ class DoneButtonViewHolder private constructor(
     }
 
     data class UiModel(
-        val isEnabled: Boolean
+        val nozzle: Nozzle?
     ) : ConfigurationListItem {
 
-        override val id: String = "doneButton"
+        override val id = "selectedNozzle"
+        val formattedName = nozzle?.formattedName ?: "Unselected"
     }
 
     companion object {
         fun create(
             parent: ViewGroup,
             onItemClicked: () -> Unit
-        ) = DoneButtonViewHolder(
-            binding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_configuration_done_button, parent, false),
+        ) = SelectedNozzleViewHolder(
+            binding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_configuration_selected_nozzle, parent, false),
             onItemClicked = onItemClicked
         )
     }

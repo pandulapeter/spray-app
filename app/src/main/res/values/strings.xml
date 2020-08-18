@@ -21,10 +21,14 @@
 
     <!-- Configuration -->
     <string name="configuration_title">Configuration</string>
-    <string name="configuration_placeholder"><b>Coming soon…</b>\n\nThis screen will be used to configure the constants for all calculations</string>
+    <string name="configuration_placeholder"><b>Coming soon…</b>\n\nThis screen will be used to configure the constants for all calculations\n</string>
     <string name="configuration_done">Done</string>
 
-    <!-- Work -->
+    <!-- Nozzle picker -->
+    <string name="nozzle_picker_title">Nozzle picker</string>
+    <string name="nozzle_picker_hint">Select the type of nozzle you will be using.</string>
+
+    <!-- Connection -->
     <string name="work_placeholder"><b>Coming soon…</b>\n\n• Work mode (automatic / manual / test)\n• Pairing / connection flow</string>
 
     <!-- Statistics -->

@@ -17,6 +17,7 @@ class ConfigurationFragment : ListFragment<ConfigurationViewModel, Configuration
 
     override fun createAdapter() = ConfigurationAdapter(
         scope = viewModel.viewModelScope,
+        onNozzleClicked = viewModel::onNozzleClicked,
         onDoneButtonClicked = viewModel::onDoneButtonClicked
     )
 
@@ -24,9 +25,19 @@ class ConfigurationFragment : ListFragment<ConfigurationViewModel, Configuration
         super.onViewCreated(view, savedInstanceState)
         viewModel.events.observeEvents(viewLifecycleOwner) { event ->
             when (event) {
+                ConfigurationViewModel.Event.NavigateToNozzlePicker -> navigateToNozzlePicker()
                 ConfigurationViewModel.Event.CloseScreen -> closeScreen()
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.refreshItems()
+    }
+
+    private fun navigateToNozzlePicker() {
+        (parentFragment as? WorkContainerFragment?)?.navigateToNozzlePicker()
     }
 
     private fun closeScreen() {
