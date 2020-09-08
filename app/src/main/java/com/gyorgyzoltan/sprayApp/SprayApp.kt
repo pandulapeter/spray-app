@@ -10,9 +10,9 @@ import com.pandulapeter.beagle.modules.DeviceInfoModule
 import com.pandulapeter.beagle.modules.DividerModule
 import com.pandulapeter.beagle.modules.HeaderModule
 import com.pandulapeter.beagle.modules.KeylineOverlaySwitchModule
-import com.pandulapeter.beagle.modules.LabelModule
 import com.pandulapeter.beagle.modules.LifecycleLogListModule
 import com.pandulapeter.beagle.modules.ScreenCaptureToolboxModule
+import com.pandulapeter.beagle.modules.SectionHeaderModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -39,14 +39,18 @@ class SprayApp : Application() {
                 text = "v${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE}) built on ${BuildConfig.BUILD_DATE}"
             ),
             AppInfoButtonModule(),
-            LabelModule("General"),
+            DeveloperOptionsButtonModule(),
+            SectionHeaderModule("General"),
             KeylineOverlaySwitchModule(
                 applyInsets = { Insets() }
             ),
             ScreenCaptureToolboxModule(),
             DividerModule(),
-            LabelModule("Other"),
-            LifecycleLogListModule("Navigation logs"),
+            SectionHeaderModule("Other"),
+            LifecycleLogListModule(
+                title = "Navigation logs",
+                eventTypes = listOf(LifecycleLogListModule.EventType.FRAGMENT_ON_VIEW_CREATED)
+            ),
             DeviceInfoModule()
         )
     }
