@@ -2,6 +2,7 @@ package com.gyorgyzoltan.sprayApp.feature
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 import com.gyorgyzoltan.sprayApp.R
 import com.gyorgyzoltan.sprayApp.data.PreferenceManager
 import com.gyorgyzoltan.sprayApp.feature.main.MainFragment
@@ -20,6 +21,7 @@ class SprayAppActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         if (savedInstanceState == null) {
             if (preferenceManager.hasSeenTutorial) {
                 navigateToMain()

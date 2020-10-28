@@ -5,13 +5,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.CallSuper
 import androidx.annotation.StringRes
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gyorgyzoltan.sprayApp.BR
 import com.gyorgyzoltan.sprayApp.R
 import com.gyorgyzoltan.sprayApp.databinding.FragmentListBinding
 import com.gyorgyzoltan.sprayApp.feature.shared.list.BaseAdapter
 import com.gyorgyzoltan.sprayApp.feature.shared.list.ListItem
-import com.gyorgyzoltan.sprayApp.utils.observe
 
 abstract class ListFragment<VM : ListViewModel<LI>, LI : ListItem>(
     @StringRes private val titleResourceId: Int
@@ -32,7 +32,7 @@ abstract class ListFragment<VM : ListViewModel<LI>, LI : ListItem>(
 
     private fun setupRecyclerView() {
         val listAdapter = createAdapter()
-        viewModel.items.observe(viewLifecycleOwner) { listAdapter.submitList(it, ::onListUpdated) }
+        viewModel.items.observe(viewLifecycleOwner, Observer { listAdapter.submitList(it, ::onListUpdated) })
         binding.recyclerView.run {
             adapter = listAdapter
             layoutManager = LinearLayoutManager(context)

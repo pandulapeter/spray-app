@@ -78,7 +78,10 @@ class TutorialFragment : BaseFragment<FragmentTutorialBinding>(R.layout.fragment
 
     private fun onSkipButtonPressed() {
         preferenceManager.hasSeenTutorial = true
-        activityFragmentManager?.handleReplace(newInstance = MainFragment.Companion::newInstance)
+        activityFragmentManager?.handleReplace(
+            containerId = android.R.id.content,
+            newInstance = MainFragment.Companion::newInstance
+        )
     }
 
     private fun onCloseButtonPressed() {
