@@ -2,6 +2,7 @@ package com.gyorgyzoltan.sprayApp.feature.tutorial
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import androidx.viewpager.widget.ViewPager
 import com.gyorgyzoltan.sprayApp.R
@@ -12,7 +13,7 @@ import com.gyorgyzoltan.sprayApp.feature.main.MainFragment
 import com.gyorgyzoltan.sprayApp.feature.shared.BaseFragment
 import com.gyorgyzoltan.sprayApp.utils.BundleArgumentDelegate
 import com.gyorgyzoltan.sprayApp.utils.handleReplace
-import com.gyorgyzoltan.sprayApp.utils.visible
+import com.gyorgyzoltan.sprayApp.utils.notInvisible
 import com.gyorgyzoltan.sprayApp.utils.withArguments
 import org.koin.android.ext.android.inject
 import kotlin.math.abs
@@ -44,9 +45,18 @@ class TutorialFragment : BaseFragment<FragmentTutorialBinding>(R.layout.fragment
         binding.skipButton.setOnClickListener { onSkipButtonPressed() }
         binding.closeButton.setOnClickListener { onCloseButtonPressed() }
         binding.nextButton.setOnClickListener { onNextButtonPressed() }
-        binding.skipButton.visible = isFirstTutorial
-        binding.closeButton.visible = !isFirstTutorial
+        binding.skipButton.notInvisible = isFirstTutorial
+        binding.closeButton.notInvisible = !isFirstTutorial
         binding.pagerIndicator.setViewPager(binding.viewPager)
+        binding.closeButton.run {
+            setOnApplyWindowInsetsListener { _, insets ->
+                insets.also {
+                    layoutParams = (layoutParams as ViewGroup.MarginLayoutParams).apply {
+                        topMargin = insets.systemWindowInsetTop
+                    }
+                }
+            }
+        }
     }
 
     override fun onStart() {
@@ -93,9 +103,9 @@ class TutorialFragment : BaseFragment<FragmentTutorialBinding>(R.layout.fragment
     }
 
     private fun onTutorialPageSelected(position: Int) {
-        binding.nextButton.visible = position != tutorialPages.lastIndex
-        binding.skipButton.visible = isFirstTutorial && position != tutorialPages.lastIndex
-        binding.doneButton.visible = position == tutorialPages.lastIndex
+        binding.nextButton.notInvisible = position != tutorialPages.lastIndex
+        binding.skipButton.notInvisible = isFirstTutorial && position != tutorialPages.lastIndex
+        binding.doneButton.notInvisible = position == tutorialPages.lastIndex
     }
 
     companion object {

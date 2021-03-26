@@ -5,6 +5,7 @@ import com.pandulapeter.beagle.Beagle
 import com.pandulapeter.beagle.common.configuration.Appearance
 import com.pandulapeter.beagle.common.configuration.Behavior
 import com.pandulapeter.beagle.common.configuration.toText
+import com.pandulapeter.beagle.logCrash.BeagleCrashLogger
 import com.pandulapeter.beagle.modules.AppInfoButtonModule
 import com.pandulapeter.beagle.modules.BugReportButtonModule
 import com.pandulapeter.beagle.modules.DeveloperOptionsButtonModule
@@ -67,6 +68,7 @@ class SprayApp : Application() {
                 ),
                 behavior = Behavior(
                     bugReportingBehavior = Behavior.BugReportingBehavior(
+                        crashLoggers = listOf(BeagleCrashLogger),
                         buildInformation = {
                             listOf(
                                 "Version name".toText() to BuildConfig.VERSION_NAME,

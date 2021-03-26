@@ -9,3 +9,9 @@ var View.visible
     set(value) {
         visibility = if (value) View.VISIBLE else View.GONE
     }
+
+var View.notInvisible
+    get() = visibility == View.VISIBLE
+    set(value) {
+        visibility = if (value) View.VISIBLE else View.INVISIBLE
+    }
