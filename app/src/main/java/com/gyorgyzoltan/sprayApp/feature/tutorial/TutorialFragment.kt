@@ -49,7 +49,7 @@ class TutorialFragment : BaseFragment<FragmentTutorialBinding>(R.layout.fragment
         binding.skipButton.notInvisible = isFirstTutorial
         binding.closeButton.notInvisible = !isFirstTutorial
         binding.pagerIndicator.setViewPager(binding.viewPager)
-        binding.container.layoutTransition = LayoutTransition()
+        binding.root.post { binding.container.layoutTransition = LayoutTransition() }
     }
 
     override fun onStart() {

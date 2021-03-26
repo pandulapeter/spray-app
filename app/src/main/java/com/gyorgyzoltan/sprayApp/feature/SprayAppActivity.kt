@@ -43,7 +43,7 @@ class SprayAppActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         if (!DebugMenu.hide() && currentFragment?.onBackPressed() != true) {
-            if (supportFragmentManager.backStackEntryCount > 1) {
+            if (supportFragmentManager.backStackEntryCount >= 1) {
                 super.onBackPressed()
             } else {
                 closeAfterConfirmation()

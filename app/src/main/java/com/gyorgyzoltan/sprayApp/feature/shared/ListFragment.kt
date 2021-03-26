@@ -22,6 +22,11 @@ abstract class ListFragment<VM : ListViewModel<LI>, LI : ListItem>(
 
     protected abstract fun createAdapter(): BaseAdapter<LI>
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        postponeEnterTransition()
+    }
+
     @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.setVariable(BR.viewModel, viewModel)
@@ -37,6 +42,7 @@ abstract class ListFragment<VM : ListViewModel<LI>, LI : ListItem>(
             adapter = listAdapter
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
+            post { startPostponedEnterTransition() }
         }
     }
 
@@ -45,7 +51,7 @@ abstract class ListFragment<VM : ListViewModel<LI>, LI : ListItem>(
             binding.appBar.run {
                 postDelayed({
                     try {
-                        setLifted(binding.recyclerView.computeVerticalScrollOffset() != 0)
+                        isLifted = binding.recyclerView.computeVerticalScrollOffset() != 0
                     } catch (_: IllegalStateException) {
                     }
                 }, 300)
