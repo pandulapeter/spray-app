@@ -15,7 +15,7 @@ class NetworkingManager {
             OkHttpClient.Builder()
                 .addInterceptor(
                     RetrosheetInterceptor.Builder()
-                        .setLogging(false)
+                        .setLogging(true)
                         .addSheet(
                             NOZZLES_SHEET_NAME,
                             Nozzle.KEY_CREATED_AT,

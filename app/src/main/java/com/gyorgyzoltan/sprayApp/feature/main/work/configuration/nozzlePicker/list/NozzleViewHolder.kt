@@ -29,7 +29,7 @@ class NozzleViewHolder private constructor(
         val isSelected: Boolean
     ) : NozzlePickerListItem {
 
-        override val id = nozzle.name
+        override val id = nozzle.name.orEmpty()
     }
 
     companion object {

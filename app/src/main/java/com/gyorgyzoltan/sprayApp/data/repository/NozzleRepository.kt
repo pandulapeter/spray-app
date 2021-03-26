@@ -7,7 +7,8 @@ class NozzleRepository(private val networkingManager: NetworkingManager) {
 
     suspend fun getNozzles(): List<Nozzle> = try {
         networkingManager.nozzleService.getNozzles()
-    } catch (_: Exception) {
+    } catch (e: Exception) {
+        e.message
         emptyList()
     }
 }

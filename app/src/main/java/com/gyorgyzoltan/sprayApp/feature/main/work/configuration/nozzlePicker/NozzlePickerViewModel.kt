@@ -44,7 +44,7 @@ class NozzlePickerViewModel(
     }
 
     fun onNozzleSelected(nozzle: Nozzle) {
-        preferenceManager.selectedNozzleName = nozzle.name
+        preferenceManager.selectedNozzleName = nozzle.name.orEmpty()
         _events.value = Consumable(Event.CloseScreen)
     }
 

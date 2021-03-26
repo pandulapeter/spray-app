@@ -14,6 +14,8 @@ import com.pandulapeter.beagle.common.configuration.Appearance
 import com.pandulapeter.beagle.common.configuration.Behavior
 import com.pandulapeter.beagle.common.configuration.toText
 import com.pandulapeter.beagle.common.contracts.BeagleListItemContract
+import com.pandulapeter.beagle.common.listeners.NetworkLogListener
+import com.pandulapeter.beagle.commonBase.model.NetworkLogEntry
 import com.pandulapeter.beagle.logCrash.BeagleCrashLogger
 import com.pandulapeter.beagle.logOkHttp.BeagleOkHttpLogger
 import com.pandulapeter.beagle.modules.AnimationDurationSwitchModule
@@ -75,6 +77,7 @@ internal class BeagleWrapper : DebugMenuContract, CoroutineScope {
             ),
             behavior = Behavior(
                 networkLogBehavior = Behavior.NetworkLogBehavior(
+                    networkLoggers = listOf(BeagleOkHttpLogger),
                     baseUrl = baseUrl
                 ),
                 bugReportingBehavior = Behavior.BugReportingBehavior(
