@@ -8,7 +8,6 @@ import com.gyorgyzoltan.sprayApp.utils.TransitionType
 import com.gyorgyzoltan.sprayApp.utils.handleReplace
 import org.koin.core.context.KoinContextHandler
 
-
 class WorkContainerFragment : ContainerFragment({
     if (KoinContextHandler.get().get<PreferenceManager>().isConfigurationSet) {
         WorkFragment.newInstance()

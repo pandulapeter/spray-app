@@ -2,7 +2,6 @@ package com.gyorgyzoltan.sprayApp.feature.tutorial
 
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import androidx.viewpager.widget.ViewPager
 import com.gyorgyzoltan.sprayApp.R
@@ -48,15 +47,6 @@ class TutorialFragment : BaseFragment<FragmentTutorialBinding>(R.layout.fragment
         binding.skipButton.notInvisible = isFirstTutorial
         binding.closeButton.notInvisible = !isFirstTutorial
         binding.pagerIndicator.setViewPager(binding.viewPager)
-        binding.closeButton.run {
-            setOnApplyWindowInsetsListener { _, insets ->
-                insets.also {
-                    layoutParams = (layoutParams as ViewGroup.MarginLayoutParams).apply {
-                        topMargin = insets.systemWindowInsetTop
-                    }
-                }
-            }
-        }
     }
 
     override fun onStart() {

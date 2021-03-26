@@ -4,12 +4,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.gyorgyzoltan.sprayApp.R
 import com.gyorgyzoltan.sprayApp.data.PreferenceManager
+import com.gyorgyzoltan.sprayApp.debugMenu.DebugMenu
 import com.gyorgyzoltan.sprayApp.feature.main.MainFragment
 import com.gyorgyzoltan.sprayApp.feature.shared.BaseFragment
 import com.gyorgyzoltan.sprayApp.feature.tutorial.TutorialFragment
 import com.gyorgyzoltan.sprayApp.utils.TransitionType
 import com.gyorgyzoltan.sprayApp.utils.handleReplace
-import com.pandulapeter.beagle.Beagle
 import org.koin.android.ext.android.inject
 
 class SprayAppActivity : AppCompatActivity() {
@@ -41,7 +41,7 @@ class SprayAppActivity : AppCompatActivity() {
     )
 
     override fun onBackPressed() {
-        if (!Beagle.hide() && currentFragment?.onBackPressed() != true) {
+        if (!DebugMenu.hide() && currentFragment?.onBackPressed() != true) {
             super.onBackPressed()
         }
     }

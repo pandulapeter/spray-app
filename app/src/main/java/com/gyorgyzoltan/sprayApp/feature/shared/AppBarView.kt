@@ -29,10 +29,6 @@ class AppBarView @JvmOverloads constructor(
         if (typedValue.type >= TypedValue.TYPE_FIRST_COLOR_INT && typedValue.type <= TypedValue.TYPE_LAST_COLOR_INT) {
             setBackgroundColor(typedValue.data)
         }
-        val toolbarContainer = findViewById<View>(R.id.toolbar_container)
-        setOnApplyWindowInsetsListener { _, insets ->
-            insets.also { toolbarContainer.run { setPadding(paddingLeft, insets.systemWindowInsetTop, paddingRight, paddingBottom) } }
-        }
     }
 
     fun setup(

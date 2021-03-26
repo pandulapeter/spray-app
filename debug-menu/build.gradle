@@ -1,0 +1,25 @@
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
+
+android {
+    compileSdkVersion project.targetSdkVersion
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+
+    // Debug menu
+    def beagleVersion = "2.5.1"
+    def beagleUiType = "ui-drawer"
+    debugImplementation "com.github.pandulapeter.beagle:$beagleUiType:$beagleVersion"
+    debugImplementation "com.github.pandulapeter.beagle:log-crash:$beagleVersion"
+    releaseImplementation "com.github.pandulapeter.beagle:noop:$beagleVersion"
+    releaseImplementation "com.github.pandulapeter.beagle:log-crash-noop:$beagleVersion"
+}

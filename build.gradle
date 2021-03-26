@@ -1,3 +1,9 @@
+ext {
+    minSdkVersion = 23
+    targetSdkVersion = 30
+    coroutinesVersion = "1.4.2"
+}
+
 buildscript {
     repositories {
         google()

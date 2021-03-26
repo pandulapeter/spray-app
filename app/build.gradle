@@ -4,11 +4,11 @@ apply plugin: "kotlin-android-extensions"
 apply plugin: "kotlin-kapt"
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion project.targetSdkVersion
     defaultConfig {
         applicationId "com.gyorgyzoltan.sprayApp"
-        minSdkVersion 23
-        targetSdkVersion 30
+        minSdkVersion project.minSdkVersion
+        targetSdkVersion project.targetSdkVersion
         versionCode 1
         versionName "0.0.2"
         buildConfigField("String", "BUILD_DATE", "\"${new Date().format("yyyy-MM-dd")}\"")
@@ -70,8 +70,11 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    // Kotlin
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2"
+    // Debug menu
+    implementation project(":debug-menu")
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
 
     // Networking
     //TODO: implementation "com.theapache64:retrosheet:1.2.1"
@@ -88,14 +91,4 @@ dependencies {
 
     // UI components
     implementation "com.romandanylyk:pageindicatorview:1.0.3"
-
-    // Debug menu
-    def beagleVersion = "2.5.1"
-    def beagleUiType = "ui-drawer"
-    debugImplementation "com.github.pandulapeter.beagle:$beagleUiType:$beagleVersion"
-    debugImplementation "com.github.pandulapeter.beagle:log-crash:$beagleVersion"
-    internalImplementation "com.github.pandulapeter.beagle:$beagleUiType:$beagleVersion"
-    internalImplementation "com.github.pandulapeter.beagle:log-crash-noop:$beagleVersion"
-    releaseImplementation "com.github.pandulapeter.beagle:noop:$beagleVersion"
-    releaseImplementation "com.github.pandulapeter.beagle:log-crash-noop:$beagleVersion"
 }
