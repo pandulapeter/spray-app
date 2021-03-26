@@ -31,7 +31,15 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
         binding.bottomNavigationView.setOnNavigationItemReselectedListener { onBackPressed() }
     }
 
-    override fun onBackPressed() = if (currentFragment?.childFragmentManager?.backStackEntryCount ?: 0 <= 1) false else super.onBackPressed()
+    override fun onBackPressed() = if (currentFragment?.childFragmentManager?.backStackEntryCount ?: 0 <= 1) {
+        if (binding.bottomNavigationView.selectedItemId == R.id.work) {
+            false
+        } else consume {
+            binding.bottomNavigationView.selectedItemId = R.id.work
+        }
+    } else {
+        super.onBackPressed()
+    }
 
     companion object {
         fun newInstance() = MainFragment()

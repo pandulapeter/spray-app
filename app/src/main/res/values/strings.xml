@@ -4,6 +4,10 @@
     <string name="app_name">SprayApp</string>
     <string name="back">Back</string>
     <string name="app_not_found">No application can handle this link</string>
+    <string name="close_confirmation_title">Are you sure?</string>
+    <string name="close_confirmation_message">Do you want to leave the app?</string>
+    <string name="close_confirmation_positive">Leave</string>
+    <string name="close_confirmation_negative">Cancel</string>
 
     <!-- Tutorial -->
     <string name="tutorial_skip">Skip</string>

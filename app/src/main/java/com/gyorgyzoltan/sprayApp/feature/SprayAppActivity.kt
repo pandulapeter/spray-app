@@ -2,6 +2,7 @@ package com.gyorgyzoltan.sprayApp.feature
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.gyorgyzoltan.sprayApp.R
 import com.gyorgyzoltan.sprayApp.data.PreferenceManager
 import com.gyorgyzoltan.sprayApp.debugMenu.DebugMenu
@@ -42,7 +43,18 @@ class SprayAppActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         if (!DebugMenu.hide() && currentFragment?.onBackPressed() != true) {
-            super.onBackPressed()
+            if (supportFragmentManager.backStackEntryCount > 1) {
+                super.onBackPressed()
+            } else {
+                closeAfterConfirmation()
+            }
         }
     }
+
+    private fun closeAfterConfirmation() = MaterialAlertDialogBuilder(this)
+        .setTitle(R.string.close_confirmation_title)
+        .setMessage(R.string.close_confirmation_message)
+        .setPositiveButton(R.string.close_confirmation_positive) { _, _ -> supportFinishAfterTransition() }
+        .setNegativeButton(R.string.close_confirmation_negative, null)
+        .show()
 }

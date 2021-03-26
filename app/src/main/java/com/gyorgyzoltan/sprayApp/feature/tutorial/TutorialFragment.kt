@@ -1,5 +1,6 @@
 package com.gyorgyzoltan.sprayApp.feature.tutorial
 
+import android.animation.LayoutTransition
 import android.os.Bundle
 import android.view.View
 import android.view.animation.DecelerateInterpolator
@@ -11,6 +12,7 @@ import com.gyorgyzoltan.sprayApp.databinding.ViewTutorialPageBinding
 import com.gyorgyzoltan.sprayApp.feature.main.MainFragment
 import com.gyorgyzoltan.sprayApp.feature.shared.BaseFragment
 import com.gyorgyzoltan.sprayApp.utils.BundleArgumentDelegate
+import com.gyorgyzoltan.sprayApp.utils.consume
 import com.gyorgyzoltan.sprayApp.utils.handleReplace
 import com.gyorgyzoltan.sprayApp.utils.notInvisible
 import com.gyorgyzoltan.sprayApp.utils.withArguments
@@ -47,6 +49,7 @@ class TutorialFragment : BaseFragment<FragmentTutorialBinding>(R.layout.fragment
         binding.skipButton.notInvisible = isFirstTutorial
         binding.closeButton.notInvisible = !isFirstTutorial
         binding.pagerIndicator.setViewPager(binding.viewPager)
+        binding.container.layoutTransition = LayoutTransition()
     }
 
     override fun onStart() {
@@ -68,6 +71,12 @@ class TutorialFragment : BaseFragment<FragmentTutorialBinding>(R.layout.fragment
         binding.viewPager.clearOnPageChangeListeners()
     }
 
+    override fun onBackPressed() = if (binding.viewPager.currentItem == 0) {
+        super.onBackPressed()
+    } else consume {
+        binding.viewPager.currentItem--
+    }
+
     private fun onDoneButtonPressed() {
         if (isFirstTutorial) {
             onSkipButtonPressed()
@@ -79,7 +88,6 @@ class TutorialFragment : BaseFragment<FragmentTutorialBinding>(R.layout.fragment
     private fun onSkipButtonPressed() {
         preferenceManager.hasSeenTutorial = true
         activityFragmentManager?.handleReplace(
-            containerId = android.R.id.content,
             newInstance = MainFragment.Companion::newInstance
         )
     }
@@ -88,9 +96,7 @@ class TutorialFragment : BaseFragment<FragmentTutorialBinding>(R.layout.fragment
         activityFragmentManager?.popBackStack()
     }
 
-    private fun onNextButtonPressed() {
-        binding.viewPager.currentItem++
-    }
+    private fun onNextButtonPressed() = binding.viewPager.currentItem++
 
     private fun onTutorialPageSelected(position: Int) {
         binding.nextButton.notInvisible = position != tutorialPages.lastIndex
