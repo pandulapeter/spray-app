@@ -77,13 +77,19 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
 
     // Networking
-    //TODO: implementation "com.theapache64:retrosheet:1.2.1"
+    implementation "com.theapache64:retrosheet:1.2.3"
+    implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
+    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion") { exclude module: "okhttp" }
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
 
     // Service locator
     implementation "org.koin:koin-androidx-viewmodel:2.1.6"
 
     // Jetpack
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-alpha01"
 
     // UI components

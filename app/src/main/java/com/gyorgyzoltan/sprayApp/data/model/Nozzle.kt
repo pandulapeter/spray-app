@@ -1,9 +1,14 @@
 package com.gyorgyzoltan.sprayApp.data.model
 
-enum class Nozzle(
-    val formattedName: String,
-    val image: Int,
-    val type: NozzleType,
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
+data class Nozzle(
+    @Json(name = KEY_CREATED_AT) val createdAt: String,
+    @Json(name = KEY_NAME) val name: String,
+    @Json(name = KEY_IMAGE_URL) val imageUrl: String,
+    @Json(name = TYPE) val type: String,
     // Debit values at X bar pressure
     val debitAt1: Float? = null,
     val debitAt1AndHalf: Float? = null,
@@ -22,19 +27,10 @@ enum class Nozzle(
     val debitAt8: Float? = null
 ) {
 
-    TEST_NOZZLE_1(
-        formattedName = "Test nozzle 1",
-        image = 0,
-        type = NozzleType.TYPE_01
-    ),
-    TEST_NOZZLE_2(
-        formattedName = "Test nozzle 2",
-        image = 0,
-        type = NozzleType.TYPE_02
-    ),
-    TEST_NOZZLE_3(
-        formattedName = "Test nozzle 3",
-        image = 0,
-        type = NozzleType.TYPE_01
-    )
+    companion object {
+        const val KEY_CREATED_AT = "createdAt"
+        const val KEY_NAME = "name"
+        const val KEY_IMAGE_URL = "imageUrl"
+        const val TYPE = "type"
+    }
 }

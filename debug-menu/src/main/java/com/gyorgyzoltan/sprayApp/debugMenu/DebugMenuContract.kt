@@ -1,6 +1,7 @@
 package com.gyorgyzoltan.sprayApp.debugMenu
 
 import android.app.Application
+import okhttp3.OkHttpClient
 
 interface DebugMenuContract {
 
@@ -11,8 +12,11 @@ interface DebugMenuContract {
         versionName: String,
         versionCode: Int,
         applicationId: String,
-        buildDate: String
+        buildDate: String,
+        baseUrl: String
     ) = Unit
 
     fun hide() = false
+
+    fun addInterceptor(clientBuilder: OkHttpClient.Builder): OkHttpClient.Builder = clientBuilder
 }

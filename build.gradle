@@ -3,6 +3,9 @@ ext {
     targetSdkVersion = 30
     coroutinesVersion = "1.4.2"
     appCompatVersion = "1.3.0-rc01"
+    retrofitVersion = "2.9.0"
+    moshiVersion = "1.11.0"
+    okHttpVersion = "4.9.1"
 }
 
 buildscript {

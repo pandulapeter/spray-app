@@ -27,7 +27,7 @@ class SelectedNozzleViewHolder private constructor(
     ) : ConfigurationListItem {
 
         override val id = "selectedNozzle"
-        val formattedName = nozzle?.formattedName ?: "Unselected"
+        val formattedName = nozzle?.name ?: "Unselected"
     }
 
     companion object {

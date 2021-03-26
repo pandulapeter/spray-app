@@ -1,6 +1,7 @@
 package com.gyorgyzoltan.sprayApp
 
 import android.app.Application
+import com.gyorgyzoltan.sprayApp.data.networking.NetworkingManager
 import com.gyorgyzoltan.sprayApp.debugMenu.DebugMenu
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -21,7 +22,8 @@ class SprayApp : Application() {
             versionName = BuildConfig.VERSION_NAME,
             versionCode = BuildConfig.VERSION_CODE,
             applicationId = BuildConfig.APPLICATION_ID,
-            buildDate = BuildConfig.BUILD_DATE
+            buildDate = BuildConfig.BUILD_DATE,
+            baseUrl = NetworkingManager.BASE_URL
         )
     }
 }

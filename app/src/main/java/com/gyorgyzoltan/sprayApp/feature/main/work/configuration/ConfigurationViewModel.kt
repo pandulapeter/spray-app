@@ -2,18 +2,21 @@ package com.gyorgyzoltan.sprayApp.feature.main.work.configuration
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.gyorgyzoltan.sprayApp.R
 import com.gyorgyzoltan.sprayApp.data.PreferenceManager
-import com.gyorgyzoltan.sprayApp.data.model.Nozzle
+import com.gyorgyzoltan.sprayApp.data.repository.NozzleRepository
 import com.gyorgyzoltan.sprayApp.feature.main.work.configuration.list.ConfigurationListItem
 import com.gyorgyzoltan.sprayApp.feature.main.work.configuration.list.DoneButtonViewHolder
 import com.gyorgyzoltan.sprayApp.feature.main.work.configuration.list.SelectedNozzleViewHolder
 import com.gyorgyzoltan.sprayApp.feature.shared.ListViewModel
 import com.gyorgyzoltan.sprayApp.feature.shared.list.TextViewHolder
 import com.gyorgyzoltan.sprayApp.utils.Consumable
+import kotlinx.coroutines.launch
 
 class ConfigurationViewModel(
-    private val preferenceManager: PreferenceManager
+    private val preferenceManager: PreferenceManager,
+    private val nozzleRepository: NozzleRepository
 ) : ListViewModel<ConfigurationListItem>() {
 
     private val _items = MutableLiveData<List<ConfigurationListItem>>()
@@ -22,11 +25,13 @@ class ConfigurationViewModel(
     val events: LiveData<Consumable<Event>> = _events
 
     fun refreshItems() {
-        _items.value = listOf(
-            TextViewHolder.UiModel(R.string.configuration_placeholder),
-            SelectedNozzleViewHolder.UiModel(Nozzle.values().firstOrNull { it.name == preferenceManager.selectedNozzleName }),
-            DoneButtonViewHolder.UiModel(preferenceManager.selectedNozzleName.isNotBlank())
-        )
+        viewModelScope.launch {
+            _items.value = listOf(
+                TextViewHolder.UiModel(R.string.configuration_placeholder),
+                SelectedNozzleViewHolder.UiModel(nozzleRepository.getNozzles().firstOrNull { it.name == preferenceManager.selectedNozzleName }),
+                DoneButtonViewHolder.UiModel(preferenceManager.selectedNozzleName.isNotBlank())
+            )
+        }
     }
 
     fun onDoneButtonClicked() {

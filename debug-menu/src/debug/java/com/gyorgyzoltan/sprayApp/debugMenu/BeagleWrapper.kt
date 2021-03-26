@@ -15,6 +15,7 @@ import com.pandulapeter.beagle.common.configuration.Behavior
 import com.pandulapeter.beagle.common.configuration.toText
 import com.pandulapeter.beagle.common.contracts.BeagleListItemContract
 import com.pandulapeter.beagle.logCrash.BeagleCrashLogger
+import com.pandulapeter.beagle.logOkHttp.BeagleOkHttpLogger
 import com.pandulapeter.beagle.modules.AnimationDurationSwitchModule
 import com.pandulapeter.beagle.modules.AppInfoButtonModule
 import com.pandulapeter.beagle.modules.BugReportButtonModule
@@ -25,6 +26,7 @@ import com.pandulapeter.beagle.modules.HeaderModule
 import com.pandulapeter.beagle.modules.KeylineOverlaySwitchModule
 import com.pandulapeter.beagle.modules.LifecycleLogListModule
 import com.pandulapeter.beagle.modules.LogListModule
+import com.pandulapeter.beagle.modules.NetworkLogListModule
 import com.pandulapeter.beagle.modules.PaddingModule
 import com.pandulapeter.beagle.modules.ScreenCaptureToolboxModule
 import com.pandulapeter.beagle.modules.SingleSelectionListModule
@@ -34,6 +36,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
 
 internal class BeagleWrapper : DebugMenuContract, CoroutineScope {
 
@@ -61,7 +65,8 @@ internal class BeagleWrapper : DebugMenuContract, CoroutineScope {
         versionName: String,
         versionCode: Int,
         applicationId: String,
-        buildDate: String
+        buildDate: String,
+        baseUrl: String
     ) {
         Beagle.initialize(
             application = application,
@@ -69,6 +74,9 @@ internal class BeagleWrapper : DebugMenuContract, CoroutineScope {
                 themeResourceId = themeResourceId
             ),
             behavior = Behavior(
+                networkLogBehavior = Behavior.NetworkLogBehavior(
+                    baseUrl = baseUrl
+                ),
                 bugReportingBehavior = Behavior.BugReportingBehavior(
                     crashLoggers = listOf(BeagleCrashLogger),
                     buildInformation = {
@@ -145,6 +153,9 @@ internal class BeagleWrapper : DebugMenuContract, CoroutineScope {
             LogListModule(
                 title = "General".toText()
             ),
+            NetworkLogListModule(
+                title = "Networking".toText()
+            ),
             LifecycleLogListModule(
                 title = "Navigation".toText(),
                 eventTypes = listOf(LifecycleLogListModule.EventType.FRAGMENT_ON_VIEW_CREATED)
@@ -162,6 +173,12 @@ internal class BeagleWrapper : DebugMenuContract, CoroutineScope {
     }
 
     override fun hide() = Beagle.hide()
+
+    override fun addInterceptor(clientBuilder: OkHttpClient.Builder): OkHttpClient.Builder = clientBuilder.apply {
+        (BeagleOkHttpLogger.logger as? Interceptor?)?.let { interceptor ->
+            addInterceptor(interceptor)
+        }
+    }
 
     private fun copyBuildInformationToClipboard(buildInformation: String) {
         Beagle.currentActivity?.run {

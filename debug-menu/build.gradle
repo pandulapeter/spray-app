@@ -17,14 +17,18 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // Coroutines
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    debugImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+
+    // Networking
+    implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
 
     // Jetpack
-    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    debugImplementation "androidx.appcompat:appcompat:$appCompatVersion"
 
     // Debug menu
     def beagleVersion = "2.5.1"
     def beagleUiType = "ui-drawer"
     debugImplementation "com.github.pandulapeter.beagle:$beagleUiType:$beagleVersion"
+    debugImplementation "com.github.pandulapeter.beagle:log-okhttp:$beagleVersion"
     debugImplementation "com.github.pandulapeter.beagle:log-crash:$beagleVersion"
 }
