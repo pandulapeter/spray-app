@@ -21,7 +21,15 @@ class NetworkingManager {
                             NozzleResponse.SHEET_NAME,
                             NozzleResponse.KEY_NAME,
                             NozzleResponse.TYPE,
-                            NozzleResponse.COLOR
+                            NozzleResponse.COLOR,
+                            NozzleResponse.DEBIT_AT_1_BAR,
+                            NozzleResponse.DEBIT_AT_2_BAR,
+                            NozzleResponse.DEBIT_AT_3_BAR,
+                            NozzleResponse.DEBIT_AT_4_BAR,
+                            NozzleResponse.DEBIT_AT_5_BAR,
+                            NozzleResponse.DEBIT_AT_6_BAR,
+                            NozzleResponse.DEBIT_AT_7_BAR,
+                            NozzleResponse.DEBIT_AT_8_BAR
                         )
                         .addSheet(
                             NozzleTypeResponse.SHEET_NAME,

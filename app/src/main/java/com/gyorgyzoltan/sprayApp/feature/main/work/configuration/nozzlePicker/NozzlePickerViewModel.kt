@@ -1,5 +1,6 @@
 package com.gyorgyzoltan.sprayApp.feature.main.work.configuration.nozzlePicker
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
@@ -13,8 +14,10 @@ import com.gyorgyzoltan.sprayApp.feature.main.work.configuration.nozzlePicker.li
 import com.gyorgyzoltan.sprayApp.feature.shared.ListViewModel
 import com.gyorgyzoltan.sprayApp.feature.shared.list.TextViewHolder
 import com.gyorgyzoltan.sprayApp.utils.Consumable
+import com.gyorgyzoltan.sprayApp.utils.NozzleUtils
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class NozzlePickerViewModel(
     private val preferenceManager: PreferenceManager,
@@ -46,6 +49,15 @@ class NozzlePickerViewModel(
     fun onNozzleSelected(nozzle: Nozzle) {
         preferenceManager.selectedNozzleName = nozzle.name
         _events.value = Consumable(Event.CloseScreen)
+        Log.d(
+            "DEBBBB", "Pressure = ${
+                try {
+                    NozzleUtils.calculatePressure(0.36f, nozzle)
+                } catch (_: Exception) {
+                    "error"
+                }
+            }"
+        )
     }
 
     sealed class Event {
