@@ -8,6 +8,7 @@ import com.gyorgyzoltan.sprayApp.R
 import com.gyorgyzoltan.sprayApp.data.model.domain.Nozzle
 import com.gyorgyzoltan.sprayApp.databinding.ItemNozzlePickerNozzleBinding
 import com.gyorgyzoltan.sprayApp.feature.shared.list.BaseViewHolder
+import com.gyorgyzoltan.sprayApp.utils.color
 
 class NozzleViewHolder private constructor(
     binding: ItemNozzlePickerNozzleBinding,
@@ -22,6 +23,11 @@ class NozzleViewHolder private constructor(
                 }
             }
         }
+    }
+
+    override fun bind(uiModel: UiModel) {
+        super.bind(uiModel)
+        itemView.setBackgroundColor(itemView.context.color(uiModel.nozzle.color.value))
     }
 
     data class UiModel(
