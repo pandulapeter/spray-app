@@ -1,4 +1,4 @@
-package com.gyorgyzoltan.sprayApp.data.model
+package com.gyorgyzoltan.sprayApp.data.model.domain
 
 import androidx.annotation.StringRes
 import com.gyorgyzoltan.sprayApp.R

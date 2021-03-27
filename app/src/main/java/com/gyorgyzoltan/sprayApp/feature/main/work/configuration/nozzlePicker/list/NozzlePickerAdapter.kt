@@ -2,7 +2,7 @@ package com.gyorgyzoltan.sprayApp.feature.main.work.configuration.nozzlePicker.l
 
 import android.view.ViewGroup
 import com.gyorgyzoltan.sprayApp.R
-import com.gyorgyzoltan.sprayApp.data.model.Nozzle
+import com.gyorgyzoltan.sprayApp.data.model.domain.Nozzle
 import com.gyorgyzoltan.sprayApp.feature.shared.list.BaseAdapter
 import com.gyorgyzoltan.sprayApp.feature.shared.list.BaseViewHolder
 import kotlinx.coroutines.CoroutineScope

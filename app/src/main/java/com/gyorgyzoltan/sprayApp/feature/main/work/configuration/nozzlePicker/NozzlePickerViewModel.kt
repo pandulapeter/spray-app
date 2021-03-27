@@ -6,7 +6,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.gyorgyzoltan.sprayApp.R
 import com.gyorgyzoltan.sprayApp.data.PreferenceManager
-import com.gyorgyzoltan.sprayApp.data.model.Nozzle
+import com.gyorgyzoltan.sprayApp.data.model.domain.Nozzle
 import com.gyorgyzoltan.sprayApp.data.repository.NozzleRepository
 import com.gyorgyzoltan.sprayApp.feature.main.work.configuration.nozzlePicker.list.NozzlePickerListItem
 import com.gyorgyzoltan.sprayApp.feature.main.work.configuration.nozzlePicker.list.NozzleViewHolder
@@ -44,7 +44,7 @@ class NozzlePickerViewModel(
     }
 
     fun onNozzleSelected(nozzle: Nozzle) {
-        preferenceManager.selectedNozzleName = nozzle.name.orEmpty()
+        preferenceManager.selectedNozzleName = nozzle.name
         _events.value = Consumable(Event.CloseScreen)
     }
 

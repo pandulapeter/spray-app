@@ -40,7 +40,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/radio_button"
-            app:url="@{uiModel.nozzle.imageUrl}"
+            app:url="@{uiModel.nozzle.type.imageUrl}"
             tools:src="@tools:sample/backgrounds/scenic" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

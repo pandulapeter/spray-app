@@ -1,14 +1,10 @@
-package com.gyorgyzoltan.sprayApp.data.model
+package com.gyorgyzoltan.sprayApp.data.model.domain
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
-
-@JsonClass(generateAdapter = true)
 data class Nozzle(
-    @Json(name = KEY_CREATED_AT) val createdAt: String?,
-    @Json(name = KEY_NAME) val name: String?,
-    @Json(name = KEY_IMAGE_URL) val imageUrl: String?,
-    @Json(name = TYPE) val type: String?,
+    val name: String,
+    val type: NozzleType,
+    val color: NozzleColor
+
     // Debit values at X bar pressure
 //    val debitAt1: Float? = null,
 //    val debitAt1AndHalf: Float? = null,
@@ -25,12 +21,5 @@ data class Nozzle(
 //    val debitAt7: Float? = null,
 //    val debitAt7AndHalf: Float? = null,
 //    val debitAt8: Float? = null
-) {
 
-    companion object {
-        const val KEY_CREATED_AT = "createdAt"
-        const val KEY_NAME = "name"
-        const val KEY_IMAGE_URL = "imageUrl"
-        const val TYPE = "type"
-    }
-}
+)

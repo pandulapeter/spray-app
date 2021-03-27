@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.gyorgyzoltan.sprayApp.R
-import com.gyorgyzoltan.sprayApp.data.model.Nozzle
+import com.gyorgyzoltan.sprayApp.data.model.domain.Nozzle
 import com.gyorgyzoltan.sprayApp.databinding.ItemConfigurationSelectedNozzleBinding
 import com.gyorgyzoltan.sprayApp.feature.shared.list.BaseViewHolder
 
@@ -23,11 +23,11 @@ class SelectedNozzleViewHolder private constructor(
     }
 
     data class UiModel(
-        val nozzle: Nozzle?
+        val nozzleResponse: Nozzle?
     ) : ConfigurationListItem {
 
         override val id = "selectedNozzle"
-        val formattedName = nozzle?.name ?: "Unselected"
+        val formattedName = nozzleResponse?.name ?: "Unselected"
     }
 
     companion object {

@@ -1,6 +1,7 @@
 package com.gyorgyzoltan.sprayApp.data.networking
 
-import com.gyorgyzoltan.sprayApp.data.model.Nozzle
+import com.gyorgyzoltan.sprayApp.data.model.remote.NozzleResponse
+import com.gyorgyzoltan.sprayApp.data.model.remote.NozzleTypeResponse
 import com.gyorgyzoltan.sprayApp.debugMenu.DebugMenu
 import com.theapache64.retrosheet.RetrosheetInterceptor
 import okhttp3.OkHttpClient
@@ -9,7 +10,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 class NetworkingManager {
 
-    val nozzleService: NozzleService = Retrofit.Builder()
+    val networkingService: NetworkingService = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .client(
             OkHttpClient.Builder()
@@ -17,11 +18,15 @@ class NetworkingManager {
                     RetrosheetInterceptor.Builder()
                         .setLogging(true)
                         .addSheet(
-                            NOZZLES_SHEET_NAME,
-                            Nozzle.KEY_CREATED_AT,
-                            Nozzle.KEY_NAME,
-                            Nozzle.KEY_IMAGE_URL,
-                            Nozzle.TYPE
+                            NozzleResponse.SHEET_NAME,
+                            NozzleResponse.KEY_NAME,
+                            NozzleResponse.TYPE,
+                            NozzleResponse.COLOR
+                        )
+                        .addSheet(
+                            NozzleTypeResponse.SHEET_NAME,
+                            NozzleTypeResponse.KEY_NAME,
+                            NozzleTypeResponse.KEY_IMAGE_URL
                         )
                         .build()
                 )
@@ -30,10 +35,9 @@ class NetworkingManager {
         )
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
-        .create(NozzleService::class.java)
+        .create(NetworkingService::class.java)
 
     companion object {
-        const val NOZZLES_SHEET_NAME = "nozzles"
-        const val BASE_URL = "https://docs.google.com/spreadsheets/d/1C-rmJQY1dzboLVql6BHpLnerlRsbXx10Gu1uxIDSEZ8/"
+        const val BASE_URL = "https://docs.google.com/spreadsheets/d/1PdgQmxOK2l34qo4R27J8ETlH2GUVdtn43UL8TONC-Ss/"
     }
 }

@@ -3,7 +3,7 @@ package com.gyorgyzoltan.sprayApp.feature.main.help.licences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.gyorgyzoltan.sprayApp.R
-import com.gyorgyzoltan.sprayApp.data.model.Dependency
+import com.gyorgyzoltan.sprayApp.data.model.domain.Dependency
 import com.gyorgyzoltan.sprayApp.feature.main.help.licences.list.DependencyViewHolder
 import com.gyorgyzoltan.sprayApp.feature.main.help.licences.list.LicencesListItem
 import com.gyorgyzoltan.sprayApp.feature.shared.ListViewModel
