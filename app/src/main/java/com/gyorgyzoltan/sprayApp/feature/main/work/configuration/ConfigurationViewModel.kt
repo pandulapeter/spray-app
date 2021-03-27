@@ -25,6 +25,9 @@ class ConfigurationViewModel(
     val events: LiveData<Consumable<Event>> = _events
 
     fun refreshItems() {
+        _items.value = listOf(
+            TextViewHolder.UiModel(R.string.configuration_loading),
+        )
         viewModelScope.launch {
             _items.value = listOf(
                 TextViewHolder.UiModel(R.string.configuration_placeholder),

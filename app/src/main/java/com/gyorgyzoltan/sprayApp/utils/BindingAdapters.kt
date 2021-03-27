@@ -1,7 +1,9 @@
 package com.gyorgyzoltan.sprayApp.utils
 
 import android.view.View
+import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import coil.load
 
 @set:BindingAdapter("android:visibility")
 var View.visible
@@ -15,3 +17,6 @@ var View.notInvisible
     set(value) {
         visibility = if (value) View.VISIBLE else View.INVISIBLE
     }
+
+@BindingAdapter("url")
+fun ImageView.loadUrl(url: String?) = load(url)

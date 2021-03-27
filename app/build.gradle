@@ -18,6 +18,9 @@ android {
         sourceCompatibility 1.8
         targetCompatibility 1.8
     }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
     signingConfigs {
         internal {
             keyAlias "androiddebugkey"
@@ -92,6 +95,9 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-alpha01"
+
+    // Image loader
+    implementation "io.coil-kt:coil:1.1.1"
 
     // UI components
     implementation "androidx.constraintlayout:constraintlayout:2.0.4"

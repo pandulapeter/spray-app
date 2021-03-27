@@ -27,6 +27,7 @@
     <string name="configuration_title">Configuration</string>
     <string name="configuration_placeholder"><b>Coming soon…</b>\n\nThis screen will be used to configure the constants for all calculations\n</string>
     <string name="configuration_done">Done</string>
+    <string name="configuration_loading">Loading…</string>
 
     <!-- Nozzle picker -->
     <string name="nozzle_picker_title">Nozzle picker</string>
