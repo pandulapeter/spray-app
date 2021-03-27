@@ -77,7 +77,8 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
 
     // Networking
-    implementation "com.theapache64:retrosheet:1.2.3"
+    // TODO: implementation "com.theapache64:retrosheet:1.2.3"
+    implementation project(":retrosheet")
     implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion") { exclude module: "okhttp" }
     implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"

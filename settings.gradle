@@ -1,3 +1,4 @@
 include ":app"
+include ":retrosheet"
 include ":debug-menu"
 rootProject.name = "SprayApp"
