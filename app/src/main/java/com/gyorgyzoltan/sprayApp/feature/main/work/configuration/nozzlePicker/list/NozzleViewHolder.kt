@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.gyorgyzoltan.sprayApp.R
-import com.gyorgyzoltan.sprayApp.data.model.domain.Nozzle
+import com.gyorgyzoltan.sprayApp.model.nozzle.Nozzle
 import com.gyorgyzoltan.sprayApp.databinding.ItemNozzlePickerNozzleBinding
 import com.gyorgyzoltan.sprayApp.feature.shared.list.BaseViewHolder
 import com.gyorgyzoltan.sprayApp.utils.color

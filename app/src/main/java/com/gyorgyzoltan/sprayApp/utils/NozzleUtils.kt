@@ -1,6 +1,6 @@
 package com.gyorgyzoltan.sprayApp.utils
 
-import com.gyorgyzoltan.sprayApp.data.model.domain.Nozzle
+import com.gyorgyzoltan.sprayApp.model.nozzle.Nozzle
 
 object NozzleUtils {
 

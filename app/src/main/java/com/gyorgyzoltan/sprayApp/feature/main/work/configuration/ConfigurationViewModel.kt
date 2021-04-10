@@ -4,13 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.gyorgyzoltan.sprayApp.R
-import com.gyorgyzoltan.sprayApp.data.PreferenceManager
-import com.gyorgyzoltan.sprayApp.data.repository.NozzleRepository
 import com.gyorgyzoltan.sprayApp.feature.main.work.configuration.list.ConfigurationListItem
 import com.gyorgyzoltan.sprayApp.feature.main.work.configuration.list.DoneButtonViewHolder
 import com.gyorgyzoltan.sprayApp.feature.main.work.configuration.list.SelectedNozzleViewHolder
 import com.gyorgyzoltan.sprayApp.feature.shared.ListViewModel
 import com.gyorgyzoltan.sprayApp.feature.shared.list.TextViewHolder
+import com.gyorgyzoltan.sprayApp.repository.preferences.PreferenceManager
+import com.gyorgyzoltan.sprayApp.repository.repository.nozzle.NozzleRepository
 import com.gyorgyzoltan.sprayApp.utils.Consumable
 import kotlinx.coroutines.launch
 

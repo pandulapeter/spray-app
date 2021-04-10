@@ -1,38 +1,38 @@
-apply plugin: "com.android.application"
-apply plugin: "kotlin-android"
-apply plugin: "kotlin-android-extensions"
-apply plugin: "kotlin-kapt"
+apply plugin: Plugins.ANDROID_APPLICATION
+apply plugin: Plugins.KOTLIN_ANDROID
+apply plugin: Plugins.KOTLIN_PARCELIZE
+apply plugin: Plugins.KOTLIN_KAPT
 
 android {
-    compileSdkVersion project.targetSdkVersion
+    compileSdkVersion Versions.TARGET_SDK_VERSION
     defaultConfig {
-        applicationId "com.gyorgyzoltan.sprayApp"
-        minSdkVersion project.minSdkVersion
-        targetSdkVersion project.targetSdkVersion
-        versionCode 1
-        versionName "0.0.2"
+        applicationId Config.APPLICATION_ID
+        minSdkVersion Versions.MIN_SDK_VERSION
+        targetSdkVersion Versions.TARGET_SDK_VERSION
+        versionCode Versions.APP_VERSION_CODE
+        versionName Versions.APP_VERSION_NAME
         buildConfigField("String", "BUILD_DATE", "\"${new Date().format("yyyy-MM-dd")}\"")
         vectorDrawables.useSupportLibrary = true
     }
     compileOptions {
-        sourceCompatibility 1.8
-        targetCompatibility 1.8
+        sourceCompatibility Versions.JAVA
+        targetCompatibility Versions.JAVA
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = Versions.JAVA.toString()
     }
     signingConfigs {
         internal {
-            keyAlias "androiddebugkey"
-            keyPassword "android"
-            storeFile file("internal.keystore")
-            storePassword "android"
+            keyAlias Config.KEY_STORE_INTERNAL_KEY_ALIAS
+            keyPassword Config.KEY_STORE_INTERNAL_KEY_PASSWORD
+            storeFile file(Config.KEY_STORE_INTERNAL_FILE)
+            storePassword Config.KEY_STORE_INTERNAL_STORE_PASSWORD
         }
         release {
-            keyAlias "androiddebugkey"
-            keyPassword "android"
-            storeFile file("internal.keystore")
-            storePassword "android"
+            keyAlias Config.KEY_STORE_RELEASE_KEY_ALIAS
+            keyPassword Config.KEY_STORE_RELEASE_KEY_PASSWORD
+            storeFile file(Config.KEY_STORE_RELEASE_FILE)
+            storePassword Config.KEY_STORE_RELEASE_STORE_PASSWORD
         }
     }
     buildFeatures {
@@ -56,7 +56,7 @@ android {
             applicationIdSuffix ".internal"
             versionNameSuffix "-internal"
             signingConfig signingConfigs.internal
-            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            proguardFiles getDefaultProguardFile(Config.PROGUARD_DEFAULT), Config.PROGUARD_RULES
             matchingFallbacks = ["debug"]
         }
         release {
@@ -65,7 +65,7 @@ android {
             shrinkResources true
             multiDexEnabled false
             signingConfig signingConfigs.release
-            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            proguardFiles getDefaultProguardFile(Config.PROGUARD_DEFAULT), Config.PROGUARD_RULES
         }
     }
 }
@@ -73,35 +73,26 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    // Debug menu
+    // Module dependencies
     implementation project(":debug-menu")
+    implementation project(":core:data:model")
+    implementation project(":core:data:repository")
+    implementation project(":core:domain")
 
     // Coroutines
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
-
-    // Networking
-    // TODO: implementation "com.theapache64:retrosheet:1.2.3"
-    implementation project(":retrosheet")
-    implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
-    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion") { exclude module: "okhttp" }
-    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
-    implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
-    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
+    implementation Dependencies.COROUTINES
 
     // Service locator
-    implementation "org.koin:koin-androidx-viewmodel:2.2.2"
+    implementation Dependencies.KOIN
+    implementation Dependencies.KOIN_VIEW_MODEL
 
-    // Jetpack
-    implementation "androidx.appcompat:appcompat:$appCompatVersion"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-alpha01"
-
-    // Image loader
-    implementation "io.coil-kt:coil:1.1.1"
-
-    // UI components
-    implementation "androidx.constraintlayout:constraintlayout:2.0.4"
-    implementation "androidx.recyclerview:recyclerview:1.2.0"
-    implementation "com.google.android.material:material:1.4.0-alpha02"
-    implementation "com.romandanylyk:pageindicatorview:1.0.3"
+    // UI
+    implementation Dependencies.APP_COMPAT
+    implementation Dependencies.LIFECYCLE_LIVE_DATA
+    implementation Dependencies.LIFECYCLE_VIEW_MODEL
+    implementation Dependencies.COIL
+    implementation Dependencies.CONSTRAINT_LAYOUT
+    implementation Dependencies.RECYCLER_VIEW
+    implementation Dependencies.MATERIAL_COMPONENTS
+    implementation Dependencies.PAGER_INDICATOR
 }

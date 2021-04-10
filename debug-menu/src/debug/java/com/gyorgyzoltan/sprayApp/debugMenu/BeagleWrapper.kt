@@ -14,10 +14,7 @@ import com.pandulapeter.beagle.common.configuration.Appearance
 import com.pandulapeter.beagle.common.configuration.Behavior
 import com.pandulapeter.beagle.common.configuration.toText
 import com.pandulapeter.beagle.common.contracts.BeagleListItemContract
-import com.pandulapeter.beagle.common.listeners.NetworkLogListener
-import com.pandulapeter.beagle.commonBase.model.NetworkLogEntry
 import com.pandulapeter.beagle.logCrash.BeagleCrashLogger
-import com.pandulapeter.beagle.logOkHttp.BeagleOkHttpLogger
 import com.pandulapeter.beagle.modules.AnimationDurationSwitchModule
 import com.pandulapeter.beagle.modules.AppInfoButtonModule
 import com.pandulapeter.beagle.modules.BugReportButtonModule
@@ -38,8 +35,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
 
 internal class BeagleWrapper : DebugMenuContract, CoroutineScope {
 
@@ -67,8 +62,7 @@ internal class BeagleWrapper : DebugMenuContract, CoroutineScope {
         versionName: String,
         versionCode: Int,
         applicationId: String,
-        buildDate: String,
-        baseUrl: String
+        buildDate: String
     ) {
         Beagle.initialize(
             application = application,
@@ -76,10 +70,6 @@ internal class BeagleWrapper : DebugMenuContract, CoroutineScope {
                 themeResourceId = themeResourceId
             ),
             behavior = Behavior(
-                networkLogBehavior = Behavior.NetworkLogBehavior(
-                    networkLoggers = listOf(BeagleOkHttpLogger),
-                    baseUrl = baseUrl
-                ),
                 bugReportingBehavior = Behavior.BugReportingBehavior(
                     crashLoggers = listOf(BeagleCrashLogger),
                     buildInformation = {
@@ -176,12 +166,6 @@ internal class BeagleWrapper : DebugMenuContract, CoroutineScope {
     }
 
     override fun hide() = Beagle.hide()
-
-    override fun addInterceptor(clientBuilder: OkHttpClient.Builder): OkHttpClient.Builder = clientBuilder.apply {
-        (BeagleOkHttpLogger.logger as? Interceptor?)?.let { interceptor ->
-            addInterceptor(interceptor)
-        }
-    }
 
     private fun copyBuildInformationToClipboard(buildInformation: String) {
         Beagle.currentActivity?.run {

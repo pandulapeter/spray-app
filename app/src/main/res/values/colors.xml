@@ -11,16 +11,4 @@
     <!-- Widgets -->
     <color name="toolbar_text">@color/brand</color>
 
-    <!-- Nozzle type -->
-    <color name="nozzle_type_orange">#EF6C00</color>
-    <color name="nozzle_type_green">#208E02</color>
-    <color name="nozzle_type_yellow">#FFC800</color>
-    <color name="nozzle_type_purple">#6A1B9A</color>
-    <color name="nozzle_type_dark_blue">#283593</color>
-    <color name="nozzle_type_red">#C62828</color>
-    <color name="nozzle_type_brown">#572D00</color>
-    <color name="nozzle_type_gray">#505050</color>
-    <color name="nozzle_type_white">#FFFFFF</color>
-    <color name="nozzle_type_light_blue">#008DE1</color>
-
 </resources>

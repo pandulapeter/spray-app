@@ -1,8 +1,8 @@
 package com.gyorgyzoltan.sprayApp
 
 import android.app.Application
-import com.gyorgyzoltan.sprayApp.data.networking.NetworkingManager
 import com.gyorgyzoltan.sprayApp.debugMenu.DebugMenu
+import com.gyorgyzoltan.sprayApp.di.appModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -13,7 +13,7 @@ class SprayApp : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@SprayApp)
-            modules(modules)
+            modules(appModules)
         }
         DebugMenu.initialize(
             application = this,
@@ -22,8 +22,7 @@ class SprayApp : Application() {
             versionName = BuildConfig.VERSION_NAME,
             versionCode = BuildConfig.VERSION_CODE,
             applicationId = BuildConfig.APPLICATION_ID,
-            buildDate = BuildConfig.BUILD_DATE,
-            baseUrl = NetworkingManager.BASE_URL
+            buildDate = BuildConfig.BUILD_DATE
         )
     }
 }

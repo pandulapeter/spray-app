@@ -1,34 +1,22 @@
-apply plugin: "com.android.library"
-apply plugin: "kotlin-android"
+apply plugin: Plugins.ANDROID_LIBRARY
+apply plugin: Plugins.KOTLIN_ANDROID
 
 android {
-    compileSdkVersion project.targetSdkVersion
+    compileSdkVersion Versions.TARGET_SDK_VERSION
     defaultConfig {
-        minSdkVersion project.minSdkVersion
-        targetSdkVersion project.targetSdkVersion
+        minSdkVersion Versions.MIN_SDK_VERSION
+        targetSdkVersion Versions.TARGET_SDK_VERSION
     }
     compileOptions {
-        sourceCompatibility 1.8
-        targetCompatibility 1.8
+        sourceCompatibility Versions.JAVA
+        targetCompatibility Versions.JAVA
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    // Coroutines
-    debugImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
-
-    // Networking
-    implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
-
-    // Jetpack
-    debugImplementation "androidx.appcompat:appcompat:$appCompatVersion"
-
-    // Debug menu
-    def beagleVersion = "2.6.0"
-    def beagleUiType = "ui-drawer"
-    debugImplementation "com.github.pandulapeter.beagle:$beagleUiType:$beagleVersion"
-    debugImplementation "com.github.pandulapeter.beagle:log-okhttp:$beagleVersion"
-    debugImplementation "com.github.pandulapeter.beagle:log-crash:$beagleVersion"
+    debugImplementation Dependencies.COROUTINES
+    debugImplementation Dependencies.APP_COMPAT
+    debugImplementation Dependencies.BEAGLE_UI
+    debugImplementation Dependencies.BEAGLE_CRASH_LOGGER
 }

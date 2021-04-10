@@ -1,0 +1,37 @@
+apply plugin: Plugins.ANDROID_LIBRARY
+apply plugin: Plugins.KOTLIN_ANDROID
+apply plugin: Plugins.KOTLIN_KAPT
+
+android {
+    compileSdkVersion Versions.TARGET_SDK_VERSION
+    defaultConfig {
+        minSdkVersion Versions.MIN_SDK_VERSION
+        targetSdkVersion Versions.TARGET_SDK_VERSION
+    }
+    compileOptions {
+        sourceCompatibility Versions.JAVA
+        targetCompatibility Versions.JAVA
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Module dependencies
+    implementation project(":debug-menu")
+    implementation project(":core:data:model")
+    implementation project(":core:data:retrosheet") // TODO: implementation "com.theapache64:retrosheet:1.2.3"
+
+    // Coroutines
+    implementation Dependencies.COROUTINES
+
+    // Service locator
+    implementation Dependencies.KOIN
+
+    // Networking
+    implementation Dependencies.OK_HTTP
+    implementation Dependencies.RETROFIT
+    implementation Dependencies.RETROFIT_CONVERTER
+    implementation Dependencies.MOSHI
+    kapt Dependencies.MOSHI_CODEGEN
+}

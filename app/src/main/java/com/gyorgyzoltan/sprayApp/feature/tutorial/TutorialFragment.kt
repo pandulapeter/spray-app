@@ -6,11 +6,11 @@ import android.view.View
 import android.view.animation.DecelerateInterpolator
 import androidx.viewpager.widget.ViewPager
 import com.gyorgyzoltan.sprayApp.R
-import com.gyorgyzoltan.sprayApp.data.PreferenceManager
 import com.gyorgyzoltan.sprayApp.databinding.FragmentTutorialBinding
 import com.gyorgyzoltan.sprayApp.databinding.ViewTutorialPageBinding
 import com.gyorgyzoltan.sprayApp.feature.main.MainFragment
 import com.gyorgyzoltan.sprayApp.feature.shared.BaseFragment
+import com.gyorgyzoltan.sprayApp.repository.preferences.PreferenceManager
 import com.gyorgyzoltan.sprayApp.utils.BundleArgumentDelegate
 import com.gyorgyzoltan.sprayApp.utils.consume
 import com.gyorgyzoltan.sprayApp.utils.handleReplace
