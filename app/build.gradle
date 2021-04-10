@@ -89,7 +89,7 @@ dependencies {
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
 
     // Service locator
-    implementation "org.koin:koin-androidx-viewmodel:2.1.6"
+    implementation "org.koin:koin-androidx-viewmodel:2.2.2"
 
     // Jetpack
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
@@ -101,7 +101,7 @@ dependencies {
 
     // UI components
     implementation "androidx.constraintlayout:constraintlayout:2.0.4"
-    implementation "androidx.recyclerview:recyclerview:1.2.0-rc01"
-    implementation "com.google.android.material:material:1.4.0-alpha01"
+    implementation "androidx.recyclerview:recyclerview:1.2.0"
+    implementation "com.google.android.material:material:1.4.0-alpha02"
     implementation "com.romandanylyk:pageindicatorview:1.0.3"
 }

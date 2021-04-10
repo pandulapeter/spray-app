@@ -8,6 +8,7 @@ import com.gyorgyzoltan.sprayApp.R
 import com.gyorgyzoltan.sprayApp.data.model.domain.Nozzle
 import com.gyorgyzoltan.sprayApp.databinding.ItemConfigurationSelectedNozzleBinding
 import com.gyorgyzoltan.sprayApp.feature.shared.list.BaseViewHolder
+import com.gyorgyzoltan.sprayApp.utils.color
 
 class SelectedNozzleViewHolder private constructor(
     binding: ItemConfigurationSelectedNozzleBinding,
@@ -22,12 +23,17 @@ class SelectedNozzleViewHolder private constructor(
         }
     }
 
+    override fun bind(uiModel: UiModel) {
+        super.bind(uiModel)
+        binding.nozzle.setBackgroundColor(itemView.context.color(uiModel.nozzle?.color?.value ?: R.color.transparent))
+    }
+
     data class UiModel(
-        val nozzleResponse: Nozzle?
+        val nozzle: Nozzle?
     ) : ConfigurationListItem {
 
         override val id = "selectedNozzle"
-        val formattedName = nozzleResponse?.name ?: "Unselected"
+        val formattedName = nozzle?.name ?: "Unselected"
     }
 
     companion object {
