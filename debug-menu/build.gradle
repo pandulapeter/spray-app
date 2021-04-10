@@ -15,8 +15,14 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Coroutines
     debugImplementation Dependencies.COROUTINES
+
+    // UI
     debugImplementation Dependencies.APP_COMPAT
+
+    // Debug menu
     debugImplementation Dependencies.BEAGLE_UI
     debugImplementation Dependencies.BEAGLE_CRASH_LOGGER
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="uiModel"
+            type="com.gyorgyzoltan.sprayApp.presentation.feature.main.help.list.ClickableItemViewHolder.UiModel" />
+
+    </data>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:drawablePadding="@dimen/extra_large_content_padding"
+        android:paddingStart="@dimen/extra_large_content_padding"
+        android:paddingTop="@dimen/large_content_padding"
+        android:paddingEnd="@dimen/large_content_padding"
+        android:paddingBottom="@dimen/large_content_padding"
+        android:text="@{uiModel.textResourceId}"
+        tools:text="Text" />
+
+</layout>

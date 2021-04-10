@@ -4,6 +4,7 @@ object Config {
     const val APPLICATION_ID = "com.gyorgyzoltan.sprayApp"
     const val PROGUARD_DEFAULT = "proguard-android-optimize.txt"
     const val PROGUARD_RULES = "proguard-rules.pro"
+    const val COMPILER_ARGUMENTS = "-Xjvm-default=all"
 
     // Internal keystore
     const val KEY_STORE_INTERNAL_KEY_ALIAS = "androiddebugkey"

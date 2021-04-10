@@ -1,0 +1,53 @@
+apply plugin: Plugins.ANDROID_LIBRARY
+apply plugin: Plugins.KOTLIN_ANDROID
+apply plugin: Plugins.KOTLIN_PARCELIZE
+apply plugin: Plugins.KOTLIN_KAPT
+
+android {
+    compileSdkVersion Versions.TARGET_SDK_VERSION
+    defaultConfig {
+        minSdkVersion Versions.MIN_SDK_VERSION
+        targetSdkVersion Versions.TARGET_SDK_VERSION
+    }
+    compileOptions {
+        sourceCompatibility Versions.JAVA
+        targetCompatibility Versions.JAVA
+    }
+    buildFeatures {
+        dataBinding = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Module dependencies
+    implementation project(":debug-menu")
+    implementation project(":core:data:model")
+    implementation project(":core:data:repository") // TODO: Should be encapsulated
+    implementation project(":core:domain")
+
+    // Coroutines
+    implementation Dependencies.COROUTINES
+
+    // Service locator
+    implementation Dependencies.KOIN
+    implementation Dependencies.KOIN_VIEW_MODEL
+
+    // UI
+    implementation Dependencies.APP_COMPAT
+    implementation Dependencies.LIFECYCLE_LIVE_DATA
+    implementation Dependencies.LIFECYCLE_VIEW_MODEL
+    implementation Dependencies.COIL
+    implementation Dependencies.CONSTRAINT_LAYOUT
+    implementation Dependencies.RECYCLER_VIEW
+    implementation Dependencies.MATERIAL_COMPONENTS
+    implementation Dependencies.PAGER_INDICATOR
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = Versions.JAVA.toString()
+        freeCompilerArgs = [Config.COMPILER_ARGUMENTS]
+    }
+}

@@ -2,8 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.gyorgyzoltan.sprayApp">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:name=".SprayApp"
         android:allowBackup="true"
@@ -16,7 +14,7 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name=".feature.SprayAppActivity"
+            android:name=".SprayAppActivity"
             android:windowSoftInputMode="adjustNothing">
 
             <intent-filter>
@@ -30,11 +28,5 @@
         </activity>
 
     </application>
-
-    <queries>
-        <intent>
-            <action android:name="android.intent.action.VIEW"/>
-        </intent>
-    </queries>
 
 </manifest>
