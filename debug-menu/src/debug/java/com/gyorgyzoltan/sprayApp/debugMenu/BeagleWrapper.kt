@@ -167,6 +167,8 @@ internal class BeagleWrapper : DebugMenuContract, CoroutineScope {
 
     override fun hide() = Beagle.hide()
 
+    override fun log(message: String) = Beagle.log(message)
+
     private fun copyBuildInformationToClipboard(buildInformation: String) {
         Beagle.currentActivity?.run {
             (getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager)

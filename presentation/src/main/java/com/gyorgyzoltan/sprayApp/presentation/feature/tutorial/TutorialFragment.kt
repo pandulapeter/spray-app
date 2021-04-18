@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import androidx.viewpager.widget.ViewPager
+import com.gyorgyzoltan.sprayApp.domain.tutorial.SetHasSeenTutorialUseCase
 import com.gyorgyzoltan.sprayApp.presentation.R
 import com.gyorgyzoltan.sprayApp.presentation.databinding.FragmentTutorialBinding
 import com.gyorgyzoltan.sprayApp.presentation.databinding.ViewTutorialPageBinding
@@ -14,14 +15,12 @@ import com.gyorgyzoltan.sprayApp.presentation.utils.consume
 import com.gyorgyzoltan.sprayApp.presentation.utils.handleReplace
 import com.gyorgyzoltan.sprayApp.presentation.utils.notInvisible
 import com.gyorgyzoltan.sprayApp.presentation.utils.withArguments
-import com.gyorgyzoltan.sprayApp.repository.preferences.PreferenceManager
 import com.gyorgyzoltan.sprayApp.utils.BundleArgumentDelegate
 import org.koin.android.ext.android.inject
 import kotlin.math.abs
 
 class TutorialFragment : BaseFragment<FragmentTutorialBinding>(R.layout.fragment_tutorial) {
 
-    private val preferenceManager by inject<PreferenceManager>()
     private val tutorialPages = listOf(
         TutorialPage(R.string.tutorial_page_1),
         TutorialPage(R.string.tutorial_page_2),
@@ -30,6 +29,7 @@ class TutorialFragment : BaseFragment<FragmentTutorialBinding>(R.layout.fragment
     )
     private val decelerateInterpolator = DecelerateInterpolator()
     private var isFirstTutorial = true
+    private val setHasSeenTutorial by inject<SetHasSeenTutorialUseCase>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         isFirstTutorial = arguments?.isFirstTutorial == true
@@ -86,7 +86,7 @@ class TutorialFragment : BaseFragment<FragmentTutorialBinding>(R.layout.fragment
     }
 
     private fun onSkipButtonPressed() {
-        preferenceManager.hasSeenTutorial = true
+        setHasSeenTutorial()
         activityFragmentManager?.handleReplace(
             newInstance = MainFragment.Companion::newInstance
         )

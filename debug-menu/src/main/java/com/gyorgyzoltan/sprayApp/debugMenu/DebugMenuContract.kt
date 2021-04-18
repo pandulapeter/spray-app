@@ -15,4 +15,6 @@ interface DebugMenuContract {
     ) = Unit
 
     fun hide() = false
+
+    fun log(message: String) = Unit
 }

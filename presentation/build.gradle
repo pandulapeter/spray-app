@@ -22,10 +22,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // Module dependencies
-    implementation project(":debug-menu")
-    implementation project(":core:data:model")
-    implementation project(":core:data:repository") // TODO: Should be encapsulated
-    implementation project(":core:domain")
+    implementation project(Modules.DEBUG_MENU)
+    implementation project(Modules.DATA_MODEL)
+    implementation project(Modules.DOMAIN)
 
     // Coroutines
     implementation Dependencies.COROUTINES
@@ -43,6 +42,7 @@ dependencies {
     implementation Dependencies.RECYCLER_VIEW
     implementation Dependencies.MATERIAL_COMPONENTS
     implementation Dependencies.PAGER_INDICATOR
+    implementation Dependencies.SWIPE_REFRESH_LAYOUT
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {

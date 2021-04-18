@@ -27,4 +27,5 @@ object Versions {
     const val PAGER_INDICATOR = "1.0.3"
     const val RECYCLER_VIEW = "1.2.0"
     const val RETROFIT = "2.9.0"
+    const val SWIPE_REFRESH_LAYOUT = "1.1.0"
 }

@@ -17,7 +17,8 @@ internal class NozzlePickerFragment : ListFragment<NozzlePickerViewModel, Nozzle
 
     override fun createAdapter() = NozzlePickerAdapter(
         scope = viewModel.viewModelScope,
-        onNozzleSelected = viewModel::onNozzleSelected
+        onNozzleSelected = viewModel::onNozzleSelected,
+        onNozzleTypeSelected = viewModel::onNozzleTypeSelected
     )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

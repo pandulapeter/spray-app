@@ -2,43 +2,42 @@ package com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.gyorgyzoltan.sprayApp.presentation.feature.shared.list.TextViewHolder
 import com.gyorgyzoltan.sprayApp.presentation.R
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.list.ConfigurationListItem
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.list.DoneButtonViewHolder
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.list.SelectedNozzleViewHolder
 import com.gyorgyzoltan.sprayApp.presentation.feature.shared.ListViewModel
-import com.gyorgyzoltan.sprayApp.repository.preferences.PreferenceManager
-import com.gyorgyzoltan.sprayApp.repository.repository.nozzle.NozzleRepository
+import com.gyorgyzoltan.sprayApp.presentation.feature.shared.list.TextViewHolder
 import com.gyorgyzoltan.sprayApp.utils.Consumable
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
-internal class ConfigurationViewModel(
-    private val preferenceManager: PreferenceManager,
-    private val nozzleRepository: NozzleRepository
-) : ListViewModel<ConfigurationListItem>() {
+internal class ConfigurationViewModel : ListViewModel<ConfigurationListItem>(true) {
 
-    private val _items = MutableLiveData<List<ConfigurationListItem>>()
-    override val items: LiveData<List<ConfigurationListItem>> = _items
+    private val _items = MutableStateFlow(emptyList<ConfigurationListItem>())
+    override val items = _items.asLiveData()
     private val _events = MutableLiveData<Consumable<Event>>()
     val events: LiveData<Consumable<Event>> = _events
+    private val _isLoading = MutableStateFlow(false)
+    override val isLoading = _isLoading.asLiveData()
 
-    fun refreshItems() {
-        _items.value = listOf(
-            TextViewHolder.UiModel(R.string.configuration_loading),
-        )
+    init {
+        loadData(false)
+    }
+
+    override fun loadData(isForceRefresh: Boolean) {
         viewModelScope.launch {
             _items.value = listOf(
-                TextViewHolder.UiModel(R.string.configuration_placeholder),
-                SelectedNozzleViewHolder.UiModel(nozzleRepository.getNozzles().firstOrNull { it.name == preferenceManager.selectedNozzleName }),
-                DoneButtonViewHolder.UiModel(preferenceManager.selectedNozzleName.isNotBlank())
+                TextViewHolder.UiModel(R.string.configuration_selected_nozzle),
+                SelectedNozzleViewHolder.UiModel(null),
+                DoneButtonViewHolder.UiModel(false)
             )
         }
     }
 
     fun onDoneButtonClicked() {
-        preferenceManager.isConfigurationSet = true
         _events.value = Consumable(Event.CloseScreen)
     }
 

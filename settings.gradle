@@ -1,8 +1,8 @@
-include ":app"
-include ":core:data:model"
-include ":core:data:repository"
-include ":core:data:retrosheet"
-include ":core:domain"
-include ":presentation"
-include ":debug-menu"
+include ":app" // Modules.APP
+include ":core:data:model" // Modules.DATA_MODEL
+include ":core:data:repository" // Modules.DATA_REPOSITORY
+include ":core:data:retrosheet" // Modules.DATA_RETROSHEET
+include ":core:domain" // Modules.DOMAIN
+include ":presentation" // Modules.PRESENTATION
+include ":debug-menu" // Modules.DEBUG_MENU
 rootProject.name = "SprayApp"

@@ -3,8 +3,8 @@ package com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.viewModelScope
-import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.WorkContainerFragment
 import com.gyorgyzoltan.sprayApp.presentation.R
+import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.WorkContainerFragment
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.list.ConfigurationAdapter
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.list.ConfigurationListItem
 import com.gyorgyzoltan.sprayApp.presentation.feature.shared.ListFragment
@@ -29,11 +29,6 @@ internal class ConfigurationFragment : ListFragment<ConfigurationViewModel, Conf
                 ConfigurationViewModel.Event.CloseScreen -> closeScreen()
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.refreshItems()
     }
 
     private fun navigateToNozzlePicker() {

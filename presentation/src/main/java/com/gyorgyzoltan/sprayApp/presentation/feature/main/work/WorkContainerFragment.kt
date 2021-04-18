@@ -1,15 +1,15 @@
 package com.gyorgyzoltan.sprayApp.presentation.feature.main.work
 
+import com.gyorgyzoltan.sprayApp.domain.configuration.IsConfigurationSetUseCase
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.ContainerFragment
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.ConfigurationFragment
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.NozzlePickerFragment
-import com.gyorgyzoltan.sprayApp.repository.preferences.PreferenceManager
 import com.gyorgyzoltan.sprayApp.presentation.utils.TransitionType
 import com.gyorgyzoltan.sprayApp.presentation.utils.handleReplace
 import org.koin.core.context.KoinContextHandler
 
 internal class WorkContainerFragment : ContainerFragment({
-    if (KoinContextHandler.get().get<PreferenceManager>().isConfigurationSet) {
+    if (KoinContextHandler.get().get<IsConfigurationSetUseCase>().invoke()) {
         WorkFragment.newInstance()
     } else {
         ConfigurationFragment.newInstance()

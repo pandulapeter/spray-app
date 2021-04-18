@@ -4,26 +4,26 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.gyorgyzoltan.sprayApp.debugMenu.DebugMenu
+import com.gyorgyzoltan.sprayApp.domain.tutorial.HasSeenTutorialUseCase
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.MainFragment
 import com.gyorgyzoltan.sprayApp.presentation.feature.shared.BaseFragment
 import com.gyorgyzoltan.sprayApp.presentation.feature.shared.Navigator
 import com.gyorgyzoltan.sprayApp.presentation.feature.tutorial.TutorialFragment
 import com.gyorgyzoltan.sprayApp.presentation.utils.TransitionType
 import com.gyorgyzoltan.sprayApp.presentation.utils.handleReplace
-import com.gyorgyzoltan.sprayApp.repository.preferences.PreferenceManager
 import org.koin.android.ext.android.inject
 
 class SprayAppActivity : AppCompatActivity(), Navigator {
 
     private val currentFragment get() = supportFragmentManager.findFragmentById(R.id.fragment_container) as? BaseFragment<*>?
-    private val preferenceManager by inject<PreferenceManager>()
+    private val hasSeenTutorial by inject<HasSeenTutorialUseCase>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_spray_app)
         if (savedInstanceState == null) {
-            if (preferenceManager.hasSeenTutorial) {
+            if (hasSeenTutorial()) {
                 navigateToMain()
             } else {
                 navigateToTutorial(true)

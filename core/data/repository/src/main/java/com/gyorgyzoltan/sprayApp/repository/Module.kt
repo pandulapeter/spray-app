@@ -1,4 +1,4 @@
-package com.gyorgyzoltan.sprayApp.repository.di
+package com.gyorgyzoltan.sprayApp.repository
 
 import com.gyorgyzoltan.sprayApp.repository.networking.NetworkingManager
 import com.gyorgyzoltan.sprayApp.repository.networking.NetworkingManagerImpl
@@ -6,6 +6,8 @@ import com.gyorgyzoltan.sprayApp.repository.preferences.PreferenceManager
 import com.gyorgyzoltan.sprayApp.repository.preferences.PreferenceManagerImpl
 import com.gyorgyzoltan.sprayApp.repository.repository.nozzle.NozzleRepository
 import com.gyorgyzoltan.sprayApp.repository.repository.nozzle.NozzleRepositoryImpl
+import com.gyorgyzoltan.sprayApp.repository.repository.nozzle.NozzleTypeRepository
+import com.gyorgyzoltan.sprayApp.repository.repository.nozzle.NozzleTypeRepositoryImpl
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
@@ -19,5 +21,6 @@ val repositoryModule = module {
 
     // Repositories
     single<NozzleRepository> { NozzleRepositoryImpl(get()) }
+    single<NozzleTypeRepository> { NozzleTypeRepositoryImpl(get()) }
 }
 

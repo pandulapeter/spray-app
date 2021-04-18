@@ -73,11 +73,11 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // Module dependencies
-    implementation project(":debug-menu")
-    implementation project(":core:data:model")
-    implementation project(":core:data:repository")
-    implementation project(":core:domain")
-    implementation project(":presentation")
+    implementation project(Modules.DEBUG_MENU)
+    implementation project(Modules.DATA_MODEL)
+    implementation project(Modules.DATA_REPOSITORY)
+    implementation project(Modules.DOMAIN)
+    implementation project(Modules.PRESENTATION)
 
     // Service locator
     implementation Dependencies.KOIN

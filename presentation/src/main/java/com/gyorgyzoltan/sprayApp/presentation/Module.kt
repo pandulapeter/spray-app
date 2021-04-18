@@ -1,4 +1,4 @@
-package com.gyorgyzoltan.sprayApp.presentation.di
+package com.gyorgyzoltan.sprayApp.presentation
 
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.help.HelpViewModel
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.help.licences.LicencesViewModel
@@ -10,7 +10,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val presentationModule = module {
-    viewModel { ConfigurationViewModel(get(), get()) }
+    viewModel { ConfigurationViewModel() }
     viewModel { NozzlePickerViewModel(get(), get()) }
     viewModel { WorkViewModel() }
     viewModel { StatisticsViewModel() }
