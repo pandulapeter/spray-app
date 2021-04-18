@@ -11,7 +11,10 @@ import com.gyorgyzoltan.sprayApp.presentation.feature.shared.ListFragment
 import com.gyorgyzoltan.sprayApp.presentation.utils.observeEvents
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-internal class NozzlePickerFragment : ListFragment<NozzlePickerViewModel, NozzlePickerListItem>(R.string.nozzle_picker_title) {
+internal class NozzlePickerFragment : ListFragment<NozzlePickerViewModel, NozzlePickerListItem>(
+    titleResourceId = R.string.nozzle_picker_title,
+    subtitleResourceId = R.string.nozzle_picker_subtitle
+) {
 
     override val viewModel by viewModel<NozzlePickerViewModel>()
 

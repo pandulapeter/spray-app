@@ -6,7 +6,6 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.fragment.app.FragmentActivity
 import com.google.android.material.appbar.AppBarLayout
 import com.gyorgyzoltan.sprayApp.presentation.R
 import com.gyorgyzoltan.sprayApp.presentation.databinding.ViewAppBarBinding
@@ -32,14 +31,20 @@ internal class AppBarView @JvmOverloads constructor(
 
     fun setup(
         @StringRes titleResourceId: Int,
+        @StringRes subtitleResourceId: Int?,
         actions: List<Pair<Int, () -> Unit>>,
         isRoot: Boolean,
-        activity: FragmentActivity
+        navigateBack: () -> Unit
     ) {
-        binding.toolbar.title = context.getString(titleResourceId)
+        binding.toolbar.run {
+            title = context.getString(titleResourceId)
+            if (subtitleResourceId != null) {
+                subtitle = context.getString(subtitleResourceId)
+            }
+        }
         binding.backButton.run {
             visible = !isRoot
-            setOnClickListener { activity.onBackPressed() }
+            setOnClickListener { navigateBack() }
         }
         binding.actionsContainer.run {
             val smallContentPadding = context.dimension(R.dimen.small_content_padding)

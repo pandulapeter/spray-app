@@ -16,7 +16,8 @@ import com.gyorgyzoltan.sprayApp.presentation.feature.shared.list.ListItem
 import com.gyorgyzoltan.sprayApp.presentation.utils.showSnackbar
 
 abstract class ListFragment<VM : ListViewModel<LI>, LI : ListItem>(
-    @StringRes private val titleResourceId: Int
+    @StringRes private val titleResourceId: Int,
+    @StringRes private val subtitleResourceId: Int? = null
 ) : BaseFragment<FragmentListBinding>(R.layout.fragment_list) {
 
     protected abstract val viewModel: VM
@@ -59,9 +60,10 @@ abstract class ListFragment<VM : ListViewModel<LI>, LI : ListItem>(
 
     private fun AppBarView.setup() = setup(
         titleResourceId = titleResourceId,
+        subtitleResourceId = subtitleResourceId,
         actions = actions,
         isRoot = parentFragment?.childFragmentManager?.backStackEntryCount ?: 0 <= 1,
-        activity = requireActivity()
+        navigateBack = { parentFragment?.childFragmentManager?.popBackStack() }
     )
 
     private fun SwipeRefreshLayout.setup() = setOnRefreshListener { viewModel.loadData(true) }

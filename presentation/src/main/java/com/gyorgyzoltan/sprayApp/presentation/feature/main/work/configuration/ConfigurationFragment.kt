@@ -11,7 +11,10 @@ import com.gyorgyzoltan.sprayApp.presentation.feature.shared.ListFragment
 import com.gyorgyzoltan.sprayApp.presentation.utils.observeEvents
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-internal class ConfigurationFragment : ListFragment<ConfigurationViewModel, ConfigurationListItem>(R.string.configuration_title) {
+internal class ConfigurationFragment : ListFragment<ConfigurationViewModel, ConfigurationListItem>(
+    titleResourceId = R.string.configuration_title,
+    subtitleResourceId = R.string.configuration_subtitle
+) {
 
     override val viewModel by viewModel<ConfigurationViewModel>()
 

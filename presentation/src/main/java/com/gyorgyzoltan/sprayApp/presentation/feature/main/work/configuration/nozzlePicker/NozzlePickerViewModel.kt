@@ -82,7 +82,6 @@ internal class NozzlePickerViewModel(
         data.let { nozzles ->
             when {
                 nozzles?.isNotEmpty() == true -> {
-                    add(TextViewHolder.UiModel(R.string.nozzle_picker_hint_select_type))
                     nozzles.map { it.type }.distinctBy { it.name }.forEach { nozzleType ->
                         val isExpanded = nozzleType.name == selectedNozzleType?.name
                         add(
