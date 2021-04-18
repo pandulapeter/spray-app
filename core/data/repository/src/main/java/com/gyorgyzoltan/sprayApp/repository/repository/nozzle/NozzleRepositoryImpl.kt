@@ -1,33 +1,29 @@
 package com.gyorgyzoltan.sprayApp.repository.repository.nozzle
 
+import com.gyorgyzoltan.sprayApp.model.DataState
+import com.gyorgyzoltan.sprayApp.model.nozzle.Nozzle
 import com.gyorgyzoltan.sprayApp.model.nozzle.NozzleColor
 import com.gyorgyzoltan.sprayApp.model.nozzle.NozzleType
 import com.gyorgyzoltan.sprayApp.repository.mapper.toNozzle
-import com.gyorgyzoltan.sprayApp.repository.mapper.toNozzleType
 import com.gyorgyzoltan.sprayApp.repository.networking.NetworkingManager
+import com.gyorgyzoltan.sprayApp.repository.utilities.toDataState
+import kotlinx.coroutines.flow.MutableStateFlow
 
 internal class NozzleRepositoryImpl(private val networkingManager: NetworkingManager) : NozzleRepository {
 
-    private var nozzleTypes: List<NozzleType>? = null
+    override val nozzles = MutableStateFlow<DataState<List<Nozzle>>>(DataState.Loading(null))
 
-    override suspend fun getNozzleTypes() = nozzleTypes ?: try {
-        networkingManager.networkingService.getNozzleTypes().mapNotNull { it.toNozzleType() }.also {
-            nozzleTypes = it
-        }
-    } catch (e: Exception) {
-        emptyList()
+    override suspend fun refresh(nozzleTypes: List<NozzleType>) {
+        nozzles.value = DataState.Loading(nozzles.value.data)
+        nozzles.value = nozzles.value.data.toDataState { loadNozzlesFromRemote(nozzleTypes) }
     }
 
-    override suspend fun getNozzles() = try {
-        val nozzleTypes = getNozzleTypes()
-        val nozzleColors = NozzleColor.values().toList()
+    private suspend fun loadNozzlesFromRemote(nozzleTypes: List<NozzleType>) = NozzleColor.values().toList().let { nozzleColors ->
         networkingManager.networkingService.getNozzles().mapNotNull {
             it.toNozzle(
                 nozzleTypes = nozzleTypes,
                 nozzleColors = nozzleColors
             )
         }
-    } catch (e: Exception) {
-        emptyList()
     }
 }

@@ -34,6 +34,8 @@ internal class NozzlePickerFragment : ListFragment<NozzlePickerViewModel, Nozzle
         (parentFragment as? WorkContainerFragment?)?.navigateBack()
     }
 
+    override fun onBackPressed() = viewModel.onBackPressed()
+
     companion object {
         fun newInstance() = NozzlePickerFragment()
     }

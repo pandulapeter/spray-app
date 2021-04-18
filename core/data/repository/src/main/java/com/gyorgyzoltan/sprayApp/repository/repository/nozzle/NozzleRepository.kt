@@ -1,11 +1,13 @@
 package com.gyorgyzoltan.sprayApp.repository.repository.nozzle
 
+import com.gyorgyzoltan.sprayApp.model.DataState
 import com.gyorgyzoltan.sprayApp.model.nozzle.Nozzle
 import com.gyorgyzoltan.sprayApp.model.nozzle.NozzleType
+import kotlinx.coroutines.flow.StateFlow
 
 interface NozzleRepository {
 
-    suspend fun getNozzleTypes(): List<NozzleType>
+    val nozzles: StateFlow<DataState<List<Nozzle>>>
 
-    suspend fun getNozzles(): List<Nozzle>
+    suspend fun refresh(nozzleTypes: List<NozzleType>)
 }

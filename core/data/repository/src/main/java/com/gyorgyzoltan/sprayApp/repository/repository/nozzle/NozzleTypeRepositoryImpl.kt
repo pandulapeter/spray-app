@@ -13,6 +13,8 @@ internal class NozzleTypeRepositoryImpl(private val networkingManager: Networkin
 
     override suspend fun refresh() {
         nozzleTypes.value = DataState.Loading(nozzleTypes.value.data)
-        nozzleTypes.value = nozzleTypes.value.data.toDataState { networkingManager.networkingService.getNozzleTypes().mapNotNull { it.toNozzleType() } }
+        nozzleTypes.value = nozzleTypes.value.data.toDataState(::loadNozzleTypesFromRemote)
     }
+
+    private suspend fun loadNozzleTypesFromRemote() = networkingManager.networkingService.getNozzleTypes().mapNotNull { it.toNozzleType() }
 }
