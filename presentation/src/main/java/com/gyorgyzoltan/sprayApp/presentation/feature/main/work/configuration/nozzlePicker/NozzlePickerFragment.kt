@@ -19,8 +19,7 @@ internal class NozzlePickerFragment : ListFragment<NozzlePickerViewModel, Nozzle
         scope = viewModel.viewModelScope,
         onTryAgainButtonPressed = { viewModel.loadData(true) },
         onNozzleSelected = viewModel::onNozzleSelected,
-        onNozzleTypeSelected = viewModel::onNozzleTypeSelected,
-        onSeeAllTypesButtonPressed = { onBackPressed() }
+        onNozzleTypeSelected = viewModel::onNozzleTypeSelected
     )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -16,5 +16,6 @@
 
     <!-- Configuration -->
     <dimen name="configuration_nozzle_type_height">72dp</dimen>
+    <dimen name="configuration_nozzle_height">48dp</dimen>
 
 </resources>

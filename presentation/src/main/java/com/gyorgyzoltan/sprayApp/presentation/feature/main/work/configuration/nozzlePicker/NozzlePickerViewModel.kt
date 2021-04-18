@@ -4,17 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.gyorgyzoltan.sprayApp.domain.nozzle.NozzleTypesUseCase
 import com.gyorgyzoltan.sprayApp.domain.nozzle.NozzlesUseCase
-import com.gyorgyzoltan.sprayApp.domain.nozzle.RefreshNozzleTypesUseCase
 import com.gyorgyzoltan.sprayApp.domain.nozzle.RefreshNozzlesUseCase
 import com.gyorgyzoltan.sprayApp.model.DataState
 import com.gyorgyzoltan.sprayApp.model.nozzle.Nozzle
 import com.gyorgyzoltan.sprayApp.model.nozzle.NozzleType
 import com.gyorgyzoltan.sprayApp.presentation.R
-import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.AllTypesViewHolder
-import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.EmptyViewHolder
-import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.HeaderViewHolder
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.NozzlePickerListItem
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.NozzleTypeViewHolder
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.NozzleViewHolder
@@ -26,39 +21,23 @@ import com.gyorgyzoltan.sprayApp.utils.Consumable
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 internal class NozzlePickerViewModel(
     nozzles: NozzlesUseCase,
-    nozzleTypes: NozzleTypesUseCase,
-    private val refreshNozzleTypes: RefreshNozzleTypesUseCase,
     private val refreshNozzles: RefreshNozzlesUseCase
 ) : ListViewModel<NozzlePickerListItem>(true) {
 
     private val selectedNozzleType = MutableStateFlow<NozzleType?>(null)
     override val items = combine(
         selectedNozzleType,
-        nozzleTypes(),
         nozzles()
-    ) { selectedNozzleType, nozzleTypes, nozzles ->
-        if (selectedNozzleType == null) {
-            nozzleTypes.toNozzleTypePickerItems()
-        } else {
-            nozzles.toNozzlePickerItems()
-        }
+    ) { selectedNozzleType, nozzles ->
+        nozzles.toItems(selectedNozzleType)
     }.asLiveData()
-    override val isLoading = combine(
-        selectedNozzleType,
-        nozzleTypes(),
-        nozzles()
-    ) { selectedNozzleType, nozzleTypes, nozzles ->
-        if (selectedNozzleType == null) {
-            nozzleTypes is DataState.Loading
-        } else {
-            nozzleTypes is DataState.Loading || nozzles is DataState.Loading
-        }
-    }.asLiveData()
+    override val isLoading = nozzles().map { it is DataState.Loading }.asLiveData()
     private val _events = MutableLiveData<Consumable<Event>>()
     val events: LiveData<Consumable<Event>> = _events
 
@@ -68,21 +47,12 @@ internal class NozzlePickerViewModel(
                 _events.value = Consumable(Event.ShowErrorSnackbar)
             }
         }.launchIn(viewModelScope)
-        nozzleTypes().onEach {
-            if (it is DataState.Error && it.data != null) {
-                _events.value = Consumable(Event.ShowErrorSnackbar)
-            }
-        }.launchIn(viewModelScope)
         loadData(false)
     }
 
     override fun loadData(isForceRefresh: Boolean) {
         viewModelScope.launch {
-            if (selectedNozzleType.value == null) {
-                refreshNozzleTypes(isForceRefresh)
-            } else {
-                refreshNozzles(isForceRefresh)
-            }
+            refreshNozzles(isForceRefresh)
         }
     }
 
@@ -92,8 +62,11 @@ internal class NozzlePickerViewModel(
     }
 
     fun onNozzleTypeSelected(nozzleType: NozzleType) {
-        selectedNozzleType.value = nozzleType
-        loadData(false)
+        selectedNozzleType.value = if (selectedNozzleType.value == nozzleType) {
+            null
+        } else {
+            nozzleType
+        }
     }
 
     fun onBackPressed() = if (selectedNozzleType.value == null) {
@@ -102,40 +75,23 @@ internal class NozzlePickerViewModel(
         selectedNozzleType.value = null
     }
 
-    private fun DataState<List<NozzleType>>.toNozzleTypePickerItems() = mutableListOf<NozzlePickerListItem>().apply {
-        data.let { nozzleTypes ->
+    private fun DataState<List<Nozzle>>.toItems(selectedNozzleType: NozzleType?) = mutableListOf<NozzlePickerListItem>().apply {
+        data.let { nozzles ->
             when {
-                nozzleTypes?.isNotEmpty() == true -> {
+                nozzles?.isNotEmpty() == true -> {
                     add(TextViewHolder.UiModel(R.string.nozzle_picker_hint_select_type))
-                    addAll(nozzleTypes.map { NozzleTypeViewHolder.UiModel(it) })
+                    nozzles.map { it.type }.distinctBy { it.name }.forEach { nozzleType ->
+                        add(NozzleTypeViewHolder.UiModel(nozzleType))
+                        if (nozzleType.name == selectedNozzleType?.name) {
+                            addAll(nozzles.filter { it.type.name == nozzleType.name }.map { NozzleViewHolder.UiModel(it) })
+                        }
+                    }
                 }
-                nozzleTypes?.isEmpty() == true -> {
+                nozzles?.isEmpty() == true -> {
                     add(TextViewHolder.UiModel(R.string.nozzle_picker_no_nozzle_types_found))
                 }
-                nozzleTypes == null -> if (this@toNozzleTypePickerItems is DataState.Error<*>) {
+                nozzles == null -> if (this@toItems is DataState.Error<*>) {
                     add(ErrorViewHolder.UiModel())
-                }
-            }
-        }
-    }.toList()
-
-    private fun DataState<List<Nozzle>>.toNozzlePickerItems() = mutableListOf<NozzlePickerListItem>().apply {
-        selectedNozzleType.value?.let { selectedNozzleType ->
-            data?.filter { it.type == selectedNozzleType }.let { nozzles ->
-                when {
-                    nozzles?.isNotEmpty() == true -> {
-                        add(HeaderViewHolder.UiModel(selectedNozzleType))
-                        addAll(nozzles.map { NozzleViewHolder.UiModel(it) })
-                    }
-                    nozzles?.isEmpty() == true -> {
-                        add(EmptyViewHolder.UiModel(selectedNozzleType))
-                    }
-                    nozzles == null -> if (this@toNozzlePickerItems is DataState.Error<*>) {
-                        add(ErrorViewHolder.UiModel())
-                    }
-                }
-                if (isNotEmpty()) {
-                    add(AllTypesViewHolder.UiModel())
                 }
             }
         }
