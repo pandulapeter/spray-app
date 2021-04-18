@@ -28,12 +28,15 @@
                 android:layout_height="0dp"
                 android:layout_marginStart="@dimen/large_content_padding"
                 android:layout_marginEnd="@dimen/large_content_padding"
+                android:drawableStart="@{uiModel.expanded ? @drawable/ic_expanded : @drawable/ic_collapsed}"
+                android:drawablePadding="@dimen/content_padding"
                 android:gravity="center_vertical"
                 android:text="@{uiModel.nozzleType.name}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/thumbnail"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                tools:drawableStart="@drawable/ic_collapsed"
                 tools:text="Nozzle name" />
 
             <ImageView

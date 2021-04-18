@@ -28,6 +28,7 @@ internal class NozzleViewHolder private constructor(
     override fun bind(uiModel: UiModel) {
         super.bind(uiModel)
         binding.card.setCardBackgroundColor(itemView.context.color(uiModel.nozzle.color.value))
+        // TODO: Set theme based on uiModel.nozzle.color.isDark
     }
 
     data class UiModel(

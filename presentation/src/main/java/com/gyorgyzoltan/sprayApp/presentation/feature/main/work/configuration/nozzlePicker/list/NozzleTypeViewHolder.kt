@@ -25,7 +25,8 @@ internal class NozzleTypeViewHolder private constructor(
     }
 
     data class UiModel(
-        val nozzleType: NozzleType
+        val nozzleType: NozzleType,
+        val isExpanded: Boolean
     ) : NozzlePickerListItem {
 
         override val id = nozzleType.name
