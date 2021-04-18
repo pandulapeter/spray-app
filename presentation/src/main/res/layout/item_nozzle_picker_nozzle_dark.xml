@@ -28,6 +28,7 @@
             android:layout_marginEnd="@dimen/large_content_padding"
             android:gravity="center_vertical"
             android:text="@{uiModel.nozzle.name}"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/thumbnail"
             app:layout_constraintStart_toStartOf="parent"
