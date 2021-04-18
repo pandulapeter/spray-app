@@ -7,7 +7,7 @@
 
         <variable
             name="uiModel"
-            type="com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.NozzleViewHolder.UiModel" />
+            type="com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.NozzleLightViewHolder.UiModel" />
 
     </data>
 
@@ -17,7 +17,8 @@
         android:layout_height="@dimen/configuration_nozzle_height"
         android:layout_marginStart="@dimen/extra_large_content_padding"
         android:layout_marginTop="@dimen/content_padding"
-        android:layout_marginEnd="@dimen/large_content_padding">
+        android:layout_marginEnd="@dimen/large_content_padding"
+        android:theme="@style/Theme.MaterialComponents.Light">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/title"

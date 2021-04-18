@@ -6,14 +6,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.gyorgyzoltan.sprayApp.model.nozzle.Nozzle
 import com.gyorgyzoltan.sprayApp.presentation.R
-import com.gyorgyzoltan.sprayApp.presentation.databinding.ItemNozzlePickerNozzleBinding
+import com.gyorgyzoltan.sprayApp.presentation.databinding.ItemNozzlePickerNozzleLightBinding
 import com.gyorgyzoltan.sprayApp.presentation.feature.shared.list.BaseViewHolder
 import com.gyorgyzoltan.sprayApp.presentation.utils.color
 
-internal class NozzleViewHolder private constructor(
-    binding: ItemNozzlePickerNozzleBinding,
+internal class NozzleLightViewHolder private constructor(
+    binding: ItemNozzlePickerNozzleLightBinding,
     onItemClicked: (Nozzle) -> Unit
-) : BaseViewHolder<ItemNozzlePickerNozzleBinding, NozzleViewHolder.UiModel>(binding) {
+) : BaseViewHolder<ItemNozzlePickerNozzleLightBinding, NozzleLightViewHolder.UiModel>(binding) {
 
     init {
         binding.root.setOnClickListener {
@@ -28,7 +28,6 @@ internal class NozzleViewHolder private constructor(
     override fun bind(uiModel: UiModel) {
         super.bind(uiModel)
         binding.card.setCardBackgroundColor(itemView.context.color(uiModel.nozzle.color.value))
-        // TODO: Set theme based on uiModel.nozzle.color.isDark
     }
 
     data class UiModel(
@@ -42,8 +41,8 @@ internal class NozzleViewHolder private constructor(
         fun create(
             parent: ViewGroup,
             onItemClicked: (Nozzle) -> Unit
-        ) = NozzleViewHolder(
-            binding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_nozzle_picker_nozzle, parent, false),
+        ) = NozzleLightViewHolder(
+            binding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_nozzle_picker_nozzle_light, parent, false),
             onItemClicked = onItemClicked
         )
     }

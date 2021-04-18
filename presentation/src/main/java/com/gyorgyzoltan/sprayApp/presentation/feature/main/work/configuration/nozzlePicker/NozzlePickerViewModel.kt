@@ -10,16 +10,19 @@ import com.gyorgyzoltan.sprayApp.model.DataState
 import com.gyorgyzoltan.sprayApp.model.nozzle.Nozzle
 import com.gyorgyzoltan.sprayApp.model.nozzle.NozzleType
 import com.gyorgyzoltan.sprayApp.presentation.R
+import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.NozzleDarkViewHolder
+import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.NozzleLightViewHolder
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.NozzlePickerListItem
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.NozzleTypeViewHolder
-import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.NozzleViewHolder
 import com.gyorgyzoltan.sprayApp.presentation.feature.shared.ListViewModel
 import com.gyorgyzoltan.sprayApp.presentation.feature.shared.list.ErrorViewHolder
 import com.gyorgyzoltan.sprayApp.presentation.feature.shared.list.TextViewHolder
 import com.gyorgyzoltan.sprayApp.presentation.utils.consume
 import com.gyorgyzoltan.sprayApp.utils.Consumable
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
@@ -36,7 +39,7 @@ internal class NozzlePickerViewModel(
         nozzles()
     ) { selectedNozzleType, nozzles ->
         nozzles.toItems(selectedNozzleType)
-    }.asLiveData()
+    }.flowOn(Dispatchers.Default).asLiveData()
     override val isLoading = nozzles().map { it is DataState.Loading }.asLiveData()
     private val _events = MutableLiveData<Consumable<Event>>()
     val events: LiveData<Consumable<Event>> = _events
@@ -89,7 +92,15 @@ internal class NozzlePickerViewModel(
                             )
                         )
                         if (isExpanded) {
-                            addAll(nozzles.filter { it.type.name == nozzleType.name }.map { NozzleViewHolder.UiModel(it) })
+                            addAll(nozzles
+                                .filter { it.type.name == nozzleType.name }
+                                .map { nozzle ->
+                                    if (nozzle.color.isDark) {
+                                        NozzleDarkViewHolder.UiModel(nozzle)
+                                    } else {
+                                        NozzleLightViewHolder.UiModel(nozzle)
+                                    }
+                                })
                         }
                     }
                 }

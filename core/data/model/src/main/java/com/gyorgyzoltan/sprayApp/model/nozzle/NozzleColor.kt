@@ -12,51 +12,51 @@ enum class NozzleColor(
     ORANGE(
         id = "orange",
         value = R.color.nozzle_type_orange,
-        isDark = false // TODO
+        isDark = false
     ),
     GREEN(
         id = "green",
         value = R.color.nozzle_type_green,
-        isDark = false // TODO
+        isDark = true
     ),
     YELLOW(
         id = "yellow",
         value = R.color.nozzle_type_yellow,
-        isDark = false // TODO
+        isDark = false
     ),
     PURPLE(
         id = "purple",
         value = R.color.nozzle_type_purple,
-        isDark = false // TODO
+        isDark = true
     ),
     DARK_BLUE(
         id = "darkBlue",
         value = R.color.nozzle_type_dark_blue,
-        isDark = false // TODO
+        isDark = true
     ),
     RED(
         id = "red",
         value = R.color.nozzle_type_red,
-        isDark = false // TODO
+        isDark = true
     ),
     BROWN(
         id = "brown",
         value = R.color.nozzle_type_brown,
-        isDark = false // TODO
+        isDark = true
     ),
     GRAY(
         id = "gray",
         value = R.color.nozzle_type_gray,
-        isDark = false // TODO
+        isDark = true
     ),
     WHITE(
         id = "white",
         value = R.color.nozzle_type_white,
-        isDark = false // TODO
+        isDark = false
     ),
     LIGHT_BLUE(
         id = "lightBlue",
         value = R.color.nozzle_type_light_blue,
-        isDark = false // TODO
+        isDark = true
     ),
 }
