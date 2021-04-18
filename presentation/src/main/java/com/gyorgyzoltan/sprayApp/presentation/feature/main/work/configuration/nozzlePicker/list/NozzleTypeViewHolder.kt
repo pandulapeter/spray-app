@@ -15,9 +15,9 @@ internal class NozzleTypeViewHolder private constructor(
 ) : BaseViewHolder<ItemNozzlePickerNozzleTypeBinding, NozzleTypeViewHolder.UiModel>(binding) {
 
     init {
-        binding.radioButton.setOnCheckedChangeListener { _, isSelected ->
+        binding.root.setOnClickListener {
             binding.uiModel?.let { uiModel ->
-                if (bindingAdapterPosition != RecyclerView.NO_POSITION && uiModel.isSelected != isSelected) {
+                if (bindingAdapterPosition != RecyclerView.NO_POSITION) {
                     onItemClicked(uiModel.nozzleType)
                 }
             }
@@ -25,8 +25,7 @@ internal class NozzleTypeViewHolder private constructor(
     }
 
     data class UiModel(
-        val nozzleType: NozzleType,
-        val isSelected: Boolean
+        val nozzleType: NozzleType
     ) : NozzlePickerListItem {
 
         override val id = nozzleType.name

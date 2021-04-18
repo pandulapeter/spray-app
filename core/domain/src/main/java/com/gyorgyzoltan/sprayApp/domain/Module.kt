@@ -17,7 +17,7 @@ val domainModule = module {
     // Nozzle
     factory { NozzlesUseCase(get()) }
     factory { NozzleTypesUseCase(get()) }
-    factory { RefreshNozzlesUseCase(get()) }
+    factory { RefreshNozzlesUseCase(get(), get()) }
     factory { RefreshNozzleTypesUseCase(get()) }
 
     // Tutorial

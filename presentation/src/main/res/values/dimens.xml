@@ -14,4 +14,7 @@
     <dimen name="tutorial_pager_indicator_dot_size">4dp</dimen>
     <dimen name="tutorial_pager_indicator_bottom_padding">20dp</dimen>
 
+    <!-- Configuration -->
+    <dimen name="configuration_nozzle_type_height">72dp</dimen>
+
 </resources>

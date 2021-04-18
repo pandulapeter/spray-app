@@ -50,7 +50,7 @@ internal class NozzlePickerViewModel(
         if (selectedNozzleType == null) {
             nozzleTypes is DataState.Loading
         } else {
-            nozzles is DataState.Loading
+            nozzleTypes is DataState.Loading || nozzles is DataState.Loading
         }
     }.asLiveData()
     private val _events = MutableLiveData<Consumable<Event>>()
@@ -62,11 +62,10 @@ internal class NozzlePickerViewModel(
 
     override fun loadData(isForceRefresh: Boolean) {
         viewModelScope.launch {
-            val nozzleTypes = nozzleTypes().value.data
-            if (nozzleTypes == null || selectedNozzleType.value == null) {
-                refreshNozzleTypes()
+            if (selectedNozzleType.value == null) {
+                refreshNozzleTypes(isForceRefresh)
             } else {
-                refreshNozzles(nozzleTypes)
+                refreshNozzles(isForceRefresh)
             }
         }
     }
@@ -92,7 +91,7 @@ internal class NozzlePickerViewModel(
             when {
                 nozzleTypes?.isNotEmpty() == true -> {
                     add(TextViewHolder.UiModel(R.string.nozzle_picker_hint_select_type))
-                    addAll(nozzleTypes.map { NozzleTypeViewHolder.UiModel(it, false) })
+                    addAll(nozzleTypes.map { NozzleTypeViewHolder.UiModel(it) })
                 }
                 nozzleTypes?.isEmpty() == true -> {
                     add(TextViewHolder.UiModel(R.string.nozzle_picker_no_nozzle_types_found))

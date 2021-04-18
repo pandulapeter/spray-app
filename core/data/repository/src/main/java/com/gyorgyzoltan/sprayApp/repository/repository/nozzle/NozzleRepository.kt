@@ -9,5 +9,5 @@ interface NozzleRepository {
 
     val nozzles: StateFlow<DataState<List<Nozzle>>>
 
-    suspend fun refresh(nozzleTypes: List<NozzleType>)
+    suspend fun refresh(isForceRefresh: Boolean, nozzleTypes: List<NozzleType>)
 }

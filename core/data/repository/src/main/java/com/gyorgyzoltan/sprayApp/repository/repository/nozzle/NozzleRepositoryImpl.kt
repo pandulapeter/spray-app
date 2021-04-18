@@ -13,9 +13,11 @@ internal class NozzleRepositoryImpl(private val networkingManager: NetworkingMan
 
     override val nozzles = MutableStateFlow<DataState<List<Nozzle>>>(DataState.Loading(null))
 
-    override suspend fun refresh(nozzleTypes: List<NozzleType>) {
-        nozzles.value = DataState.Loading(nozzles.value.data)
-        nozzles.value = nozzles.value.data.toDataState { loadNozzlesFromRemote(nozzleTypes) }
+    override suspend fun refresh(isForceRefresh: Boolean, nozzleTypes: List<NozzleType>) {
+        if (isForceRefresh || nozzles.value.data == null) {
+            nozzles.value = DataState.Loading(nozzles.value.data)
+            nozzles.value = nozzles.value.data.toDataState { loadNozzlesFromRemote(nozzleTypes) }
+        }
     }
 
     private suspend fun loadNozzlesFromRemote(nozzleTypes: List<NozzleType>) = NozzleColor.values().toList().let { nozzleColors ->

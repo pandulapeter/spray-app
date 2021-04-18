@@ -6,5 +6,5 @@ class RefreshNozzleTypesUseCase(
     private val nozzleTypeRepository: NozzleTypeRepository
 ) {
 
-    suspend operator fun invoke() = nozzleTypeRepository.refresh()
+    suspend operator fun invoke(isForceRefresh: Boolean) = nozzleTypeRepository.refresh(isForceRefresh)
 }

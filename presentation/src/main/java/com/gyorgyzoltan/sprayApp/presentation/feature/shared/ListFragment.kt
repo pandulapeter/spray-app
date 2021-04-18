@@ -20,6 +20,9 @@ abstract class ListFragment<VM : ListViewModel<LI>, LI : ListItem>(
 
     protected abstract val viewModel: VM
     protected open val actions: List<Pair<Int, () -> Unit>> = emptyList()
+    private val onScrollListener = object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) = binding.appBar.updateAppBarLiftedState()
+    }
 
     protected abstract fun createAdapter(): BaseAdapter<LI>
 
@@ -35,6 +38,16 @@ abstract class ListFragment<VM : ListViewModel<LI>, LI : ListItem>(
         binding.appBar.setup()
         binding.swipeRefreshLayout.setup()
         binding.recyclerView.setup()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.recyclerView.addOnScrollListener(onScrollListener)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.recyclerView.removeOnScrollListener(onScrollListener)
     }
 
     private fun AppBarView.setup() = setup(
@@ -55,12 +68,16 @@ abstract class ListFragment<VM : ListViewModel<LI>, LI : ListItem>(
         post { startPostponedEnterTransition() }
     }
 
+    private fun AppBarView.updateAppBarLiftedState() {
+        isLifted = binding.recyclerView.computeVerticalScrollOffset() != 0
+    }
+
     private fun onListUpdated() {
         try {
             binding.appBar.run {
                 postDelayed({
                     try {
-                        isLifted = binding.recyclerView.computeVerticalScrollOffset() != 0
+                        updateAppBarLiftedState()
                     } catch (_: IllegalStateException) {
                     }
                 }, 300)
