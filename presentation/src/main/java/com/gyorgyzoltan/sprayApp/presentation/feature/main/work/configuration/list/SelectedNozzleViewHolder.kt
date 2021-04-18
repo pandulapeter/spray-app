@@ -16,7 +16,7 @@ internal class SelectedNozzleViewHolder private constructor(
 ) : BaseViewHolder<ItemConfigurationSelectedNozzleBinding, SelectedNozzleViewHolder.UiModel>(binding) {
 
     init {
-        binding.nozzle.setOnClickListener {
+        binding.root.setOnClickListener {
             if (bindingAdapterPosition != RecyclerView.NO_POSITION) {
                 onItemClicked()
             }

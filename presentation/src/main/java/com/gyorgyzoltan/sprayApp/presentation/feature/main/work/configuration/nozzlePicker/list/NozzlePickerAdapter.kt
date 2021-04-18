@@ -12,7 +12,8 @@ internal class NozzlePickerAdapter(
     scope: CoroutineScope,
     onTryAgainButtonPressed: () -> Unit,
     private val onNozzleSelected: (Nozzle) -> Unit,
-    private val onNozzleTypeSelected: (NozzleType) -> Unit
+    private val onNozzleTypeSelected: (NozzleType) -> Unit,
+    private val onSeeAllTypesButtonPressed: () -> Unit
 ) : BaseAdapter<NozzlePickerListItem>(scope, onTryAgainButtonPressed) {
 
     override fun getItemViewType(position: Int) = when (getItem(position)) {
@@ -20,6 +21,7 @@ internal class NozzlePickerAdapter(
         is NozzleTypeViewHolder.UiModel -> R.layout.item_nozzle_picker_nozzle_type
         is HeaderViewHolder.UiModel -> R.layout.item_nozzle_picker_header
         is EmptyViewHolder.UiModel -> R.layout.item_nozzle_picker_empty
+        is AllTypesViewHolder.UiModel -> R.layout.item_nozzle_picker_all_types
         else -> super.getItemViewType(position)
     }
 
@@ -28,6 +30,7 @@ internal class NozzlePickerAdapter(
         R.layout.item_nozzle_picker_nozzle_type -> NozzleTypeViewHolder.create(parent, onNozzleTypeSelected)
         R.layout.item_nozzle_picker_header -> HeaderViewHolder.create(parent)
         R.layout.item_nozzle_picker_empty -> EmptyViewHolder.create(parent)
+        R.layout.item_nozzle_picker_all_types -> AllTypesViewHolder.create(parent, onSeeAllTypesButtonPressed)
         else -> super.onCreateViewHolder(parent, viewType)
     }
 
@@ -36,6 +39,7 @@ internal class NozzlePickerAdapter(
         is NozzleTypeViewHolder -> holder.bind(getItem(position) as NozzleTypeViewHolder.UiModel)
         is HeaderViewHolder -> holder.bind(getItem(position) as HeaderViewHolder.UiModel)
         is EmptyViewHolder -> holder.bind(getItem(position) as EmptyViewHolder.UiModel)
+        is AllTypesViewHolder -> holder.bind(getItem(position) as AllTypesViewHolder.UiModel)
         else -> super.onBindViewHolder(holder, position)
     }
 }

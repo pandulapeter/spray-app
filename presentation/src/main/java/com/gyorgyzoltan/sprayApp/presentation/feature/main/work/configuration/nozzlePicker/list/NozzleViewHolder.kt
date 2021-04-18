@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.gyorgyzoltan.sprayApp.presentation.feature.shared.list.BaseViewHolder
 import com.gyorgyzoltan.sprayApp.model.nozzle.Nozzle
 import com.gyorgyzoltan.sprayApp.presentation.R
 import com.gyorgyzoltan.sprayApp.presentation.databinding.ItemNozzlePickerNozzleBinding
+import com.gyorgyzoltan.sprayApp.presentation.feature.shared.list.BaseViewHolder
 import com.gyorgyzoltan.sprayApp.presentation.utils.color
 
 internal class NozzleViewHolder private constructor(
@@ -16,9 +16,9 @@ internal class NozzleViewHolder private constructor(
 ) : BaseViewHolder<ItemNozzlePickerNozzleBinding, NozzleViewHolder.UiModel>(binding) {
 
     init {
-        binding.radioButton.setOnCheckedChangeListener { _, isSelected ->
+        binding.root.setOnClickListener {
             binding.uiModel?.let { uiModel ->
-                if (bindingAdapterPosition != RecyclerView.NO_POSITION && uiModel.isSelected != isSelected) {
+                if (bindingAdapterPosition != RecyclerView.NO_POSITION) {
                     onItemClicked(uiModel.nozzle)
                 }
             }
@@ -31,8 +31,7 @@ internal class NozzleViewHolder private constructor(
     }
 
     data class UiModel(
-        val nozzle: Nozzle,
-        val isSelected: Boolean
+        val nozzle: Nozzle
     ) : NozzlePickerListItem {
 
         override val id = nozzle.name

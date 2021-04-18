@@ -12,6 +12,7 @@ import com.gyorgyzoltan.sprayApp.model.DataState
 import com.gyorgyzoltan.sprayApp.model.nozzle.Nozzle
 import com.gyorgyzoltan.sprayApp.model.nozzle.NozzleType
 import com.gyorgyzoltan.sprayApp.presentation.R
+import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.AllTypesViewHolder
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.EmptyViewHolder
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.HeaderViewHolder
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.NozzlePickerListItem
@@ -111,7 +112,7 @@ internal class NozzlePickerViewModel(
                 nozzleTypes?.isEmpty() == true -> {
                     add(TextViewHolder.UiModel(R.string.nozzle_picker_no_nozzle_types_found))
                 }
-                nozzleTypes == null -> if (this is DataState.Error<*>) {
+                nozzleTypes == null -> if (this@toNozzleTypePickerItems is DataState.Error<*>) {
                     add(ErrorViewHolder.UiModel())
                 }
             }
@@ -124,14 +125,17 @@ internal class NozzlePickerViewModel(
                 when {
                     nozzles?.isNotEmpty() == true -> {
                         add(HeaderViewHolder.UiModel(selectedNozzleType))
-                        addAll(nozzles.map { NozzleViewHolder.UiModel(it, false) })
+                        addAll(nozzles.map { NozzleViewHolder.UiModel(it) })
                     }
                     nozzles?.isEmpty() == true -> {
                         add(EmptyViewHolder.UiModel(selectedNozzleType))
                     }
-                    nozzles == null -> if (this is DataState.Error<*>) {
+                    nozzles == null -> if (this@toNozzlePickerItems is DataState.Error<*>) {
                         add(ErrorViewHolder.UiModel())
                     }
+                }
+                if (isNotEmpty()) {
+                    add(AllTypesViewHolder.UiModel())
                 }
             }
         }

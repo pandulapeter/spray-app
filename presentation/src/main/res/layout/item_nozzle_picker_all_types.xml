@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="uiModel"
+            type="com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.AllTypesViewHolder.UiModel" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/large_content_padding"
+        android:paddingTop="@dimen/large_content_padding"
+        android:paddingEnd="@dimen/large_content_padding">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/see_all_types_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/nozzle_picker_see_all_nozzle_types" />
+
+    </FrameLayout>
+
+</layout>

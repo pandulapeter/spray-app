@@ -32,6 +32,7 @@
     <string name="nozzle_picker_no_nozzle_types_found">No nozzle types found.</string>
     <string name="nozzle_picker_hint_select_nozzle">Select the nozzle of type %s you will be using.</string>
     <string name="nozzle_picker_no_nozzles_found">No nozzles found for type %s.</string>
+    <string name="nozzle_picker_see_all_nozzle_types">Back to all nozzle types</string>
 
     <!-- Connection -->
     <string name="work_placeholder"><b>Coming soon…</b>\n\n• Work mode (automatic / manual / test)\n• Pairing / connection flow</string>
