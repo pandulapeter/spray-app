@@ -20,7 +20,6 @@ internal class NozzlePickerFragment : ListFragment<NozzlePickerViewModel, Nozzle
 
     override fun createAdapter() = NozzlePickerAdapter(
         scope = viewModel.viewModelScope,
-        onTryAgainButtonPressed = { viewModel.loadData(true) },
         onNozzleSelected = viewModel::onNozzleSelected,
         onNozzleTypeSelected = viewModel::onNozzleTypeSelected
     )

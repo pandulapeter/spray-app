@@ -21,8 +21,8 @@ internal class ConfigurationViewModel : ListViewModel<ConfigurationListItem>(tru
     override val items = _items.asLiveData()
     private val _events = MutableLiveData<Consumable<Event>>()
     val events: LiveData<Consumable<Event>> = _events
-    private val _isLoading = MutableStateFlow(false)
-    override val isLoading = _isLoading.asLiveData()
+    private val _shouldShowLoadingIndicator = MutableStateFlow(false)
+    override val shouldShowLoadingIndicator = _shouldShowLoadingIndicator.asLiveData()
 
     init {
         loadData(false)
@@ -30,7 +30,7 @@ internal class ConfigurationViewModel : ListViewModel<ConfigurationListItem>(tru
 
     override fun loadData(isForceRefresh: Boolean) {
         viewModelScope.launch {
-            _isLoading.value = true
+            _shouldShowLoadingIndicator.value = true
             _items.value = listOf(
                 TextViewHolder.UiModel(R.string.configuration_selected_nozzle),
                 SelectedNozzleViewHolder.UiModel(null),
@@ -41,7 +41,7 @@ internal class ConfigurationViewModel : ListViewModel<ConfigurationListItem>(tru
                 DoneButtonViewHolder.UiModel(false)
             )
             delay(200)
-            _isLoading.value = false
+            _shouldShowLoadingIndicator.value = false
         }
     }
 

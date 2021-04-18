@@ -27,15 +27,30 @@
             android:layout_height="match_parent"
             app:enabled="@{viewModel.supportsRefresh}"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-            app:refreshing="@{viewModel.isLoading}">
+            app:refreshing="@{viewModel.shouldShowLoadingIndicator}">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:paddingBottom="@dimen/large_content_padding"
-                tools:listitem="@layout/item_text" />
+                android:animateLayoutChanges="true">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:paddingBottom="@dimen/large_content_padding"
+                    android:visibility="@{!viewModel.shouldShowErrorView}"
+                    tools:listitem="@layout/item_text" />
+
+                <com.gyorgyzoltan.sprayApp.presentation.feature.shared.ErrorView
+                    android:id="@+id/error_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:onClick="@{() -> viewModel.loadData(true)}"
+                    android:visibility="@{viewModel.shouldShowErrorView}" />
+
+            </FrameLayout>
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

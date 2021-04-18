@@ -15,7 +15,6 @@ import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.no
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.NozzlePickerListItem
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.NozzleTypeViewHolder
 import com.gyorgyzoltan.sprayApp.presentation.feature.shared.ListViewModel
-import com.gyorgyzoltan.sprayApp.presentation.feature.shared.list.ErrorViewHolder
 import com.gyorgyzoltan.sprayApp.presentation.feature.shared.list.TextViewHolder
 import com.gyorgyzoltan.sprayApp.presentation.utils.consume
 import com.gyorgyzoltan.sprayApp.utils.Consumable
@@ -34,13 +33,11 @@ internal class NozzlePickerViewModel(
 ) : ListViewModel<NozzlePickerListItem>(true) {
 
     private val selectedNozzleType = MutableStateFlow<NozzleType?>(null)
-    override val items = combine(
-        selectedNozzleType,
-        nozzles()
-    ) { selectedNozzleType, nozzles ->
+    override val items = combine(selectedNozzleType, nozzles()) { selectedNozzleType, nozzles ->
         nozzles.toItems(selectedNozzleType)
     }.flowOn(Dispatchers.Default).asLiveData()
-    override val isLoading = nozzles().map { it is DataState.Loading }.asLiveData()
+    override val shouldShowLoadingIndicator = nozzles().map { it is DataState.Loading }.asLiveData()
+    override val shouldShowErrorView = nozzles().map { it is DataState.Error && it.data == null }.asLiveData()
     private val _events = MutableLiveData<Consumable<Event>>()
     val events: LiveData<Consumable<Event>> = _events
 
@@ -79,10 +76,14 @@ internal class NozzlePickerViewModel(
     }
 
     private fun DataState<List<Nozzle>>.toItems(selectedNozzleType: NozzleType?) = mutableListOf<NozzlePickerListItem>().apply {
-        data.let { nozzles ->
-            when {
-                nozzles?.isNotEmpty() == true -> {
-                    nozzles.map { it.type }.distinctBy { it.name }.forEach { nozzleType ->
+        data?.let { nozzles ->
+            if (nozzles.isEmpty()) {
+                add(TextViewHolder.UiModel(R.string.nozzle_picker_no_nozzle_types_found))
+            } else {
+                nozzles
+                    .map { it.type }
+                    .distinctBy { it.name }
+                    .forEach { nozzleType ->
                         val isExpanded = nozzleType.name == selectedNozzleType?.name
                         add(
                             NozzleTypeViewHolder.UiModel(
@@ -91,24 +92,19 @@ internal class NozzlePickerViewModel(
                             )
                         )
                         if (isExpanded) {
-                            addAll(nozzles
-                                .filter { it.type.name == nozzleType.name }
-                                .map { nozzle ->
-                                    if (nozzle.color.isDark) {
-                                        NozzleDarkViewHolder.UiModel(nozzle)
-                                    } else {
-                                        NozzleLightViewHolder.UiModel(nozzle)
+                            addAll(
+                                nozzles
+                                    .filter { it.type.name == nozzleType.name }
+                                    .map { nozzle ->
+                                        if (nozzle.color.isDark) {
+                                            NozzleDarkViewHolder.UiModel(nozzle)
+                                        } else {
+                                            NozzleLightViewHolder.UiModel(nozzle)
+                                        }
                                     }
-                                })
+                            )
                         }
                     }
-                }
-                nozzles?.isEmpty() == true -> {
-                    add(TextViewHolder.UiModel(R.string.nozzle_picker_no_nozzle_types_found))
-                }
-                nozzles == null -> if (this@toItems is DataState.Error<*>) {
-                    add(ErrorViewHolder.UiModel())
-                }
             }
         }
     }.toList()

@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="uiModel"
-            type="com.gyorgyzoltan.sprayApp.presentation.feature.shared.list.ErrorViewHolder.UiModel" />
-
-    </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/large_content_padding">
+    <merge
+        tools:layout_height="match_parent"
+        tools:layout_width="match_parent"
+        tools:padding="@dimen/large_content_padding"
+        tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
         <TextView
             android:id="@+id/error_message"
@@ -21,9 +15,11 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/general_error"
+            app:layout_constraintBottom_toTopOf="@id/try_again_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/try_again_button"
@@ -31,10 +27,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/extra_large_content_padding"
             android:text="@string/general_try_again"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/error_message" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </merge>
 
 </layout>

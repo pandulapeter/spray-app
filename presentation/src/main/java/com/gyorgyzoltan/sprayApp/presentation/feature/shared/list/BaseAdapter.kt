@@ -12,8 +12,7 @@ import kotlinx.coroutines.launch
 import java.util.ArrayDeque
 
 open class BaseAdapter<T : ListItem>(
-    private val scope: CoroutineScope,
-    private val onTryAgainButtonPressed: () -> Unit = {}
+    private val scope: CoroutineScope
 ) : RecyclerView.Adapter<BaseViewHolder<*, *>>() {
 
     private var items = emptyList<T>()
@@ -30,21 +29,18 @@ open class BaseAdapter<T : ListItem>(
     @CallSuper
     override fun getItemViewType(position: Int) = when (getItem(position)) {
         is TextViewHolder.UiModel -> R.layout.item_text
-        is ErrorViewHolder.UiModel -> R.layout.item_error
         else -> throw  IllegalArgumentException("Unsupported item type at position $position.")
     }
 
     @CallSuper
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*, *> = when (viewType) {
         R.layout.item_text -> TextViewHolder.create(parent)
-        R.layout.item_error -> ErrorViewHolder.create(parent, onTryAgainButtonPressed)
         else -> throw  IllegalArgumentException("Unsupported item view type: $viewType.")
     }
 
     @CallSuper
     override fun onBindViewHolder(holder: BaseViewHolder<*, *>, position: Int) = when (holder) {
         is TextViewHolder -> holder.bind(getItem(position) as TextViewHolder.UiModel)
-        is ErrorViewHolder -> holder.bind(getItem(position) as ErrorViewHolder.UiModel)
         else -> throw  IllegalArgumentException("Unsupported item type at position $position.")
     }
 

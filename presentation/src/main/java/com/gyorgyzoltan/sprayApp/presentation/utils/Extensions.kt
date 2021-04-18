@@ -24,7 +24,6 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import coil.load
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.Hold
@@ -32,8 +31,6 @@ import com.google.android.material.transition.MaterialFadeThrough
 import com.google.android.material.transition.MaterialSharedAxis
 import com.gyorgyzoltan.sprayApp.presentation.R
 import com.gyorgyzoltan.sprayApp.utils.Consumable
-
-internal fun Context.animatedDrawable(@DrawableRes drawableId: Int) = AnimatedVectorDrawableCompat.create(this, drawableId)!!
 
 internal fun Context.color(@ColorRes colorResourceId: Int) = ContextCompat.getColor(this, colorResourceId)
 
@@ -125,10 +122,6 @@ inline fun <reified T : Fragment> FragmentManager.handleReplace(
     }
 }
 
-internal inline fun <T> LiveData<T>.observe(owner: LifecycleOwner, crossinline onChanged: (T) -> Unit) = Observer<T> { t -> onChanged.invoke(t) }.also {
-    observe(owner, it)
-}
-
 @set:BindingAdapter("android:visibility")
 internal var View.visible
     get() = visibility == View.VISIBLE
@@ -143,4 +136,4 @@ internal var View.notInvisible
     }
 
 @BindingAdapter("url")
-internal fun ImageView.loadUrl(url: String?) = load(url)
+internal fun ImageView.loadUrl(url: String?) = load(url) { crossfade(true) }

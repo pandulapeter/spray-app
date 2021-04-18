@@ -10,10 +10,9 @@ import kotlinx.coroutines.CoroutineScope
 
 internal class NozzlePickerAdapter(
     scope: CoroutineScope,
-    onTryAgainButtonPressed: () -> Unit,
     private val onNozzleSelected: (Nozzle) -> Unit,
     private val onNozzleTypeSelected: (NozzleType) -> Unit
-) : BaseAdapter<NozzlePickerListItem>(scope, onTryAgainButtonPressed) {
+) : BaseAdapter<NozzlePickerListItem>(scope) {
 
     override fun getItemViewType(position: Int) = when (getItem(position)) {
         is NozzleTypeViewHolder.UiModel -> R.layout.item_nozzle_picker_nozzle_type

@@ -8,7 +8,8 @@ import com.gyorgyzoltan.sprayApp.presentation.feature.shared.list.ListItem
 abstract class ListViewModel<LI : ListItem>(val supportsRefresh: Boolean = false) : ViewModel() {
 
     abstract val items: LiveData<List<LI>>
-    open val isLoading: LiveData<Boolean> = MutableLiveData(false)
+    open val shouldShowLoadingIndicator: LiveData<Boolean> = MutableLiveData(false)
+    open val shouldShowErrorView: LiveData<Boolean> = MutableLiveData(false)
 
-    internal open fun loadData(isForceRefresh: Boolean) = Unit
+    open fun loadData(isForceRefresh: Boolean) = Unit
 }
