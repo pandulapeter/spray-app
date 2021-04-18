@@ -1,10 +1,10 @@
-package com.gyorgyzoltan.sprayApp.repository.model.remote
+package com.gyorgyzoltan.sprayApp.remote.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-internal data class NozzleResponse(
+data class NozzleResponse(
     @Json(name = KEY_NAME) val name: String? = null,
     @Json(name = TYPE) val type: String? = null,
     @Json(name = COLOR) val color: String? = null,

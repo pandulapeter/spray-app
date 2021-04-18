@@ -2,13 +2,13 @@ apply from: "$rootDir${BaseModules.ANDROID_LIBRARY}"
 
 dependencies {
 
+    // Service locator
+    implementation Dependencies.KOIN
+
     // Module dependencies
     implementation project(Modules.DATA_MODEL)
     implementation project(Modules.DATA_REPOSITORY)
 
     // Coroutines
     implementation Dependencies.COROUTINES
-
-    // Service locator
-    implementation Dependencies.KOIN
 }

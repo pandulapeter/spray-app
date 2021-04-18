@@ -3,7 +3,9 @@ package com.gyorgyzoltan.sprayApp
 import android.app.Application
 import com.gyorgyzoltan.sprayApp.debugMenu.DebugMenu
 import com.gyorgyzoltan.sprayApp.domain.domainModule
+import com.gyorgyzoltan.sprayApp.local.localSourceModule
 import com.gyorgyzoltan.sprayApp.presentation.presentationModule
+import com.gyorgyzoltan.sprayApp.remote.remoteSourceModule
 import com.gyorgyzoltan.sprayApp.repository.repositoryModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -15,7 +17,7 @@ class SprayApp : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@SprayApp)
-            modules(repositoryModule + domainModule + presentationModule)
+            modules(localSourceModule + remoteSourceModule + repositoryModule + domainModule + presentationModule)
         }
         DebugMenu.initialize(
             application = this,

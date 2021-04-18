@@ -1,8 +1,10 @@
-include ":app" // Modules.APP
 include ":core:data:model" // Modules.DATA_MODEL
 include ":core:data:repository" // Modules.DATA_REPOSITORY
-include ":core:data:retrosheet" // Modules.DATA_RETROSHEET
+include ":core:data:source:local" // Modules.DATA_SOURCE_LOCAL
+include ":core:data:source:remote" // Modules.DATA_SOURCE_REMOTE
+include ":core:data:source:retrosheet" // Modules.DATA_SOURCE_RETROSHEET
 include ":core:domain" // Modules.DOMAIN
 include ":presentation" // Modules.PRESENTATION
+include ":app" // Modules.APP
 include ":debug-menu" // Modules.DEBUG_MENU
 rootProject.name = "SprayApp"

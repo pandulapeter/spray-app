@@ -3,8 +3,8 @@ package com.gyorgyzoltan.sprayApp.repository.mapper
 import com.gyorgyzoltan.sprayApp.model.nozzle.Nozzle
 import com.gyorgyzoltan.sprayApp.model.nozzle.NozzleColor
 import com.gyorgyzoltan.sprayApp.model.nozzle.NozzleType
-import com.gyorgyzoltan.sprayApp.repository.model.remote.NozzleResponse
-import com.gyorgyzoltan.sprayApp.repository.model.remote.NozzleTypeResponse
+import com.gyorgyzoltan.sprayApp.remote.model.NozzleResponse
+import com.gyorgyzoltan.sprayApp.remote.model.NozzleTypeResponse
 
 internal fun NozzleTypeResponse.toNozzleType(): NozzleType? = name?.let { name ->
     imageUrl?.let { imageUrl ->

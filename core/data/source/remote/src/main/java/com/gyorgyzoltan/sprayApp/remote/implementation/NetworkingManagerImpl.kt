@@ -1,6 +1,7 @@
-package com.gyorgyzoltan.sprayApp.repository.networking
+package com.gyorgyzoltan.sprayApp.remote.implementation
 
-import com.gyorgyzoltan.sprayApp.repository.model.remote.NozzleResponse
+import com.gyorgyzoltan.sprayApp.remote.model.NozzleResponse
+import com.gyorgyzoltan.sprayApp.remote.model.NozzleTypeResponse
 import com.theapache64.retrosheet.RetrosheetInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -8,7 +9,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 internal class NetworkingManagerImpl : NetworkingManager {
 
-    override val networkingService: NetworkingService = Retrofit.Builder()
+    override val service: NetworkingService = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .client(
             OkHttpClient.Builder()
@@ -30,9 +31,9 @@ internal class NetworkingManagerImpl : NetworkingManager {
                             NozzleResponse.DEBIT_AT_8_BAR
                         )
                         .addSheet(
-                            com.gyorgyzoltan.sprayApp.repository.model.remote.NozzleTypeResponse.SHEET_NAME,
-                            com.gyorgyzoltan.sprayApp.repository.model.remote.NozzleTypeResponse.KEY_NAME,
-                            com.gyorgyzoltan.sprayApp.repository.model.remote.NozzleTypeResponse.KEY_IMAGE_URL
+                            NozzleTypeResponse.SHEET_NAME,
+                            NozzleTypeResponse.KEY_NAME,
+                            NozzleTypeResponse.KEY_IMAGE_URL
                         )
                         .build()
                 )

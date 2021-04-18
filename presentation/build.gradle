@@ -6,17 +6,17 @@ android.buildFeatures.dataBinding = true
 
 dependencies {
 
-    // Module dependencies
-    implementation project(Modules.DEBUG_MENU)
-    implementation project(Modules.DATA_MODEL)
-    implementation project(Modules.DOMAIN)
-
-    // Coroutines
-    implementation Dependencies.COROUTINES
-
     // Service locator
     implementation Dependencies.KOIN
     implementation Dependencies.KOIN_VIEW_MODEL
+
+    // Module dependencies
+    implementation project(Modules.DATA_MODEL)
+    implementation project(Modules.DOMAIN)
+    implementation project(Modules.DEBUG_MENU)
+
+    // Coroutines
+    implementation Dependencies.COROUTINES
 
     // UI
     implementation Dependencies.APP_COMPAT

@@ -1,7 +1,7 @@
-package com.gyorgyzoltan.sprayApp.repository.networking
+package com.gyorgyzoltan.sprayApp.remote.implementation
 
-import com.gyorgyzoltan.sprayApp.repository.model.remote.NozzleResponse
-import com.gyorgyzoltan.sprayApp.repository.model.remote.NozzleTypeResponse
+import com.gyorgyzoltan.sprayApp.remote.model.NozzleResponse
+import com.gyorgyzoltan.sprayApp.remote.model.NozzleTypeResponse
 import com.theapache64.retrosheet.core.Read
 import retrofit2.http.GET
 

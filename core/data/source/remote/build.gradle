@@ -1,0 +1,18 @@
+apply from: "$rootDir${BaseModules.ANDROID_LIBRARY}"
+apply plugin: Plugins.KOTLIN_KAPT
+
+dependencies {
+
+    // Service locator
+    implementation Dependencies.KOIN
+
+    // Module dependencies
+    implementation project(Modules.DATA_SOURCE_RETROSHEET) // TODO: implementation "com.theapache64:retrosheet:1.2.3"
+
+    // Networking
+    implementation Dependencies.OK_HTTP
+    implementation Dependencies.RETROFIT
+    implementation Dependencies.RETROFIT_CONVERTER
+    implementation Dependencies.MOSHI
+    kapt Dependencies.MOSHI_CODEGEN
+}

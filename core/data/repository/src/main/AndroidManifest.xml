@@ -1,6 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gyorgyzoltan.sprayApp.repository">
-
-    <uses-permission android:name="android.permission.INTERNET" />
-
-</manifest>
+<manifest package="com.gyorgyzoltan.sprayApp.repository" />

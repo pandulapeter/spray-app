@@ -2,6 +2,6 @@ apply from: "$rootDir${BaseModules.ANDROID_LIBRARY}"
 
 dependencies {
 
-    // Annotations
-    implementation Dependencies.ANNOTATION
+    // Service locator
+    implementation Dependencies.KOIN
 }
