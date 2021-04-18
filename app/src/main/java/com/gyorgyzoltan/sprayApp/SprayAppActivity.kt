@@ -63,9 +63,9 @@ class SprayAppActivity : AppCompatActivity(), Navigator {
     }
 
     private fun closeAfterConfirmation() = MaterialAlertDialogBuilder(this)
-        .setTitle(R.string.close_confirmation_title)
-        .setMessage(R.string.close_confirmation_message)
-        .setPositiveButton(R.string.close_confirmation_positive) { _, _ -> supportFinishAfterTransition() }
-        .setNegativeButton(R.string.close_confirmation_negative, null)
+        .setTitle(R.string.general_close_confirmation_title)
+        .setMessage(R.string.general_close_confirmation_message)
+        .setPositiveButton(R.string.general_close_confirmation_positive) { _, _ -> supportFinishAfterTransition() }
+        .setNegativeButton(R.string.general_close_confirmation_negative, null)
         .show()
 }

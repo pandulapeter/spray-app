@@ -1,0 +1,9 @@
+<resources>
+
+    <style name="SplashTheme" parent="AppThemeBase">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/brand</item>
+    </style>
+
+</resources>

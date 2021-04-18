@@ -1,9 +1,0 @@
-<resources>
-
-    <!-- General -->
-    <string name="close_confirmation_title">Are you sure?</string>
-    <string name="close_confirmation_message">Do you want to leave the app?</string>
-    <string name="close_confirmation_positive">Leave</string>
-    <string name="close_confirmation_negative">Cancel</string>
-
-</resources>

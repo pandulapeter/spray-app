@@ -1,6 +1,5 @@
 <resources>
 
-    <!-- General -->
     <dimen name="splash_icon">108dp</dimen>
 
 </resources>

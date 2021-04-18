@@ -1,11 +1,5 @@
 <resources>
 
-    <style name="SplashTheme" parent="AppThemeBase">
-        <item name="android:windowBackground">@drawable/bg_splash</item>
-        <item name="android:windowLightStatusBar">false</item>
-        <item name="android:navigationBarColor">@color/brand</item>
-    </style>
-
     <style name="AppThemeBase" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/brand</item>
         <item name="colorAccent">@color/brand</item>
