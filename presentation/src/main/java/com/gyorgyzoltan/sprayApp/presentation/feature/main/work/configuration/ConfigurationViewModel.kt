@@ -11,6 +11,7 @@ import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.li
 import com.gyorgyzoltan.sprayApp.presentation.feature.shared.ListViewModel
 import com.gyorgyzoltan.sprayApp.presentation.feature.shared.list.TextViewHolder
 import com.gyorgyzoltan.sprayApp.utils.Consumable
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
@@ -29,11 +30,18 @@ internal class ConfigurationViewModel : ListViewModel<ConfigurationListItem>(tru
 
     override fun loadData(isForceRefresh: Boolean) {
         viewModelScope.launch {
+            _isLoading.value = true
             _items.value = listOf(
                 TextViewHolder.UiModel(R.string.configuration_selected_nozzle),
                 SelectedNozzleViewHolder.UiModel(null),
+                TextViewHolder.UiModel(R.string.configuration_wheel_radius),
+                TextViewHolder.UiModel(R.string.configuration_screw_count),
+                TextViewHolder.UiModel(R.string.configuration_nozzle_count),
+                TextViewHolder.UiModel(R.string.configuration_nozzle_distance),
                 DoneButtonViewHolder.UiModel(false)
             )
+            delay(200)
+            _isLoading.value = false
         }
     }
 

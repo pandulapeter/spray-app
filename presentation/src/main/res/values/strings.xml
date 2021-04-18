@@ -24,6 +24,10 @@
     <!-- Configuration -->
     <string name="configuration_title">Configuration</string>
     <string name="configuration_selected_nozzle">Selected nozzle:</string>
+    <string name="configuration_wheel_radius">Wheel radius (cm):</string>
+    <string name="configuration_screw_count">Screw count:</string>
+    <string name="configuration_nozzle_count">Nozzle count:</string>
+    <string name="configuration_nozzle_distance">Nozzle distance: (m)</string>
     <string name="configuration_done">Done</string>
 
     <!-- Nozzle picker -->
