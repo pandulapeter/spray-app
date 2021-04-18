@@ -3,8 +3,8 @@ package com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.n
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.viewModelScope
-import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.WorkContainerFragment
 import com.gyorgyzoltan.sprayApp.presentation.R
+import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.WorkContainerFragment
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.NozzlePickerAdapter
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.NozzlePickerListItem
 import com.gyorgyzoltan.sprayApp.presentation.feature.shared.ListFragment
@@ -17,24 +17,26 @@ internal class NozzlePickerFragment : ListFragment<NozzlePickerViewModel, Nozzle
 
     override fun createAdapter() = NozzlePickerAdapter(
         scope = viewModel.viewModelScope,
+        onTryAgainButtonPressed = { viewModel.loadData(true) },
         onNozzleSelected = viewModel::onNozzleSelected,
         onNozzleTypeSelected = viewModel::onNozzleTypeSelected
     )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.events.observeEvents(viewLifecycleOwner) { event ->
-            when (event) {
-                NozzlePickerViewModel.Event.CloseScreen -> closeScreen()
-            }
-        }
+        viewModel.events.observeEvents(viewLifecycleOwner, ::handleEvent)
+    }
+
+    override fun onBackPressed() = viewModel.onBackPressed()
+
+    private fun handleEvent(event: NozzlePickerViewModel.Event) = when (event) {
+        NozzlePickerViewModel.Event.ShowErrorSnackbar -> showErrorSnackbar()
+        NozzlePickerViewModel.Event.CloseScreen -> closeScreen()
     }
 
     private fun closeScreen() {
         (parentFragment as? WorkContainerFragment?)?.navigateBack()
     }
-
-    override fun onBackPressed() = viewModel.onBackPressed()
 
     companion object {
         fun newInstance() = NozzlePickerFragment()

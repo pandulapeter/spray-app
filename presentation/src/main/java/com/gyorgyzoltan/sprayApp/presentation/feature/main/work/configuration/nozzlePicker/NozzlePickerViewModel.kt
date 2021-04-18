@@ -12,20 +12,25 @@ import com.gyorgyzoltan.sprayApp.model.DataState
 import com.gyorgyzoltan.sprayApp.model.nozzle.Nozzle
 import com.gyorgyzoltan.sprayApp.model.nozzle.NozzleType
 import com.gyorgyzoltan.sprayApp.presentation.R
+import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.EmptyViewHolder
+import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.HeaderViewHolder
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.NozzlePickerListItem
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.NozzleTypeViewHolder
 import com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.NozzleViewHolder
 import com.gyorgyzoltan.sprayApp.presentation.feature.shared.ListViewModel
+import com.gyorgyzoltan.sprayApp.presentation.feature.shared.list.ErrorViewHolder
 import com.gyorgyzoltan.sprayApp.presentation.feature.shared.list.TextViewHolder
 import com.gyorgyzoltan.sprayApp.presentation.utils.consume
 import com.gyorgyzoltan.sprayApp.utils.Consumable
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 internal class NozzlePickerViewModel(
     nozzles: NozzlesUseCase,
-    private val nozzleTypes: NozzleTypesUseCase,
+    nozzleTypes: NozzleTypesUseCase,
     private val refreshNozzleTypes: RefreshNozzleTypesUseCase,
     private val refreshNozzles: RefreshNozzlesUseCase
 ) : ListViewModel<NozzlePickerListItem>(true) {
@@ -57,6 +62,16 @@ internal class NozzlePickerViewModel(
     val events: LiveData<Consumable<Event>> = _events
 
     init {
+        nozzles().onEach {
+            if (it is DataState.Error && it.data != null) {
+                _events.value = Consumable(Event.ShowErrorSnackbar)
+            }
+        }.launchIn(viewModelScope)
+        nozzleTypes().onEach {
+            if (it is DataState.Error && it.data != null) {
+                _events.value = Consumable(Event.ShowErrorSnackbar)
+            }
+        }.launchIn(viewModelScope)
         loadData(false)
     }
 
@@ -97,30 +112,33 @@ internal class NozzlePickerViewModel(
                     add(TextViewHolder.UiModel(R.string.nozzle_picker_no_nozzle_types_found))
                 }
                 nozzleTypes == null -> if (this is DataState.Error<*>) {
-                    add(TextViewHolder.UiModel(R.string.general_error))
+                    add(ErrorViewHolder.UiModel())
                 }
             }
         }
     }.toList()
 
     private fun DataState<List<Nozzle>>.toNozzlePickerItems() = mutableListOf<NozzlePickerListItem>().apply {
-        data?.filter { it.type == selectedNozzleType.value }.let { nozzles ->
-            when {
-                nozzles?.isNotEmpty() == true -> {
-                    add(TextViewHolder.UiModel(R.string.nozzle_picker_hint_select_nozzle))
-                    addAll(nozzles.map { NozzleViewHolder.UiModel(it, false) })
-                }
-                nozzles?.isEmpty() == true -> {
-                    add(TextViewHolder.UiModel(R.string.nozzle_picker_no_nozzles_found))
-                }
-                nozzles == null -> if (this is DataState.Error<*>) {
-                    add(TextViewHolder.UiModel(R.string.general_error))
+        selectedNozzleType.value?.let { selectedNozzleType ->
+            data?.filter { it.type == selectedNozzleType }.let { nozzles ->
+                when {
+                    nozzles?.isNotEmpty() == true -> {
+                        add(HeaderViewHolder.UiModel(selectedNozzleType))
+                        addAll(nozzles.map { NozzleViewHolder.UiModel(it, false) })
+                    }
+                    nozzles?.isEmpty() == true -> {
+                        add(EmptyViewHolder.UiModel(selectedNozzleType))
+                    }
+                    nozzles == null -> if (this is DataState.Error<*>) {
+                        add(ErrorViewHolder.UiModel())
+                    }
                 }
             }
         }
     }.toList()
 
     sealed class Event {
+        object ShowErrorSnackbar : Event()
         object CloseScreen : Event()
     }
 }

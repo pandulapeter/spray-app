@@ -13,6 +13,7 @@ import com.gyorgyzoltan.sprayApp.presentation.R
 import com.gyorgyzoltan.sprayApp.presentation.databinding.FragmentListBinding
 import com.gyorgyzoltan.sprayApp.presentation.feature.shared.list.BaseAdapter
 import com.gyorgyzoltan.sprayApp.presentation.feature.shared.list.ListItem
+import com.gyorgyzoltan.sprayApp.presentation.utils.showSnackbar
 
 abstract class ListFragment<VM : ListViewModel<LI>, LI : ListItem>(
     @StringRes private val titleResourceId: Int
@@ -49,6 +50,12 @@ abstract class ListFragment<VM : ListViewModel<LI>, LI : ListItem>(
         super.onPause()
         binding.recyclerView.removeOnScrollListener(onScrollListener)
     }
+
+    protected fun showErrorSnackbar() = binding.root.showSnackbar(
+        messageResourceId = R.string.general_error,
+        actionResourceId = R.string.general_try_again,
+        action = { viewModel.loadData(true) }
+    )
 
     private fun AppBarView.setup() = setup(
         titleResourceId = titleResourceId,

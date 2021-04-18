@@ -53,7 +53,15 @@ internal fun View.hideKeyboard() {
     (context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(windowToken, 0)
 }
 
-internal fun View.showSnackbar(@StringRes messageResourceId: Int) = Snackbar.make(this, messageResourceId, Snackbar.LENGTH_SHORT).show()
+internal fun View.showSnackbar(
+    @StringRes messageResourceId: Int,
+    @StringRes actionResourceId: Int? = null,
+    action: (() -> Unit)? = null
+) = Snackbar.make(this, messageResourceId, Snackbar.LENGTH_SHORT).apply {
+    if (actionResourceId != null && action != null) {
+        setAction(actionResourceId) { action() }
+    }
+}.show()
 
 internal fun View.openUrl(url: String) = Intent(Intent.ACTION_VIEW, Uri.parse(url)).let { intent ->
     if (intent.resolveActivity(context.packageManager) != null) {

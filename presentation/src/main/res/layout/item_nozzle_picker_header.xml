@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="uiModel"
+            type="com.gyorgyzoltan.sprayApp.presentation.feature.main.work.configuration.nozzlePicker.list.HeaderViewHolder.UiModel" />
+
+    </data>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/large_content_padding"
+        android:layout_marginLeft="@dimen/large_content_padding"
+        android:layout_marginTop="@dimen/content_padding"
+        android:layout_marginEnd="@dimen/large_content_padding"
+        android:layout_marginRight="@dimen/large_content_padding"
+        android:text="@{@string/nozzle_picker_hint_select_nozzle(uiModel.selectedNozzleType.name)}"
+        tools:text="Text" />
+
+</layout>

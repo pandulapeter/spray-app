@@ -5,6 +5,7 @@
     <string name="back">Back</string>
     <string name="app_not_found">No application can handle this link</string>
     <string name="general_error">Something went wrong</string>
+    <string name="general_try_again">Try again</string>
 
     <!-- Tutorial -->
     <string name="tutorial_skip">Skip</string>
@@ -28,9 +29,9 @@
     <!-- Nozzle picker -->
     <string name="nozzle_picker_title">Nozzle picker</string>
     <string name="nozzle_picker_hint_select_type">Select the type of nozzle you will be using.</string>
-    <string name="nozzle_picker_no_nozzle_types_found">No nozzle types found</string>
-    <string name="nozzle_picker_hint_select_nozzle">Select the nozzle you will be using.</string>
-    <string name="nozzle_picker_no_nozzles_found">No nozzles found for the selected type</string>
+    <string name="nozzle_picker_no_nozzle_types_found">No nozzle types found.</string>
+    <string name="nozzle_picker_hint_select_nozzle">Select the nozzle of type %s you will be using.</string>
+    <string name="nozzle_picker_no_nozzles_found">No nozzles found for type %s.</string>
 
     <!-- Connection -->
     <string name="work_placeholder"><b>Coming soon…</b>\n\n• Work mode (automatic / manual / test)\n• Pairing / connection flow</string>
