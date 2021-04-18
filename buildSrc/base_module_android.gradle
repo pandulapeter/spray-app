@@ -1,0 +1,18 @@
+apply plugin: Plugins.KOTLIN_ANDROID
+
+android {
+    compileSdkVersion Versions.TARGET_SDK_VERSION
+    defaultConfig {
+        minSdkVersion Versions.MIN_SDK_VERSION
+        targetSdkVersion Versions.TARGET_SDK_VERSION
+    }
+    compileOptions {
+        sourceCompatibility Versions.JAVA
+        targetCompatibility Versions.JAVA
+    }
+    kotlinOptions.jvmTarget = Versions.JAVA.toString()
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}

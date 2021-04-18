@@ -1,25 +1,10 @@
-apply plugin: Plugins.ANDROID_LIBRARY
-apply plugin: Plugins.KOTLIN_ANDROID
+apply from: "$rootDir${BaseModules.ANDROID_LIBRARY}"
 apply plugin: Plugins.KOTLIN_PARCELIZE
 apply plugin: Plugins.KOTLIN_KAPT
 
-android {
-    compileSdkVersion Versions.TARGET_SDK_VERSION
-    defaultConfig {
-        minSdkVersion Versions.MIN_SDK_VERSION
-        targetSdkVersion Versions.TARGET_SDK_VERSION
-    }
-    compileOptions {
-        sourceCompatibility Versions.JAVA
-        targetCompatibility Versions.JAVA
-    }
-    buildFeatures {
-        dataBinding = true
-    }
-}
+android.buildFeatures.dataBinding = true
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // Module dependencies
     implementation project(Modules.DEBUG_MENU)
@@ -43,11 +28,4 @@ dependencies {
     implementation Dependencies.MATERIAL_COMPONENTS
     implementation Dependencies.PAGER_INDICATOR
     implementation Dependencies.SWIPE_REFRESH_LAYOUT
-}
-
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-    kotlinOptions {
-        jvmTarget = Versions.JAVA.toString()
-        freeCompilerArgs = [Config.COMPILER_ARGUMENTS]
-    }
 }

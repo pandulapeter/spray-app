@@ -1,24 +1,14 @@
 apply plugin: Plugins.ANDROID_APPLICATION
-apply plugin: Plugins.KOTLIN_ANDROID
+apply from: "$rootDir${BaseModules.ANDROID}"
 apply plugin: Plugins.KOTLIN_KAPT
 
 android {
-    compileSdkVersion Versions.TARGET_SDK_VERSION
     defaultConfig {
         applicationId Config.APPLICATION_ID
-        minSdkVersion Versions.MIN_SDK_VERSION
-        targetSdkVersion Versions.TARGET_SDK_VERSION
         versionCode Versions.APP_VERSION_CODE
         versionName Versions.APP_VERSION_NAME
         buildConfigField("String", "BUILD_DATE", "\"${new Date().format("yyyy-MM-dd")}\"")
         vectorDrawables.useSupportLibrary = true
-    }
-    compileOptions {
-        sourceCompatibility Versions.JAVA
-        targetCompatibility Versions.JAVA
-    }
-    kotlinOptions {
-        jvmTarget = Versions.JAVA.toString()
     }
     signingConfigs {
         internal {
@@ -34,9 +24,7 @@ android {
             storePassword Config.KEY_STORE_RELEASE_STORE_PASSWORD
         }
     }
-    buildFeatures {
-        dataBinding = true
-    }
+    buildFeatures.dataBinding = true
     buildTypes {
         debug {
             debuggable true
@@ -70,7 +58,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // Module dependencies
     implementation project(Modules.DEBUG_MENU)

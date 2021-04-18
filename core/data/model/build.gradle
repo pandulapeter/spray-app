@@ -1,17 +1,4 @@
-apply plugin: Plugins.ANDROID_LIBRARY
-apply plugin: Plugins.KOTLIN_ANDROID
-
-android {
-    compileSdkVersion Versions.TARGET_SDK_VERSION
-    defaultConfig {
-        minSdkVersion Versions.MIN_SDK_VERSION
-        targetSdkVersion Versions.TARGET_SDK_VERSION
-    }
-    compileOptions {
-        sourceCompatibility Versions.JAVA
-        targetCompatibility Versions.JAVA
-    }
-}
+apply from: "$rootDir${BaseModules.ANDROID_LIBRARY}"
 
 dependencies {
     implementation Dependencies.ANNOTATION
