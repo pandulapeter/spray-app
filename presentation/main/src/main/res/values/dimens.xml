@@ -1,0 +1,11 @@
+<resources>
+
+    <dimen name="small_content_padding">4dp</dimen>
+    <dimen name="content_padding">8dp</dimen>
+    <dimen name="large_content_padding">16dp</dimen>
+    <dimen name="extra_large_content_padding">24dp</dimen>
+    <dimen name="maximum_button_width">320dp</dimen>
+    <dimen name="divider">1dp</dimen>
+    <dimen name="nothing">0dp</dimen>
+
+</resources>

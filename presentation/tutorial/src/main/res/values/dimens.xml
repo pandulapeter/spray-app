@@ -1,0 +1,7 @@
+<resources>
+
+    <dimen name="tutorial_text_horizontal_margin">72dp</dimen>
+    <dimen name="tutorial_pager_indicator_dot_size">4dp</dimen>
+    <dimen name="tutorial_pager_indicator_bottom_padding">20dp</dimen>
+
+</resources>

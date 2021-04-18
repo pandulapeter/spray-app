@@ -1,0 +1,7 @@
+apply from: "$rootDir${BaseModules.FEATURE}"
+
+dependencies {
+
+    // Module dependencies
+    implementation project(Modules.PRESENTATION_MAIN)
+}

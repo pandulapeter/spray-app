@@ -5,7 +5,11 @@ object Modules {
     const val DATA_SOURCE_REMOTE = ":core:data:source:remote"
     const val DATA_SOURCE_RETROSHEET = ":core:data:source:retrosheet"
     const val DOMAIN = ":core:domain"
-    const val PRESENTATION = ":presentation"
+    const val PRESENTATION_MAIN = ":presentation:main"
+    const val PRESENTATION_TUTORIAL = ":presentation:tutorial"
+    const val PRESENTATION_WORK = ":presentation:work"
+    const val PRESENTATION_STATISTICS = ":presentation:statistics"
+    const val PRESENTATION_HELP = ":presentation:help"
     const val APP = ":app"
-    const val DEBUG_MENU = ":debug-menu"
+    const val DEBUG_MENU = ":debugMenu"
 }

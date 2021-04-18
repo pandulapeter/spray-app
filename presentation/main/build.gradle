@@ -1,0 +1,7 @@
+apply from: "$rootDir${BaseModules.FEATURE}"
+
+dependencies {
+
+    // UI
+    implementation Dependencies.SWIPE_REFRESH_LAYOUT
+}

@@ -31,6 +31,7 @@ android {
             minifyEnabled false
             shrinkResources false
             multiDexEnabled true
+            zipAlignEnabled false
             applicationIdSuffix ".debug"
             versionNameSuffix "-debug"
             signingConfig signingConfigs.internal
@@ -40,6 +41,7 @@ android {
             minifyEnabled true
             shrinkResources true
             multiDexEnabled false
+            zipAlignEnabled true
             applicationIdSuffix ".internal"
             versionNameSuffix "-internal"
             signingConfig signingConfigs.internal
@@ -51,6 +53,7 @@ android {
             minifyEnabled true
             shrinkResources true
             multiDexEnabled false
+            zipAlignEnabled true
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile(Config.PROGUARD_DEFAULT), Config.PROGUARD_RULES
         }
@@ -68,7 +71,11 @@ dependencies {
     implementation project(Modules.DATA_SOURCE_REMOTE)
     implementation project(Modules.DATA_REPOSITORY)
     implementation project(Modules.DOMAIN)
-    implementation project(Modules.PRESENTATION)
+    implementation project(Modules.PRESENTATION_MAIN)
+    implementation project(Modules.PRESENTATION_TUTORIAL)
+    implementation project(Modules.PRESENTATION_WORK)
+    implementation project(Modules.PRESENTATION_STATISTICS)
+    implementation project(Modules.PRESENTATION_HELP)
     implementation project(Modules.DEBUG_MENU)
 
     // UI

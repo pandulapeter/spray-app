@@ -3,7 +3,7 @@
     package="com.gyorgyzoltan.sprayApp">
 
     <application
-        android:name=".SprayApp"
+        android:name=".SprayAppApplication"
         android:allowBackup="true"
         android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"

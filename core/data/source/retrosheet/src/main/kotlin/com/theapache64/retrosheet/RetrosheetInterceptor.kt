@@ -1,11 +1,9 @@
 package com.theapache64.retrosheet
 
-import com.squareup.moshi.Types
 import com.theapache64.retrosheet.core.*
 import com.theapache64.retrosheet.utils.*
 import okhttp3.*
 import retrofit2.Invocation
-import java.lang.reflect.Method
 import java.net.HttpURLConnection
 import javax.net.ssl.HttpsURLConnection
 

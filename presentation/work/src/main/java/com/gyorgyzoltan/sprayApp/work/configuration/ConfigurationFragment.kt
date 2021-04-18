@@ -1,0 +1,48 @@
+package com.gyorgyzoltan.sprayApp.work.configuration
+
+import android.os.Bundle
+import android.view.View
+import androidx.lifecycle.viewModelScope
+import com.gyorgyzoltan.sprayApp.main.R
+import com.gyorgyzoltan.sprayApp.main.shared.list.ListFragment
+import com.gyorgyzoltan.sprayApp.main.shared.utilities.observeEvents
+import com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationAdapter
+import com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationListItem
+import com.gyorgyzoltan.sprayApp.work.overview.WorkContainerFragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
+internal class ConfigurationFragment : ListFragment<ConfigurationViewModel, ConfigurationListItem>(
+    titleResourceId = R.string.configuration_title,
+    subtitleResourceId = R.string.configuration_subtitle
+) {
+
+    override val viewModel by viewModel<ConfigurationViewModel>()
+
+    override fun createAdapter() = ConfigurationAdapter(
+        scope = viewModel.viewModelScope,
+        onNozzleClicked = viewModel::onNozzleClicked,
+        onDoneButtonClicked = viewModel::onDoneButtonClicked
+    )
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.events.observeEvents(viewLifecycleOwner, ::handleEvent)
+    }
+
+    private fun handleEvent(event: ConfigurationViewModel.Event) = when (event) {
+        ConfigurationViewModel.Event.NavigateToNozzlePicker -> navigateToNozzlePicker()
+        ConfigurationViewModel.Event.CloseScreen -> closeScreen()
+    }
+
+    private fun navigateToNozzlePicker() {
+        (parentFragment as? WorkContainerFragment?)?.navigateToNozzlePicker()
+    }
+
+    private fun closeScreen() {
+        (parentFragment as? WorkContainerFragment?)?.navigateToWork()
+    }
+
+    companion object {
+        fun newInstance() = ConfigurationFragment()
+    }
+}

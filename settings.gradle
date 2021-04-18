@@ -4,7 +4,11 @@ include ":core:data:source:local" // Modules.DATA_SOURCE_LOCAL
 include ":core:data:source:remote" // Modules.DATA_SOURCE_REMOTE
 include ":core:data:source:retrosheet" // Modules.DATA_SOURCE_RETROSHEET
 include ":core:domain" // Modules.DOMAIN
-include ":presentation" // Modules.PRESENTATION
+include ":presentation:main" // Modules.PRESENTATION_MAIN
+include ":presentation:tutorial" // Modules.PRESENTATION_TUTORIAL
+include ":presentation:work" // Modules.PRESENTATION_WORK
+include ":presentation:statistics" // Modules.PRESENTATION_STATISTICS
+include ":presentation:help" // Modules.PRESENTATION_HELP
 include ":app" // Modules.APP
-include ":debug-menu" // Modules.DEBUG_MENU
+include ":debugMenu" // Modules.DEBUG_MENU
 rootProject.name = "SprayApp"
