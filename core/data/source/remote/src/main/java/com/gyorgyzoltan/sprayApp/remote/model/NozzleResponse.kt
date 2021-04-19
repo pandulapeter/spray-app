@@ -19,17 +19,17 @@ data class NozzleResponse(
 ) {
 
     companion object {
-        const val SHEET_NAME = "nozzles"
-        const val KEY_NAME = "name"
-        const val TYPE = "type"
-        const val COLOR = "color"
-        const val DEBIT_AT_1_BAR = "debitAt1Bar"
-        const val DEBIT_AT_2_BAR = "debitAt2Bar"
-        const val DEBIT_AT_3_BAR = "debitAt3Bar"
-        const val DEBIT_AT_4_BAR = "debitAt4Bar"
-        const val DEBIT_AT_5_BAR = "debitAt5Bar"
-        const val DEBIT_AT_6_BAR = "debitAt6Bar"
-        const val DEBIT_AT_7_BAR = "debitAt7Bar"
-        const val DEBIT_AT_8_BAR = "debitAt8Bar"
+        internal const val SHEET_NAME = "nozzles"
+        internal const val KEY_NAME = "name"
+        internal const val TYPE = "type"
+        internal const val COLOR = "color"
+        internal const val DEBIT_AT_1_BAR = "debitAt1Bar"
+        internal const val DEBIT_AT_2_BAR = "debitAt2Bar"
+        internal const val DEBIT_AT_3_BAR = "debitAt3Bar"
+        internal const val DEBIT_AT_4_BAR = "debitAt4Bar"
+        internal const val DEBIT_AT_5_BAR = "debitAt5Bar"
+        internal const val DEBIT_AT_6_BAR = "debitAt6Bar"
+        internal const val DEBIT_AT_7_BAR = "debitAt7Bar"
+        internal const val DEBIT_AT_8_BAR = "debitAt8Bar"
     }
 }

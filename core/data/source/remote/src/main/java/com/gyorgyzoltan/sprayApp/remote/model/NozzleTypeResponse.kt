@@ -10,8 +10,8 @@ data class NozzleTypeResponse(
 ) {
 
     companion object {
-        const val SHEET_NAME = "types"
-        const val KEY_NAME = "name"
-        const val KEY_IMAGE_URL = "imageUrl"
+        internal const val SHEET_NAME = "types"
+        internal const val KEY_NAME = "name"
+        internal const val KEY_IMAGE_URL = "imageUrl"
     }
 }
