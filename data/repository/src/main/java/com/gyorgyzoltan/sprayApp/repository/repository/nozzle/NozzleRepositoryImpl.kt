@@ -6,6 +6,7 @@ import com.gyorgyzoltan.sprayApp.model.nozzle.Nozzle
 import com.gyorgyzoltan.sprayApp.model.nozzle.NozzleColor
 import com.gyorgyzoltan.sprayApp.model.nozzle.NozzleType
 import com.gyorgyzoltan.sprayApp.remote.remoteSource.nozzle.NozzleRemoteSource
+import com.gyorgyzoltan.sprayApp.repository.mapper.toEntity
 import com.gyorgyzoltan.sprayApp.repository.mapper.toNozzle
 import com.gyorgyzoltan.sprayApp.repository.repository.nozzleType.NozzleTypeRepository
 import com.gyorgyzoltan.sprayApp.repository.utilities.toDataState
@@ -20,7 +21,11 @@ internal class NozzleRepositoryImpl(
     override val nozzles = MutableStateFlow<DataState<List<Nozzle>>>(DataState.Loading(null))
 
     override suspend fun refresh(isForceRefresh: Boolean) {
-        if (isForceRefresh || nozzles.value.data == null) {
+        if (nozzles.value.data.isNullOrEmpty()) {
+            nozzles.value = DataState.Loading(nozzles.value.data)
+            nozzles.value = nozzles.value.data.toDataState { loadNozzlesFromLocal(getNozzleTypes(isForceRefresh)) }
+        }
+        if (isForceRefresh || nozzles.value.data.isNullOrEmpty()) {
             nozzles.value = DataState.Loading(nozzles.value.data)
             nozzles.value = nozzles.value.data.toDataState { loadNozzlesFromRemote(getNozzleTypes(isForceRefresh)) }
         }
@@ -43,6 +48,8 @@ internal class NozzleRepositoryImpl(
                 nozzleTypes = nozzleTypes,
                 nozzleColors = nozzleColors
             )
+        }.also { nozzles ->
+            nozzleLocalSource.saveNozzles(nozzles.map { it.toEntity() })
         }
     }
 }

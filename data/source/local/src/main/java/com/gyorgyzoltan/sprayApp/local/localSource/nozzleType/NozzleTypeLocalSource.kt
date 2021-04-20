@@ -5,4 +5,6 @@ import com.gyorgyzoltan.sprayApp.local.model.NozzleTypeEntity
 interface NozzleTypeLocalSource {
 
     suspend fun getNozzleTypes(): List<NozzleTypeEntity>
+
+    fun saveNozzleTypes(nozzleTypes: List<NozzleTypeEntity>)
 }
