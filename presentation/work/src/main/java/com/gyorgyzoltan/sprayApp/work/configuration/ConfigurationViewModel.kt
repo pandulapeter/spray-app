@@ -14,8 +14,12 @@ import com.gyorgyzoltan.sprayApp.model.DataState
 import com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationDoneButtonViewHolder
 import com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationListItem
 import com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationNoSelectionViewHolder
+import com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationSelectedNozzleCountViewHolder
 import com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationSelectedNozzleDarkViewHolder
+import com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationSelectedNozzleDistanceViewHolder
 import com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationSelectedNozzleLightViewHolder
+import com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationSelectedScrewCountViewHolder
+import com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationSelectedWheelRadiusViewHolder
 import com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationTextViewHolder
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
@@ -100,10 +104,12 @@ internal class ConfigurationViewModel(
     private fun MutableList<ConfigurationListItem>.addWheelRadiusSection(configuration: Configuration) {
         add(ConfigurationTextViewHolder.UiModel(R.string.configuration_wheel_radius))
         add(
-            if (configuration.wheelRadius == null) {
-                ConfigurationNoSelectionViewHolder.UiModel(R.string.configuration_no_wheel_radius_set)
-            } else {
-                TODO()
+            configuration.wheelRadius.let { selectedWheelRadius ->
+                if (selectedWheelRadius == null) {
+                    ConfigurationNoSelectionViewHolder.UiModel(R.string.configuration_no_wheel_radius_set)
+                } else {
+                    ConfigurationSelectedWheelRadiusViewHolder.UiModel(selectedWheelRadius)
+                }
             }
         )
     }
@@ -111,10 +117,12 @@ internal class ConfigurationViewModel(
     private fun MutableList<ConfigurationListItem>.addScrewCountSection(configuration: Configuration) {
         add(ConfigurationTextViewHolder.UiModel(R.string.configuration_screw_count))
         add(
-            if (configuration.screwCount == null) {
-                ConfigurationNoSelectionViewHolder.UiModel(R.string.configuration_no_screw_count_set)
-            } else {
-                TODO()
+            configuration.screwCount.let { selectedScrewCount ->
+                if (selectedScrewCount == null) {
+                    ConfigurationNoSelectionViewHolder.UiModel(R.string.configuration_no_screw_count_set)
+                } else {
+                    ConfigurationSelectedScrewCountViewHolder.UiModel(selectedScrewCount)
+                }
             }
         )
     }
@@ -122,10 +130,12 @@ internal class ConfigurationViewModel(
     private fun MutableList<ConfigurationListItem>.addNozzleCountSection(configuration: Configuration) {
         add(ConfigurationTextViewHolder.UiModel(R.string.configuration_nozzle_count))
         add(
-            if (configuration.nozzleCount == null) {
-                ConfigurationNoSelectionViewHolder.UiModel(R.string.configuration_no_nozzle_count_set)
-            } else {
-                TODO()
+            configuration.nozzleCount.let { selectedNozzleCount ->
+                if (selectedNozzleCount == null) {
+                    ConfigurationNoSelectionViewHolder.UiModel(R.string.configuration_no_nozzle_count_set)
+                } else {
+                    ConfigurationSelectedNozzleCountViewHolder.UiModel(selectedNozzleCount)
+                }
             }
         )
     }
@@ -133,10 +143,12 @@ internal class ConfigurationViewModel(
     private fun MutableList<ConfigurationListItem>.addNozzleDistanceSection(configuration: Configuration) {
         add(ConfigurationTextViewHolder.UiModel(R.string.configuration_nozzle_distance))
         add(
-            if (configuration.nozzleDistance == null) {
-                ConfigurationNoSelectionViewHolder.UiModel(R.string.configuration_no_nozzle_distance_set)
-            } else {
-                TODO()
+            configuration.nozzleDistance.let { selectedNozzleDistance ->
+                if (selectedNozzleDistance == null) {
+                    ConfigurationNoSelectionViewHolder.UiModel(R.string.configuration_no_nozzle_distance_set)
+                } else {
+                    ConfigurationSelectedNozzleDistanceViewHolder.UiModel(selectedNozzleDistance)
+                }
             }
         )
     }

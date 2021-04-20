@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="uiModel"
+            type="com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationSelectedScrewCountViewHolder.UiModel" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/configuration_nozzle_type_height"
+        android:layout_marginStart="@dimen/large_content_padding"
+        android:layout_marginTop="@dimen/content_padding"
+        android:layout_marginEnd="@dimen/large_content_padding">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/large_content_padding"
+            android:layout_marginEnd="@dimen/large_content_padding"
+            android:gravity="center_vertical"
+            android:text="@{@string/configuration_screw_count_format(uiModel.screwCount)}"
+            tools:text="15 screws" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

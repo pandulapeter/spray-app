@@ -32,12 +32,16 @@
     <string name="configuration_selected_nozzle">Selected nozzle:</string>
     <string name="configuration_no_nozzle_selected">No nozzle selected\nTap here to select one</string>
     <string name="configuration_wheel_radius">Wheel radius:</string>
+    <string name="configuration_wheel_radius_format">%1$.2f cm</string>
     <string name="configuration_no_wheel_radius_set">No wheel radius set\nTap here to set it</string>
     <string name="configuration_screw_count">Screw count:</string>
+    <string name="configuration_screw_count_format">%1$d screws</string>
     <string name="configuration_no_screw_count_set">No screw count set\nTap here to set it</string>
     <string name="configuration_nozzle_count">Nozzle count:</string>
+    <string name="configuration_nozzle_count_format">%1$d nozzles</string>
     <string name="configuration_no_nozzle_count_set">No nozzle count set\nTap here to set it</string>
     <string name="configuration_nozzle_distance">Nozzle distance:</string>
+    <string name="configuration_nozzle_distance_format">%1$.2f m</string>
     <string name="configuration_no_nozzle_distance_set">No nozzle distance set\nTap here to set it</string>
 
     <!-- Nozzle picker -->
