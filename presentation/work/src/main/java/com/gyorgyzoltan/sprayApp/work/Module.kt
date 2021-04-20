@@ -12,10 +12,10 @@ import org.koin.dsl.module
 
 val featureWorkModule = module {
     viewModel { ConfigurationViewModel(get(), get()) }
-    viewModel { NozzleCountPickerViewModel(get()) }
+    viewModel { (initialNozzleCount: Int) -> NozzleCountPickerViewModel(initialNozzleCount, get()) }
     viewModel { NozzleDistancePickerViewModel(get()) }
     viewModel { NozzlePickerViewModel(get(), get(), get()) }
     viewModel { WorkViewModel() }
     viewModel { (initialScrewCount: Int) -> ScrewCountPickerViewModel(initialScrewCount, get()) }
-    viewModel { (currentWheelRadius: Float) -> WheelRadiusPickerViewModel(currentWheelRadius, get()) }
+    viewModel { (initialWheelRadius: Float) -> WheelRadiusPickerViewModel(initialWheelRadius, get()) }
 }

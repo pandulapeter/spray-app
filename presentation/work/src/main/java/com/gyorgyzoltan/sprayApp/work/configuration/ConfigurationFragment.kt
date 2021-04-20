@@ -45,7 +45,7 @@ internal class ConfigurationFragment : ListFragment<ConfigurationViewModel, Conf
     }
 
     private fun navigateToNozzleCountPicker(currentNozzleCount: Int?) {
-        (parentFragment as? WorkContainerFragment?)?.navigateToNozzleCountPicker()
+        (parentFragment as? WorkContainerFragment?)?.navigateToNozzleCountPicker(currentNozzleCount)
     }
 
     private fun navigateToNozzleDistancePicker(currentNozzleDistance: Float?) {

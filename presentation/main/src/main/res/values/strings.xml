@@ -10,6 +10,7 @@
     <string name="general_close_confirmation_message">Do you want to leave the app?</string>
     <string name="general_close_confirmation_positive">Leave</string>
     <string name="general_close_confirmation_negative">Cancel</string>
+    <string name="general_done">Done</string>
 
     <!-- Tutorial -->
     <string name="tutorial_skip">Skip</string>
@@ -38,7 +39,6 @@
     <string name="configuration_no_nozzle_count_set">No nozzle count set\nTap here to set it</string>
     <string name="configuration_nozzle_distance">Nozzle distance:</string>
     <string name="configuration_no_nozzle_distance_set">No nozzle distance set\nTap here to set it</string>
-    <string name="configuration_done">Done</string>
 
     <!-- Nozzle picker -->
     <string name="nozzle_picker_title">Nozzle</string>
@@ -48,16 +48,17 @@
     <!-- Wheel radius picker -->
     <string name="wheel_radius_picker_title">Wheel radius</string>
     <string name="wheel_radius_picker_subtitle">Provide the radius of the wheel</string>
-    <string name="wheel_radius_hint">Measure the distance between the center of the wheel and the sensor. The accuracy of this value is important for measuring speed.\n\nEnter the value in centimeters.</string>
+    <string name="wheel_radius_hint">Measure the distance between the center of the wheel and the sensor. The accuracy of this value is important for measuring speed.\n\nEnter the value in centimeters. It has to be larger than 0.</string>
 
     <!-- Screw count picker -->
     <string name="screw_count_picker_title">Screw count</string>
     <string name="screw_count_picker_subtitle">Provide the number of screws</string>
-    <string name="screw_count_hint">Count the number of screws on the wheel where the sensor is installed. This value is used for measuring speed.</string>
+    <string name="screw_count_hint">Count the number of screws on the wheel where the sensor is installed. This value is used for measuring speed.\n\nEnter a value that\'s larger than 0.</string>
 
     <!-- Nozzle count picker -->
     <string name="nozzle_count_picker_title">Nozzle count</string>
     <string name="nozzle_count_picker_subtitle">Provide the number of nozzles</string>
+    <string name="nozzle_count_hint">Count the number of nozzles used on the sprayer.\n\nEnter a value that\'s larger than 0.</string>
 
     <!-- Nozzle distance picker -->
     <string name="nozzle_distance_picker_title">Nozzle distance</string>

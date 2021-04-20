@@ -6,6 +6,7 @@ import androidx.lifecycle.asLiveData
 import com.gyorgyzoltan.sprayApp.domain.configuration.SetWheelRadiusUseCase
 import com.gyorgyzoltan.sprayApp.main.shared.list.ListViewModel
 import com.gyorgyzoltan.sprayApp.main.shared.utilities.Consumable
+import com.gyorgyzoltan.sprayApp.work.wheelRadiusPicker.list.WheelRadiusDoneButtonViewHolder
 import com.gyorgyzoltan.sprayApp.work.wheelRadiusPicker.list.WheelRadiusHintViewHolder
 import com.gyorgyzoltan.sprayApp.work.wheelRadiusPicker.list.WheelRadiusPickerListItem
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,16 +19,21 @@ internal class WheelRadiusPickerViewModel(
 
     private val wheelRadius = MutableStateFlow(initialWheelRadius)
     override val items = wheelRadius.map { wheelRadius ->
-        listOf<WheelRadiusPickerListItem>(
-            WheelRadiusHintViewHolder.UiModel()
+        listOf(
+            WheelRadiusHintViewHolder.UiModel(),
+            WheelRadiusDoneButtonViewHolder.UiModel(isWheelRadiusValid())
         )
     }.asLiveData()
     private val _events = MutableLiveData<Consumable<Event>>()
     val events: LiveData<Consumable<Event>> = _events
 
     fun onDoneButtonPressed() {
-        setWheelRadius(wheelRadius.value)
+        if (isWheelRadiusValid()) {
+            setWheelRadius(wheelRadius.value)
+        }
     }
+
+    private fun isWheelRadiusValid() = wheelRadius.value > 0f
 
     sealed class Event {
         object CloseScreen : Event()

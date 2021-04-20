@@ -5,7 +5,7 @@
 
         <variable
             name="uiModel"
-            type="com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationDoneButtonViewHolder.UiModel" />
+            type="com.gyorgyzoltan.sprayApp.work.wheelRadiusPicker.list.WheelRadiusDoneButtonViewHolder.UiModel" />
 
     </data>
 

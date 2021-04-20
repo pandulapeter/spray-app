@@ -21,7 +21,8 @@ internal class WheelRadiusPickerFragment : ListFragment<WheelRadiusPickerViewMod
     override val viewModel by viewModel<WheelRadiusPickerViewModel> { parametersOf(arguments?.currentWheelRadius) }
 
     override fun createAdapter() = WheelRadiusPickerAdapter(
-        scope = viewModel.viewModelScope
+        scope = viewModel.viewModelScope,
+        onDoneButtonPressed = viewModel::onDoneButtonPressed
     )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

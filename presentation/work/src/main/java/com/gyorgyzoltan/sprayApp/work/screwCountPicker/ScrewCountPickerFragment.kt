@@ -21,7 +21,8 @@ internal class ScrewCountPickerFragment : ListFragment<ScrewCountPickerViewModel
     override val viewModel by viewModel<ScrewCountPickerViewModel> { parametersOf(arguments?.currentScrewCount)}
 
     override fun createAdapter() = ScrewCountPickerAdapter(
-        scope = viewModel.viewModelScope
+        scope = viewModel.viewModelScope,
+        onDoneButtonPressed = viewModel::onDoneButtonPressed
     )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

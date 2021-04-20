@@ -5,18 +5,18 @@
 
         <variable
             name="uiModel"
-            type="com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationDoneButtonViewHolder.UiModel" />
+            type="com.gyorgyzoltan.sprayApp.work.nozzleCountPicker.list.NozzleCountHintViewHolder.UiModel" />
 
     </data>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/large_content_padding"
-        android:layout_marginTop="@dimen/large_content_padding"
+        android:layout_marginLeft="@dimen/large_content_padding"
+        android:layout_marginTop="@dimen/content_padding"
         android:layout_marginEnd="@dimen/large_content_padding"
-        android:enabled="@{uiModel.enabled}"
-        android:text="@string/general_done" />
+        android:layout_marginRight="@dimen/large_content_padding"
+        android:text="@string/nozzle_count_hint" />
 
 </layout>
