@@ -22,6 +22,7 @@ internal class ScrewCountPickerFragment : ListFragment<ScrewCountPickerViewModel
 
     override fun createAdapter() = ScrewCountPickerAdapter(
         scope = viewModel.viewModelScope,
+        onScrewCountChanged = viewModel::onScrewCountChanged,
         onDoneButtonPressed = viewModel::onDoneButtonPressed
     )
 

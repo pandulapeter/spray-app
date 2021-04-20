@@ -43,7 +43,7 @@ internal class NozzleCountPickerViewModel(
     }
 
     companion object {
-        const val DEFAULT_NOZZLE_COUNT = 0
+        const val DEFAULT_NOZZLE_COUNT = 8
         const val MINIMUM_NOZZLE_COUNT = 1
         const val MAXIMUM_NOZZLE_COUNT = 64
     }

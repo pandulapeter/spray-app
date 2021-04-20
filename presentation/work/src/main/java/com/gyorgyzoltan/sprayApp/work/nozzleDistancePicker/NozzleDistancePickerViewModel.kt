@@ -36,14 +36,15 @@ internal class NozzleDistancePickerViewModel(
         }
     }
 
-    private val Float.isValidNozzleDistance get() = this > MINIMUM_NOZZLE_DISTANCE
+    private val Float.isValidNozzleDistance get() = this in MINIMUM_NOZZLE_DISTANCE..MAXIMUM_NOZZLE_DISTANCE
 
     sealed class Event {
         object CloseScreen : Event()
     }
 
     companion object {
-        const val DEFAULT_NOZZLE_DISTANCE = 0f
+        const val DEFAULT_NOZZLE_DISTANCE = 50f
         const val MINIMUM_NOZZLE_DISTANCE = 0f
+        const val MAXIMUM_NOZZLE_DISTANCE = 200f
     }
 }

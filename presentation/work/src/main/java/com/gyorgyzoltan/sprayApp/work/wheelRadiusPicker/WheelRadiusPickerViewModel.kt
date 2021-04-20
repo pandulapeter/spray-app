@@ -42,15 +42,15 @@ internal class WheelRadiusPickerViewModel(
         }
     }
 
-    private val Float.isValidWheelRadius get() = this > MINIMUM_WHEEL_RADIUS
+    private val Float.isValidWheelRadius get() = this in MINIMUM_WHEEL_RADIUS..MAXIMUM_WHEEL_RADIUS
 
     sealed class Event {
         object CloseScreen : Event()
     }
 
     companion object {
-        const val DEFAULT_WHEEL_RADIUS = 0f
-        const val MINIMUM_WHEEL_RADIUS = 0f
-        const val MAXIMUM_WHEEL_RADIUS = 200f
+        const val DEFAULT_WHEEL_RADIUS = 50f
+        const val MINIMUM_WHEEL_RADIUS = 1f
+        const val MAXIMUM_WHEEL_RADIUS = 150f
     }
 }

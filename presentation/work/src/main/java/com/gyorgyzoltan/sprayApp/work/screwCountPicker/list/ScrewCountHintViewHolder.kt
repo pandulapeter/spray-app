@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import com.gyorgyzoltan.sprayApp.main.shared.list.BaseViewHolder
 import com.gyorgyzoltan.sprayApp.work.R
 import com.gyorgyzoltan.sprayApp.work.databinding.ItemScrewCountHintBinding
+import com.gyorgyzoltan.sprayApp.work.screwCountPicker.ScrewCountPickerViewModel
 
 class ScrewCountHintViewHolder private constructor(
     binding: ItemScrewCountHintBinding
@@ -16,6 +17,8 @@ class ScrewCountHintViewHolder private constructor(
     ) : ScrewCountPickerListItem {
 
         override val id: String = "hint"
+        val minimumValue = ScrewCountPickerViewModel.MINIMUM_SCREW_COUNT
+        val maximumValue = ScrewCountPickerViewModel.MAXIMUM_SCREW_COUNT
     }
 
     companion object {

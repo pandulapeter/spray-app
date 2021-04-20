@@ -8,6 +8,7 @@ import com.gyorgyzoltan.sprayApp.main.shared.list.ListViewModel
 import com.gyorgyzoltan.sprayApp.main.shared.utilities.Consumable
 import com.gyorgyzoltan.sprayApp.work.screwCountPicker.list.ScrewCountDoneButtonViewHolder
 import com.gyorgyzoltan.sprayApp.work.screwCountPicker.list.ScrewCountHintViewHolder
+import com.gyorgyzoltan.sprayApp.work.screwCountPicker.list.ScrewCountInputViewHolder
 import com.gyorgyzoltan.sprayApp.work.screwCountPicker.list.ScrewCountPickerListItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
@@ -21,11 +22,16 @@ internal class ScrewCountPickerViewModel(
     override val items = screwCount.map { screwCount ->
         listOf(
             ScrewCountHintViewHolder.UiModel(),
+            ScrewCountInputViewHolder.UiModel(screwCount),
             ScrewCountDoneButtonViewHolder.UiModel(screwCount.isValidScrewCount)
         )
     }.asLiveData()
     private val _events = MutableLiveData<Consumable<Event>>()
     val events: LiveData<Consumable<Event>> = _events
+
+    fun onScrewCountChanged(newScrewCount: Int) {
+        screwCount.value = newScrewCount
+    }
 
     fun onDoneButtonPressed() {
         screwCount.value.let { screwCount ->
@@ -36,14 +42,15 @@ internal class ScrewCountPickerViewModel(
         }
     }
 
-    private val Int.isValidScrewCount get() = this > MINIMUM_SCREW_COUNT
+    private val Int.isValidScrewCount get() = this in MINIMUM_SCREW_COUNT..MAXIMUM_SCREW_COUNT
 
     sealed class Event {
         object CloseScreen : Event()
     }
 
     companion object {
-        const val DEFAULT_SCREW_COUNT = 0
-        const val MINIMUM_SCREW_COUNT = 0
+        const val DEFAULT_SCREW_COUNT = 4
+        const val MINIMUM_SCREW_COUNT = 1
+        const val MAXIMUM_SCREW_COUNT = 16
     }
 }
