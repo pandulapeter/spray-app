@@ -1,10 +1,11 @@
 package com.gyorgyzoltan.sprayApp.repository.repository.nozzle
 
 import com.gyorgyzoltan.sprayApp.local.localSource.nozzle.NozzleLocalSource
-import com.gyorgyzoltan.sprayApp.model.DataState
 import com.gyorgyzoltan.sprayApp.model.nozzle.Nozzle
 import com.gyorgyzoltan.sprayApp.model.nozzle.NozzleColor
 import com.gyorgyzoltan.sprayApp.model.nozzle.NozzleType
+import com.gyorgyzoltan.sprayApp.model.shared.DataState
+import com.gyorgyzoltan.sprayApp.model.shared.RepositoryNotInitializedException
 import com.gyorgyzoltan.sprayApp.remote.remoteSource.nozzle.NozzleRemoteSource
 import com.gyorgyzoltan.sprayApp.repository.mapper.toEntity
 import com.gyorgyzoltan.sprayApp.repository.mapper.toNozzle
@@ -18,20 +19,30 @@ internal class NozzleRepositoryImpl(
     private val nozzleTypeRepository: NozzleTypeRepository
 ) : NozzleRepository {
 
-    override val nozzles = MutableStateFlow<DataState<List<Nozzle>>>(DataState.Loading(null))
+    override val nozzles = MutableStateFlow<DataState<List<Nozzle>>>(DataState.Error(null, RepositoryNotInitializedException()))
 
     override suspend fun refresh(isForceRefresh: Boolean) {
-        if (nozzles.value.data.isNullOrEmpty()) {
-            nozzles.value = DataState.Loading(nozzles.value.data)
-            nozzles.value = nozzles.value.data.toDataState { loadNozzlesFromLocal(getNozzleTypes(isForceRefresh)) }
-        }
-        if (isForceRefresh || nozzles.value.data.isNullOrEmpty()) {
-            nozzles.value = DataState.Loading(nozzles.value.data)
-            nozzles.value = nozzles.value.data.toDataState { loadNozzlesFromRemote(getNozzleTypes(isForceRefresh)) }
+        if (nozzles.value !is DataState.Loading) {
+            val initialCache = nozzles.value.data
+            var cache = nozzles.value.data
+            if (cache.isNullOrEmpty()) {
+                nozzles.value = DataState.Loading(cache)
+                cache = loadNozzlesFromLocal(getNozzleTypes(false))
+            }
+            if (isForceRefresh || initialCache.isNullOrEmpty()) {
+                nozzles.value = DataState.Loading(cache)
+                nozzles.value = cache.toDataState { loadNozzlesFromRemote(getNozzleTypes(isForceRefresh)) }
+            } else {
+                nozzles.value = DataState.Idle(cache)
+            }
         }
     }
 
-    private suspend fun getNozzleTypes(isForceRefresh: Boolean) = nozzleTypeRepository.getNozzleTypes(isForceRefresh)
+    private suspend fun getNozzleTypes(isForceRefresh: Boolean) = try {
+        nozzleTypeRepository.getNozzleTypes(isForceRefresh)
+    } catch (_: Exception) {
+        emptyList()
+    }
 
     private suspend fun loadNozzlesFromLocal(nozzleTypes: List<NozzleType>) = NozzleColor.values().toList().let { nozzleColors ->
         nozzleLocalSource.getNozzles().mapNotNull {

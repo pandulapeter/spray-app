@@ -10,7 +10,8 @@ import com.gyorgyzoltan.sprayApp.main.R
 import com.gyorgyzoltan.sprayApp.main.shared.list.ListViewModel
 import com.gyorgyzoltan.sprayApp.main.shared.utilities.Consumable
 import com.gyorgyzoltan.sprayApp.model.Configuration
-import com.gyorgyzoltan.sprayApp.model.DataState
+import com.gyorgyzoltan.sprayApp.model.shared.DataState
+import com.gyorgyzoltan.sprayApp.model.shared.RepositoryNotInitializedException
 import com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationDoneButtonViewHolder
 import com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationListItem
 import com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationNoSelectionViewHolder
@@ -43,7 +44,7 @@ internal class ConfigurationViewModel(
 
     init {
         configuration().onEach {
-            if (it is DataState.Error && it.data != null) {
+            if (it is DataState.Error && it.data != null && it.exception !is RepositoryNotInitializedException) {
                 _events.value = Consumable(Event.ShowErrorSnackbar)
             }
             currentWheelRadius = it.data?.wheelRadius

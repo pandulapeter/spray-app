@@ -8,12 +8,11 @@ import com.gyorgyzoltan.sprayApp.domain.configuration.SetNozzleUseCase
 import com.gyorgyzoltan.sprayApp.domain.nozzle.NozzlesUseCase
 import com.gyorgyzoltan.sprayApp.domain.nozzle.RefreshNozzlesUseCase
 import com.gyorgyzoltan.sprayApp.main.shared.list.ListViewModel
+import com.gyorgyzoltan.sprayApp.main.shared.utilities.Consumable
 import com.gyorgyzoltan.sprayApp.main.shared.utilities.consume
-import com.gyorgyzoltan.sprayApp.model.DataState
+import com.gyorgyzoltan.sprayApp.model.shared.DataState
 import com.gyorgyzoltan.sprayApp.model.nozzle.Nozzle
 import com.gyorgyzoltan.sprayApp.model.nozzle.NozzleType
-import com.gyorgyzoltan.sprayApp.main.shared.utilities.Consumable
-import com.gyorgyzoltan.sprayApp.work.nozzlePicker.list.NozzlePickerEmptyStateViewHolder
 import com.gyorgyzoltan.sprayApp.work.nozzlePicker.list.NozzlePickerListItem
 import com.gyorgyzoltan.sprayApp.work.nozzlePicker.list.NozzlePickerNozzleDarkViewHolder
 import com.gyorgyzoltan.sprayApp.work.nozzlePicker.list.NozzlePickerNozzleLightViewHolder
@@ -38,13 +37,13 @@ internal class NozzlePickerViewModel(
         nozzles.toItems(selectedNozzleType)
     }.flowOn(Dispatchers.Default).asLiveData()
     override val shouldShowLoadingIndicator = nozzles().map { it is DataState.Loading }.asLiveData()
-    override val shouldShowErrorView = nozzles().map { it is DataState.Error && it.data == null }.asLiveData()
+    override val shouldShowErrorView = nozzles().map { it is DataState.Error && it.data.isNullOrEmpty() }.asLiveData()
     private val _events = MutableLiveData<Consumable<Event>>()
     val events: LiveData<Consumable<Event>> = _events
 
     init {
         nozzles().onEach {
-            if (it is DataState.Error && it.data != null) {
+            if (it is DataState.Error && !it.data.isNullOrEmpty()) {
                 _events.value = Consumable(Event.ShowErrorSnackbar)
             }
         }.launchIn(viewModelScope)
@@ -78,35 +77,31 @@ internal class NozzlePickerViewModel(
 
     private fun DataState<List<Nozzle>>.toItems(selectedNozzleType: NozzleType?) = mutableListOf<NozzlePickerListItem>().apply {
         data?.let { nozzles ->
-            if (nozzles.isEmpty()) {
-                add(NozzlePickerEmptyStateViewHolder.UiModel())
-            } else {
-                nozzles
-                    .map { it.type }
-                    .distinctBy { it.name }
-                    .forEach { nozzleType ->
-                        val isExpanded = nozzleType.name == selectedNozzleType?.name
-                        add(
-                            NozzlePickerNozzleTypeViewHolder.UiModel(
-                                nozzleType = nozzleType,
-                                isExpanded = isExpanded
-                            )
+            nozzles
+                .map { it.type }
+                .distinctBy { it.name }
+                .forEach { nozzleType ->
+                    val isExpanded = nozzleType.name == selectedNozzleType?.name
+                    add(
+                        NozzlePickerNozzleTypeViewHolder.UiModel(
+                            nozzleType = nozzleType,
+                            isExpanded = isExpanded
                         )
-                        if (isExpanded) {
-                            addAll(
-                                nozzles
-                                    .filter { it.type.name == nozzleType.name }
-                                    .map { nozzle ->
-                                        if (nozzle.color.isDark) {
-                                            NozzlePickerNozzleDarkViewHolder.UiModel(nozzle)
-                                        } else {
-                                            NozzlePickerNozzleLightViewHolder.UiModel(nozzle)
-                                        }
+                    )
+                    if (isExpanded) {
+                        addAll(
+                            nozzles
+                                .filter { it.type.name == nozzleType.name }
+                                .map { nozzle ->
+                                    if (nozzle.color.isDark) {
+                                        NozzlePickerNozzleDarkViewHolder.UiModel(nozzle)
+                                    } else {
+                                        NozzlePickerNozzleLightViewHolder.UiModel(nozzle)
                                     }
-                            )
-                        }
+                                }
+                        )
                     }
-            }
+                }
         }
     }.toList()
 

@@ -2,8 +2,10 @@ package com.gyorgyzoltan.sprayApp
 
 import android.app.Application
 import com.gyorgyzoltan.sprayApp.debugMenu.DebugMenu
+import com.gyorgyzoltan.sprayApp.domain.configuration.IsConfigurationSetUseCase
 import com.gyorgyzoltan.sprayApp.domain.domainModule
 import com.gyorgyzoltan.sprayApp.domain.nozzle.RefreshNozzlesUseCase
+import com.gyorgyzoltan.sprayApp.domain.tutorial.HasSeenTutorialUseCase
 import com.gyorgyzoltan.sprayApp.help.featureHelpModule
 import com.gyorgyzoltan.sprayApp.local.localSourceModule
 import com.gyorgyzoltan.sprayApp.remote.remoteSourceModule
@@ -21,6 +23,8 @@ import org.koin.core.context.startKoin
 class SprayAppApplication : Application() {
 
     private val refreshNozzles by inject<RefreshNozzlesUseCase>()
+    private val isConfigurationSet by inject<IsConfigurationSetUseCase>()
+    private val hasSeenTutorial by inject<HasSeenTutorialUseCase>()
 
     override fun onCreate() {
         super.onCreate()
@@ -40,6 +44,8 @@ class SprayAppApplication : Application() {
             applicationId = BuildConfig.APPLICATION_ID,
             buildDate = BuildConfig.BUILD_DATE
         )
-        GlobalScope.launch { refreshNozzles(true) }
+        if (isConfigurationSet() || !hasSeenTutorial()) {
+            GlobalScope.launch { refreshNozzles(true) }
+        }
     }
 }

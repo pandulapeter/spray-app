@@ -18,7 +18,6 @@ internal class NozzlePickerAdapter(
         is NozzlePickerNozzleTypeViewHolder.UiModel -> R.layout.item_nozzle_picker_nozzle_type
         is NozzlePickerNozzleDarkViewHolder.UiModel -> R.layout.item_nozzle_picker_nozzle_dark
         is NozzlePickerNozzleLightViewHolder.UiModel -> R.layout.item_nozzle_picker_nozzle_light
-        is NozzlePickerEmptyStateViewHolder.UiModel -> R.layout.item_nozzle_picker_empty_state
         else -> super.getItemViewType(position)
     }
 
@@ -26,7 +25,6 @@ internal class NozzlePickerAdapter(
         R.layout.item_nozzle_picker_nozzle_type -> NozzlePickerNozzleTypeViewHolder.create(parent, onNozzleTypeSelected)
         R.layout.item_nozzle_picker_nozzle_dark -> NozzlePickerNozzleDarkViewHolder.create(parent, onNozzleSelected)
         R.layout.item_nozzle_picker_nozzle_light -> NozzlePickerNozzleLightViewHolder.create(parent, onNozzleSelected)
-        R.layout.item_nozzle_picker_empty_state -> NozzlePickerEmptyStateViewHolder.create(parent)
         else -> super.onCreateViewHolder(parent, viewType)
     }
 
@@ -34,7 +32,6 @@ internal class NozzlePickerAdapter(
         is NozzlePickerNozzleTypeViewHolder -> holder.bind(getItem(position) as NozzlePickerNozzleTypeViewHolder.UiModel)
         is NozzlePickerNozzleDarkViewHolder -> holder.bind(getItem(position) as NozzlePickerNozzleDarkViewHolder.UiModel)
         is NozzlePickerNozzleLightViewHolder -> holder.bind(getItem(position) as NozzlePickerNozzleLightViewHolder.UiModel)
-        is NozzlePickerEmptyStateViewHolder -> holder.bind(getItem(position) as NozzlePickerEmptyStateViewHolder.UiModel)
         else -> super.onBindViewHolder(holder, position)
     }
 }

@@ -2,11 +2,12 @@ package com.gyorgyzoltan.sprayApp.repository.repository.configuration
 
 import com.gyorgyzoltan.sprayApp.local.implementation.preferences.PreferenceManager
 import com.gyorgyzoltan.sprayApp.model.Configuration
-import com.gyorgyzoltan.sprayApp.model.DataState
+import com.gyorgyzoltan.sprayApp.model.shared.DataState
 import com.gyorgyzoltan.sprayApp.model.nozzle.Nozzle
 import com.gyorgyzoltan.sprayApp.repository.repository.nozzle.NozzleRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
 
 internal class ConfigurationRepositoryImpl(
     private val preferenceManager: PreferenceManager,
@@ -23,7 +24,7 @@ internal class ConfigurationRepositoryImpl(
             is DataState.Idle -> DataState.Idle(createConfiguration())
             is DataState.Loading -> DataState.Loading(createConfiguration())
         }
-    }
+    }.distinctUntilChanged()
     override val isConfigurationSet get() = configuration.value.isValid || arePreferenceFieldsSet()
 
     override suspend fun refresh(isForceRefresh: Boolean) = nozzleRepository.refresh(isForceRefresh)

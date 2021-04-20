@@ -1,4 +1,4 @@
-package com.gyorgyzoltan.sprayApp.model
+package com.gyorgyzoltan.sprayApp.model.shared
 
 sealed class DataState<T> {
 

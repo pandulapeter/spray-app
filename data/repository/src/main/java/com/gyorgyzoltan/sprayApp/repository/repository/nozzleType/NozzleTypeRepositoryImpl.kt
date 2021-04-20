@@ -26,10 +26,9 @@ internal class NozzleTypeRepositoryImpl(
         }
     }
 
-    private suspend fun loadNozzleTypesFromLocal() = nozzleTypeLocalSource.getNozzleTypes().mapNotNull { it.toNozzleType() }
+    private suspend fun loadNozzleTypesFromLocal() = nozzleTypeLocalSource.getNozzleTypes().map { it.toNozzleType() }
 
     private suspend fun loadNozzleTypesFromRemote() = nozzleTypeRemoteSource.getNozzleTypes().mapNotNull { it.toNozzleType() }.also { nozzleTypes ->
         nozzleTypeLocalSource.saveNozzleTypes(nozzleTypes.map { it.toEntity() })
     }
-
 }

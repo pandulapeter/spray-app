@@ -49,7 +49,6 @@
     <!-- Nozzle picker -->
     <string name="nozzle_picker_title">Nozzle</string>
     <string name="nozzle_picker_subtitle">Select the nozzle you will be using</string>
-    <string name="nozzle_picker_no_nozzle_types_found">No nozzles found.</string>
 
     <!-- Wheel radius picker -->
     <string name="wheel_radius_picker_title">Wheel radius</string>

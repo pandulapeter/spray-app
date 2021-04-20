@@ -1,7 +1,7 @@
 package com.gyorgyzoltan.sprayApp.repository.repository.configuration
 
 import com.gyorgyzoltan.sprayApp.model.Configuration
-import com.gyorgyzoltan.sprayApp.model.DataState
+import com.gyorgyzoltan.sprayApp.model.shared.DataState
 import com.gyorgyzoltan.sprayApp.model.nozzle.Nozzle
 import kotlinx.coroutines.flow.Flow
 
