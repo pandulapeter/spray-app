@@ -30,20 +30,36 @@
     <string name="configuration_subtitle">Adjust the work parameters</string>
     <string name="configuration_selected_nozzle">Selected nozzle:</string>
     <string name="configuration_no_nozzle_selected">No nozzle selected\nTap here to select one</string>
-    <string name="configuration_wheel_radius">Wheel radius (cm):</string>
+    <string name="configuration_wheel_radius">Wheel radius:</string>
     <string name="configuration_no_wheel_radius_set">No wheel radius set\nTap here to set it</string>
     <string name="configuration_screw_count">Screw count:</string>
     <string name="configuration_no_screw_count_set">No screw count set\nTap here to set it</string>
     <string name="configuration_nozzle_count">Nozzle count:</string>
     <string name="configuration_no_nozzle_count_set">No nozzle count set\nTap here to set it</string>
-    <string name="configuration_nozzle_distance">Nozzle distance: (m)</string>
+    <string name="configuration_nozzle_distance">Nozzle distance:</string>
     <string name="configuration_no_nozzle_distance_set">No nozzle distance set\nTap here to set it</string>
     <string name="configuration_done">Done</string>
 
     <!-- Nozzle picker -->
-    <string name="nozzle_picker_title">Nozzle picker</string>
+    <string name="nozzle_picker_title">Nozzle</string>
     <string name="nozzle_picker_subtitle">Select the nozzle you will be using</string>
     <string name="nozzle_picker_no_nozzle_types_found">No nozzles found.</string>
+
+    <!-- Wheel radius picker -->
+    <string name="wheel_radius_picker_title">Wheel radius</string>
+    <string name="wheel_radius_picker_subtitle">Provide the radius of the wheel</string>
+
+    <!-- Screw count picker -->
+    <string name="screw_count_picker_title">Screw count</string>
+    <string name="screw_count_picker_subtitle">Provide the number of screws</string>
+
+    <!-- Nozzle count picker -->
+    <string name="nozzle_count_picker_title">Nozzle count</string>
+    <string name="nozzle_count_picker_subtitle">Provide the number of nozzles</string>
+
+    <!-- Nozzle distance picker -->
+    <string name="nozzle_distance_picker_title">Nozzle distance</string>
+    <string name="nozzle_distance_picker_subtitle">Provide the distance between the nozzles</string>
 
     <!-- Connection -->
     <string name="work_placeholder"><b>Coming soon…</b>\n\n• Work mode (automatic / manual / test)\n• Pairing / connection flow</string>

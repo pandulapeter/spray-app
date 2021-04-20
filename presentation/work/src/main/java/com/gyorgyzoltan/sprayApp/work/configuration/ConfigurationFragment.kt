@@ -32,16 +32,32 @@ internal class ConfigurationFragment : ListFragment<ConfigurationViewModel, Conf
 
     private fun handleEvent(event: ConfigurationViewModel.Event) = when (event) {
         ConfigurationViewModel.Event.NavigateToNozzlePicker -> navigateToNozzlePicker()
-        ConfigurationViewModel.Event.NavigateToNozzleCountPicker -> TODO()
-        ConfigurationViewModel.Event.NavigateToNozzleDistancePicker -> TODO()
-        ConfigurationViewModel.Event.NavigateToScrewCountPicker -> TODO()
-        ConfigurationViewModel.Event.NavigateToWheelRadiusPicker -> TODO()
+        ConfigurationViewModel.Event.NavigateToNozzleCountPicker -> navigateToNozzleCountPicker()
+        ConfigurationViewModel.Event.NavigateToNozzleDistancePicker -> navigateToNozzleDistancePicker()
+        ConfigurationViewModel.Event.NavigateToScrewCountPicker -> navigateToScrewCountPicker()
+        ConfigurationViewModel.Event.NavigateToWheelRadiusPicker -> navigateToWheelRadiusPicker()
         ConfigurationViewModel.Event.CloseScreen -> closeScreen()
         ConfigurationViewModel.Event.ShowErrorSnackbar -> showErrorSnackbar()
     }
 
     private fun navigateToNozzlePicker() {
         (parentFragment as? WorkContainerFragment?)?.navigateToNozzlePicker()
+    }
+
+    private fun navigateToNozzleCountPicker() {
+        (parentFragment as? WorkContainerFragment?)?.navigateToNozzleCountPicker()
+    }
+
+    private fun navigateToNozzleDistancePicker() {
+        (parentFragment as? WorkContainerFragment?)?.navigateToNozzleDistancePicker()
+    }
+
+    private fun navigateToScrewCountPicker() {
+        (parentFragment as? WorkContainerFragment?)?.navigateToScrewCountPicker()
+    }
+
+    private fun navigateToWheelRadiusPicker() {
+        (parentFragment as? WorkContainerFragment?)?.navigateToWheelRadiusPicker()
     }
 
     private fun closeScreen() {

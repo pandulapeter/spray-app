@@ -19,6 +19,7 @@
         android:layout_marginEnd="@dimen/large_content_padding"
         android:layout_marginRight="@dimen/large_content_padding"
         android:text="@{uiModel.textResourceId}"
+        android:textStyle="bold"
         tools:text="Text" />
 
 </layout>
