@@ -22,6 +22,7 @@ internal class NozzleCountPickerFragment : ListFragment<NozzleCountPickerViewMod
 
     override fun createAdapter() = NozzleCountPickerAdapter(
         scope = viewModel.viewModelScope,
+        onNozzleCountChanged = viewModel::onNozzleCountChanged,
         onDoneButtonPressed = viewModel::onDoneButtonPressed
     )
 

@@ -18,13 +18,13 @@ class WheelRadiusInputViewHolder private constructor(
 ) : BaseViewHolder<ItemWheelRadiusInputBinding, WheelRadiusInputViewHolder.UiModel>(binding) {
 
     init {
-        binding.numberPicker.setOnValueChangedListener { _, oldVal, newVal ->
-            if (bindingAdapterPosition != RecyclerView.NO_POSITION && oldVal != newVal && newVal != binding.uiModel?.value) {
-                onWheelRadiusChanged(newVal.toFloat())
+        binding.numberPicker.run {
+            setOnValueChangedListener { _, oldVal, newVal ->
+                if (bindingAdapterPosition != RecyclerView.NO_POSITION && oldVal != newVal && newVal != binding.uiModel?.value) {
+                    onWheelRadiusChanged(newVal.toFloat())
+                }
             }
-        }
-        binding.numberPicker.setFormatter {
-            binding.root.context.getString(R.string.configuration_wheel_radius_format, it.toFloat())
+            setFormatter { context.getString(R.string.configuration_wheel_radius_format, it.toFloat()) }
         }
     }
 

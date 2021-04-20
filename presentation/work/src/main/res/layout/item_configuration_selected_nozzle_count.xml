@@ -25,7 +25,7 @@
             android:layout_marginStart="@dimen/large_content_padding"
             android:layout_marginEnd="@dimen/large_content_padding"
             android:gravity="center_vertical"
-            android:text="@{@string/configuration_nozzle_count_format(uiModel.nozzleCount)}"
+            android:text="@{@plurals/configuration_nozzle_count_format(uiModel.nozzleCount, uiModel.nozzleCount)}"
             tools:text="15 nozzles" />
 
     </com.google.android.material.card.MaterialCardView>

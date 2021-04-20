@@ -10,7 +10,6 @@ import com.gyorgyzoltan.sprayApp.main.shared.list.BaseViewHolder
 import com.gyorgyzoltan.sprayApp.work.R
 import com.gyorgyzoltan.sprayApp.work.databinding.ItemScrewCountInputBinding
 import com.gyorgyzoltan.sprayApp.work.screwCountPicker.ScrewCountPickerViewModel
-import kotlin.math.roundToInt
 
 class ScrewCountInputViewHolder private constructor(
     binding: ItemScrewCountInputBinding,
@@ -18,13 +17,13 @@ class ScrewCountInputViewHolder private constructor(
 ) : BaseViewHolder<ItemScrewCountInputBinding, ScrewCountInputViewHolder.UiModel>(binding) {
 
     init {
-        binding.numberPicker.setOnValueChangedListener { _, oldVal, newVal ->
-            if (bindingAdapterPosition != RecyclerView.NO_POSITION && oldVal != newVal && newVal != binding.uiModel?.screwCount) {
-                onScrewCountChanged(newVal)
+        binding.numberPicker.run {
+            setOnValueChangedListener { _, oldVal, newVal ->
+                if (bindingAdapterPosition != RecyclerView.NO_POSITION && oldVal != newVal && newVal != binding.uiModel?.screwCount) {
+                    onScrewCountChanged(newVal)
+                }
             }
-        }
-        binding.numberPicker.setFormatter {
-            binding.root.context.getString(R.string.configuration_screw_count_format, it)
+            setFormatter { context.resources.getQuantityString(R.plurals.configuration_screw_count_format, it, it) }
         }
     }
 

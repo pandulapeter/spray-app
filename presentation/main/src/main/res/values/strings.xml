@@ -35,10 +35,12 @@
     <string name="configuration_wheel_radius_format">%1$.2f cm</string>
     <string name="configuration_no_wheel_radius_set">No wheel radius set</string>
     <string name="configuration_screw_count">Screw count:</string>
-    <string name="configuration_screw_count_format">%1$d screws</string>
+    <string name="configuration_screw_count_format_singular">%1$d screw</string>
+    <string name="configuration_screw_count_format_plural">%1$d screws</string>
     <string name="configuration_no_screw_count_set">No screw count set</string>
     <string name="configuration_nozzle_count">Nozzle count:</string>
-    <string name="configuration_nozzle_count_format">%1$d nozzles</string>
+    <string name="configuration_nozzle_count_format_singular">%1$d nozzle</string>
+    <string name="configuration_nozzle_count_format_plural">%1$d nozzles</string>
     <string name="configuration_no_nozzle_count_set">No nozzle count set</string>
     <string name="configuration_nozzle_distance">Nozzle distance:</string>
     <string name="configuration_nozzle_distance_format">%1$.2f m</string>

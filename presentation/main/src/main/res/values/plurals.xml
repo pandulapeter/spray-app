@@ -1,0 +1,13 @@
+<resources>
+
+    <!-- Configuration -->
+    <plurals name="configuration_screw_count_format">
+        <item quantity="one">@string/configuration_screw_count_format_singular</item>
+        <item quantity="other">@string/configuration_screw_count_format_plural</item>
+    </plurals>
+    <plurals name="configuration_nozzle_count_format">
+        <item quantity="one">@string/configuration_nozzle_count_format_singular</item>
+        <item quantity="other">@string/configuration_nozzle_count_format_plural</item>
+    </plurals>
+
+</resources>

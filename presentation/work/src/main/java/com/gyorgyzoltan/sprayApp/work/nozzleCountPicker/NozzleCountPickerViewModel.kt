@@ -8,6 +8,7 @@ import com.gyorgyzoltan.sprayApp.main.shared.list.ListViewModel
 import com.gyorgyzoltan.sprayApp.main.shared.utilities.Consumable
 import com.gyorgyzoltan.sprayApp.work.nozzleCountPicker.list.NozzleCountDoneButtonViewHolder
 import com.gyorgyzoltan.sprayApp.work.nozzleCountPicker.list.NozzleCountHintViewHolder
+import com.gyorgyzoltan.sprayApp.work.nozzleCountPicker.list.NozzleCountInputViewHolder
 import com.gyorgyzoltan.sprayApp.work.nozzleCountPicker.list.NozzleCountPickerListItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
@@ -21,11 +22,16 @@ internal class NozzleCountPickerViewModel(
     override val items = nozzleCount.map { nozzleCount ->
         listOf(
             NozzleCountHintViewHolder.UiModel(),
+            NozzleCountInputViewHolder.UiModel(nozzleCount),
             NozzleCountDoneButtonViewHolder.UiModel(nozzleCount.isValidNozzleCount)
         )
     }.asLiveData()
     private val _events = MutableLiveData<Consumable<Event>>()
     val events: LiveData<Consumable<Event>> = _events
+
+    fun onNozzleCountChanged(newNozzleCount: Int) {
+        nozzleCount.value = newNozzleCount
+    }
 
     fun onDoneButtonPressed() {
         nozzleCount.value.let { nozzleCount ->
