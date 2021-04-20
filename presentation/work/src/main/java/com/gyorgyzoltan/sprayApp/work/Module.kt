@@ -16,6 +16,6 @@ val featureWorkModule = module {
     viewModel { NozzleDistancePickerViewModel(get()) }
     viewModel { NozzlePickerViewModel(get(), get(), get()) }
     viewModel { WorkViewModel() }
-    viewModel { ScrewCountPickerViewModel(get()) }
+    viewModel { (initialScrewCount: Int) -> ScrewCountPickerViewModel(initialScrewCount, get()) }
     viewModel { (currentWheelRadius: Float) -> WheelRadiusPickerViewModel(currentWheelRadius, get()) }
 }

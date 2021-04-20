@@ -53,7 +53,7 @@ internal class ConfigurationFragment : ListFragment<ConfigurationViewModel, Conf
     }
 
     private fun navigateToScrewCountPicker(currentScrewCount: Int?) {
-        (parentFragment as? WorkContainerFragment?)?.navigateToScrewCountPicker()
+        (parentFragment as? WorkContainerFragment?)?.navigateToScrewCountPicker(currentScrewCount)
     }
 
     private fun navigateToWheelRadiusPicker(currentWheelRadius: Float?) {
