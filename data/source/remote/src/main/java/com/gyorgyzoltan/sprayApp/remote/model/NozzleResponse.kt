@@ -16,7 +16,7 @@ data class NozzleResponse(
     @Json(name = DEBIT_AT_5_BAR) val debitAt5Bar: Float? = null,
     @Json(name = DEBIT_AT_6_BAR) val debitAt6Bar: Float? = null,
     @Json(name = DEBIT_AT_7_BAR) val debitAt7Bar: Float? = null,
-    @Json(name = DEBIT_AT_8_BAR) val debitAt8Bar: Float? = null,
+    @Json(name = DEBIT_AT_8_BAR) val debitAt8Bar: Float? = null
 ) {
 
     companion object {

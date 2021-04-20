@@ -1,5 +1,6 @@
 package com.gyorgyzoltan.sprayApp.repository.repository.nozzle
 
+import com.gyorgyzoltan.sprayApp.local.localSource.nozzle.NozzleLocalSource
 import com.gyorgyzoltan.sprayApp.model.DataState
 import com.gyorgyzoltan.sprayApp.model.nozzle.Nozzle
 import com.gyorgyzoltan.sprayApp.model.nozzle.NozzleColor
@@ -11,6 +12,7 @@ import com.gyorgyzoltan.sprayApp.repository.utilities.toDataState
 import kotlinx.coroutines.flow.MutableStateFlow
 
 internal class NozzleRepositoryImpl(
+    private val nozzleLocalSource: NozzleLocalSource,
     private val nozzleRemoteSource: NozzleRemoteSource,
     private val nozzleTypeRepository: NozzleTypeRepository
 ) : NozzleRepository {
@@ -25,6 +27,15 @@ internal class NozzleRepositoryImpl(
     }
 
     private suspend fun getNozzleTypes(isForceRefresh: Boolean) = nozzleTypeRepository.getNozzleTypes(isForceRefresh)
+
+    private suspend fun loadNozzlesFromLocal(nozzleTypes: List<NozzleType>) = NozzleColor.values().toList().let { nozzleColors ->
+        nozzleLocalSource.getNozzles().mapNotNull {
+            it.toNozzle(
+                nozzleTypes = nozzleTypes,
+                nozzleColors = nozzleColors
+            )
+        }
+    }
 
     private suspend fun loadNozzlesFromRemote(nozzleTypes: List<NozzleType>) = NozzleColor.values().toList().let { nozzleColors ->
         nozzleRemoteSource.getNozzles().mapNotNull {
