@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.gyorgyzoltan.sprayApp.domain.configuration.SetNozzleUseCase
 import com.gyorgyzoltan.sprayApp.domain.nozzle.NozzlesUseCase
 import com.gyorgyzoltan.sprayApp.domain.nozzle.RefreshNozzlesUseCase
 import com.gyorgyzoltan.sprayApp.main.shared.list.ListViewModel
@@ -28,7 +29,8 @@ import kotlinx.coroutines.launch
 
 internal class NozzlePickerViewModel(
     nozzles: NozzlesUseCase,
-    private val refreshNozzles: RefreshNozzlesUseCase
+    private val refreshNozzles: RefreshNozzlesUseCase,
+    private val setNozzle: SetNozzleUseCase
 ) : ListViewModel<NozzlePickerListItem>(true) {
 
     private val selectedNozzleType = MutableStateFlow<NozzleType?>(null)
@@ -56,7 +58,7 @@ internal class NozzlePickerViewModel(
     }
 
     fun onNozzleSelected(nozzle: Nozzle) {
-        // TODO: Save selection
+        setNozzle(nozzle)
         _events.value = Consumable(Event.CloseScreen)
     }
 

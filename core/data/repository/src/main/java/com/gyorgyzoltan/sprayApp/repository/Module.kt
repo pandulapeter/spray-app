@@ -12,7 +12,7 @@ import org.koin.dsl.module
 
 val repositoryModule = module {
 
-    single<ConfigurationRepository> { ConfigurationRepositoryImpl() }
+    single<ConfigurationRepository> { ConfigurationRepositoryImpl(get(), get()) }
     single<NozzleRepository> { NozzleRepositoryImpl(get(), get()) }
     single<NozzleTypeRepository> { NozzleTypeRepositoryImpl(get()) }
     single<TutorialRepository> { TutorialRepositoryImpl(get()) }

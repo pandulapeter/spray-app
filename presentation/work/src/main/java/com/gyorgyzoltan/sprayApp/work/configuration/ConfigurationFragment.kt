@@ -32,6 +32,7 @@ internal class ConfigurationFragment : ListFragment<ConfigurationViewModel, Conf
     private fun handleEvent(event: ConfigurationViewModel.Event) = when (event) {
         ConfigurationViewModel.Event.NavigateToNozzlePicker -> navigateToNozzlePicker()
         ConfigurationViewModel.Event.CloseScreen -> closeScreen()
+        ConfigurationViewModel.Event.ShowErrorSnackbar -> showErrorSnackbar()
     }
 
     private fun navigateToNozzlePicker() {

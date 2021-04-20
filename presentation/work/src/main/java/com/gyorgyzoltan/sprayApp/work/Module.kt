@@ -7,7 +7,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val featureWorkModule = module {
-    viewModel { ConfigurationViewModel() }
-    viewModel { NozzlePickerViewModel(get(), get()) }
+    viewModel { ConfigurationViewModel(get(), get()) }
+    viewModel { NozzlePickerViewModel(get(), get(), get()) }
     viewModel { WorkViewModel() }
 }
