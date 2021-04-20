@@ -61,10 +61,10 @@ internal class ConfigurationRepositoryImpl(
         nozzleDistance: Float? = null
     ) = Configuration(
         nozzle = nozzle ?: configuration.value.nozzle ?: nozzleRepository.nozzles.value.data?.firstOrNull { it.name == preferenceManager.nozzleName },
-        wheelRadius = wheelRadius ?: configuration.value.wheelRadius,
-        screwCount = screwCount ?: configuration.value.screwCount,
-        nozzleCount = nozzleCount ?: configuration.value.nozzleCount,
-        nozzleDistance = nozzleDistance ?: configuration.value.nozzleDistance,
+        wheelRadius = wheelRadius ?: configuration.value.wheelRadius ?: if (preferenceManager.isWheelRadiusSet) preferenceManager.wheelRadius else null,
+        screwCount = screwCount ?: configuration.value.screwCount ?: if (preferenceManager.isScrewCountSet) preferenceManager.screwCount else null,
+        nozzleCount = nozzleCount ?: configuration.value.nozzleCount ?: if (preferenceManager.isNozzleCountSet) preferenceManager.nozzleCount else null,
+        nozzleDistance = nozzleDistance ?: configuration.value.nozzleDistance ?: if (preferenceManager.isNozzleDistanceSet) preferenceManager.nozzleDistance else null
     )
 
     // TODO: Nozzle name should be validated!

@@ -29,20 +29,20 @@
     <!-- Configuration -->
     <string name="configuration_title">Configuration</string>
     <string name="configuration_subtitle">Adjust the work parameters</string>
-    <string name="configuration_selected_nozzle">Selected nozzle:</string>
-    <string name="configuration_no_nozzle_selected">No nozzle selected\nTap here to select one</string>
+    <string name="configuration_nozzle">Nozzle:</string>
+    <string name="configuration_no_nozzle_selected">No nozzle selected</string>
     <string name="configuration_wheel_radius">Wheel radius:</string>
     <string name="configuration_wheel_radius_format">%1$.2f cm</string>
-    <string name="configuration_no_wheel_radius_set">No wheel radius set\nTap here to set it</string>
+    <string name="configuration_no_wheel_radius_set">No wheel radius set</string>
     <string name="configuration_screw_count">Screw count:</string>
     <string name="configuration_screw_count_format">%1$d screws</string>
-    <string name="configuration_no_screw_count_set">No screw count set\nTap here to set it</string>
+    <string name="configuration_no_screw_count_set">No screw count set</string>
     <string name="configuration_nozzle_count">Nozzle count:</string>
     <string name="configuration_nozzle_count_format">%1$d nozzles</string>
-    <string name="configuration_no_nozzle_count_set">No nozzle count set\nTap here to set it</string>
+    <string name="configuration_no_nozzle_count_set">No nozzle count set</string>
     <string name="configuration_nozzle_distance">Nozzle distance:</string>
     <string name="configuration_nozzle_distance_format">%1$.2f m</string>
-    <string name="configuration_no_nozzle_distance_set">No nozzle distance set\nTap here to set it</string>
+    <string name="configuration_no_nozzle_distance_set">No nozzle distance set</string>
 
     <!-- Nozzle picker -->
     <string name="nozzle_picker_title">Nozzle</string>
@@ -52,7 +52,7 @@
     <!-- Wheel radius picker -->
     <string name="wheel_radius_picker_title">Wheel radius</string>
     <string name="wheel_radius_picker_subtitle">Provide the radius of the wheel</string>
-    <string name="wheel_radius_hint">Measure the distance between the center of the wheel and the sensor. The accuracy of this value is important for measuring speed.\n\nEnter the value in centimeters that is larger than %1$.2f cm.</string>
+    <string name="wheel_radius_hint">Measure the distance between the center of the wheel and the sensor. The accuracy of this value is important for measuring speed.\n\nEnter a value between %1$.0f cm and %2$.0f cm.</string>
 
     <!-- Screw count picker -->
     <string name="screw_count_picker_title">Screw count</string>
@@ -67,7 +67,7 @@
     <!-- Nozzle distance picker -->
     <string name="nozzle_distance_picker_title">Nozzle distance</string>
     <string name="nozzle_distance_picker_subtitle">Provide the distance between the nozzles</string>
-    <string name="nozzle_distance_hint">Measure the distance between two consecutive nozzles on the sprayer.\n\nEnter the value in meters that is larger than %1$.2f m.</string>
+    <string name="nozzle_distance_hint">Measure the distance between two consecutive nozzles on the sprayer.\n\nEnter the value in meters that is larger than %1$.0f m.</string>
 
     <!-- Connection -->
     <string name="work_placeholder"><b>Coming soon…</b>\n\n• Work mode (automatic / manual / test)\n• Pairing / connection flow</string>

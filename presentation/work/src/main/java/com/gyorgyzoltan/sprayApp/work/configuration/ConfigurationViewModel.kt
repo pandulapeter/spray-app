@@ -89,7 +89,7 @@ internal class ConfigurationViewModel(
     }.toList()
 
     private fun MutableList<ConfigurationListItem>.addNozzleSection(configuration: Configuration) {
-        add(ConfigurationTextViewHolder.UiModel(R.string.configuration_selected_nozzle))
+        add(ConfigurationTextViewHolder.UiModel(R.string.configuration_nozzle))
         add(
             configuration.nozzle.let { selectedNozzle ->
                 when {

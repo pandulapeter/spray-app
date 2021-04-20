@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import com.gyorgyzoltan.sprayApp.main.shared.list.BaseViewHolder
 import com.gyorgyzoltan.sprayApp.work.R
 import com.gyorgyzoltan.sprayApp.work.databinding.ItemWheelRadiusHintBinding
+import com.gyorgyzoltan.sprayApp.work.wheelRadiusPicker.WheelRadiusPickerViewModel
 
 class WheelRadiusHintViewHolder private constructor(
     binding: ItemWheelRadiusHintBinding
@@ -16,6 +17,8 @@ class WheelRadiusHintViewHolder private constructor(
     ) : WheelRadiusPickerListItem {
 
         override val id: String = "hint"
+        val minimumValue = WheelRadiusPickerViewModel.MINIMUM_WHEEL_RADIUS
+        val maximumValue = WheelRadiusPickerViewModel.MAXIMUM_WHEEL_RADIUS
     }
 
     companion object {

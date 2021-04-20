@@ -8,6 +8,7 @@ import com.gyorgyzoltan.sprayApp.main.shared.list.ListViewModel
 import com.gyorgyzoltan.sprayApp.main.shared.utilities.Consumable
 import com.gyorgyzoltan.sprayApp.work.wheelRadiusPicker.list.WheelRadiusDoneButtonViewHolder
 import com.gyorgyzoltan.sprayApp.work.wheelRadiusPicker.list.WheelRadiusHintViewHolder
+import com.gyorgyzoltan.sprayApp.work.wheelRadiusPicker.list.WheelRadiusInputViewHolder
 import com.gyorgyzoltan.sprayApp.work.wheelRadiusPicker.list.WheelRadiusPickerListItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
@@ -21,11 +22,16 @@ internal class WheelRadiusPickerViewModel(
     override val items = wheelRadius.map { wheelRadius ->
         listOf(
             WheelRadiusHintViewHolder.UiModel(),
+            WheelRadiusInputViewHolder.UiModel(wheelRadius),
             WheelRadiusDoneButtonViewHolder.UiModel(wheelRadius.isValidWheelRadius)
         )
     }.asLiveData()
     private val _events = MutableLiveData<Consumable<Event>>()
     val events: LiveData<Consumable<Event>> = _events
+
+    fun onWheelRadiusChanged(newWheelRadius: Float) {
+        wheelRadius.value = newWheelRadius
+    }
 
     fun onDoneButtonPressed() {
         wheelRadius.value.let { wheelRadius ->
@@ -45,5 +51,6 @@ internal class WheelRadiusPickerViewModel(
     companion object {
         const val DEFAULT_WHEEL_RADIUS = 0f
         const val MINIMUM_WHEEL_RADIUS = 0f
+        const val MAXIMUM_WHEEL_RADIUS = 200f
     }
 }
