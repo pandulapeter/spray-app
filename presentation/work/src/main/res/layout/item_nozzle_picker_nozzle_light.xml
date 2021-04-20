@@ -29,10 +29,6 @@
             android:gravity="center_vertical"
             android:text="@{uiModel.nozzle.name}"
             android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/thumbnail"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             tools:text="Nozzle name" />
 
     </com.google.android.material.card.MaterialCardView>

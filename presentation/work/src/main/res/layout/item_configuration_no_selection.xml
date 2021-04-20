@@ -6,7 +6,7 @@
 
         <variable
             name="uiModel"
-            type="com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationSelectedNozzleViewHolder.UiModel" />
+            type="com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationNoSelectionViewHolder.UiModel" />
 
     </data>
 
@@ -19,13 +19,12 @@
         android:layout_marginBottom="@dimen/content_padding">
 
         <TextView
-            android:id="@+id/nozzle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:padding="@dimen/content_padding"
-            android:text="@{uiModel.nozzle.name ?? @string/configuration_no_nozzle_selected}"
-            tools:text="Nozzle name" />
+            android:text="@{uiModel.hintResourceId}"
+            tools:text="Hint" />
 
     </com.google.android.material.card.MaterialCardView>
 

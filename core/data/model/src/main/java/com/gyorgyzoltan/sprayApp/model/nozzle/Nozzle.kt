@@ -12,4 +12,6 @@ data class Nozzle(
     val debitAt6Bar: Float,
     val debitAt7Bar: Float,
     val debitAt8Bar: Float
-)
+) {
+    val fullName = "${type.name} $name"
+}

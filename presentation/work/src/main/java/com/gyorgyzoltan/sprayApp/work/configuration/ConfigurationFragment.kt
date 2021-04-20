@@ -20,8 +20,9 @@ internal class ConfigurationFragment : ListFragment<ConfigurationViewModel, Conf
 
     override fun createAdapter() = ConfigurationAdapter(
         scope = viewModel.viewModelScope,
-        onNozzleClicked = viewModel::onNozzleClicked,
-        onDoneButtonClicked = viewModel::onDoneButtonClicked
+        onDoneButtonClicked = viewModel::onDoneButtonClicked,
+        onNoSelectionItemClicked = viewModel::onNoSelectionItemClicked,
+        onNozzleClicked = viewModel::onNozzleClicked
     )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,6 +32,10 @@ internal class ConfigurationFragment : ListFragment<ConfigurationViewModel, Conf
 
     private fun handleEvent(event: ConfigurationViewModel.Event) = when (event) {
         ConfigurationViewModel.Event.NavigateToNozzlePicker -> navigateToNozzlePicker()
+        ConfigurationViewModel.Event.NavigateToNozzleCountPicker -> TODO()
+        ConfigurationViewModel.Event.NavigateToNozzleDistancePicker -> TODO()
+        ConfigurationViewModel.Event.NavigateToScrewCountPicker -> TODO()
+        ConfigurationViewModel.Event.NavigateToWheelRadiusPicker -> TODO()
         ConfigurationViewModel.Event.CloseScreen -> closeScreen()
         ConfigurationViewModel.Event.ShowErrorSnackbar -> showErrorSnackbar()
     }

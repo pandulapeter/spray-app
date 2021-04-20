@@ -13,7 +13,9 @@ import com.gyorgyzoltan.sprayApp.model.Configuration
 import com.gyorgyzoltan.sprayApp.model.DataState
 import com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationDoneButtonViewHolder
 import com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationListItem
-import com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationSelectedNozzleViewHolder
+import com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationNoSelectionViewHolder
+import com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationSelectedNozzleDarkViewHolder
+import com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationSelectedNozzleLightViewHolder
 import com.gyorgyzoltan.sprayApp.work.configuration.list.ConfigurationTextViewHolder
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
@@ -48,24 +50,95 @@ internal class ConfigurationViewModel(
         _events.value = Consumable(Event.CloseScreen)
     }
 
+    fun onNoSelectionItemClicked(hintResourceId: Int) {
+        _events.value = when (hintResourceId) {
+            R.string.configuration_no_nozzle_selected -> Consumable(Event.NavigateToNozzlePicker)
+            R.string.configuration_no_wheel_radius_set -> Consumable(Event.NavigateToWheelRadiusPicker)
+            R.string.configuration_no_screw_count_set -> Consumable(Event.NavigateToScrewCountPicker)
+            R.string.configuration_no_nozzle_count_set -> Consumable(Event.NavigateToNozzleCountPicker)
+            R.string.configuration_no_nozzle_distance_set -> Consumable(Event.NavigateToNozzleDistancePicker)
+            else -> throw  IllegalArgumentException("Invalid hint resource ID: $hintResourceId")
+        }
+    }
+
     fun onNozzleClicked() {
         _events.value = Consumable(Event.NavigateToNozzlePicker)
     }
 
     private fun DataState<Configuration>.toItems() = mutableListOf<ConfigurationListItem>().apply {
         data?.let { configuration ->
-            add(ConfigurationTextViewHolder.UiModel(R.string.configuration_selected_nozzle))
-            add(ConfigurationSelectedNozzleViewHolder.UiModel(configuration.nozzle))
-            add(ConfigurationTextViewHolder.UiModel(R.string.configuration_wheel_radius))
-            add(ConfigurationTextViewHolder.UiModel(R.string.configuration_screw_count))
-            add(ConfigurationTextViewHolder.UiModel(R.string.configuration_nozzle_count))
-            add(ConfigurationTextViewHolder.UiModel(R.string.configuration_nozzle_distance))
+            addNozzleSection(configuration)
+            addWheelRadiusSection(configuration)
+            addScrewCountSection(configuration)
+            addNozzleCountSection(configuration)
+            addNozzleDistanceSection(configuration)
             add(ConfigurationDoneButtonViewHolder.UiModel(configuration.isValid))
         }
     }.toList()
 
+    private fun MutableList<ConfigurationListItem>.addNozzleSection(configuration: Configuration) {
+        add(ConfigurationTextViewHolder.UiModel(R.string.configuration_selected_nozzle))
+        add(
+            configuration.nozzle.let { selectedNozzle ->
+                when {
+                    selectedNozzle == null -> ConfigurationNoSelectionViewHolder.UiModel(R.string.configuration_no_nozzle_selected)
+                    selectedNozzle.color.isDark -> ConfigurationSelectedNozzleDarkViewHolder.UiModel(configuration.nozzle)
+                    else -> ConfigurationSelectedNozzleLightViewHolder.UiModel(configuration.nozzle)
+                }
+            }
+        )
+    }
+
+    private fun MutableList<ConfigurationListItem>.addWheelRadiusSection(configuration: Configuration) {
+        add(ConfigurationTextViewHolder.UiModel(R.string.configuration_wheel_radius))
+        add(
+            if (configuration.wheelRadius == null) {
+                ConfigurationNoSelectionViewHolder.UiModel(R.string.configuration_no_wheel_radius_set)
+            } else {
+                TODO()
+            }
+        )
+    }
+
+    private fun MutableList<ConfigurationListItem>.addScrewCountSection(configuration: Configuration) {
+        add(ConfigurationTextViewHolder.UiModel(R.string.configuration_screw_count))
+        add(
+            if (configuration.screwCount == null) {
+                ConfigurationNoSelectionViewHolder.UiModel(R.string.configuration_no_screw_count_set)
+            } else {
+                TODO()
+            }
+        )
+    }
+
+    private fun MutableList<ConfigurationListItem>.addNozzleCountSection(configuration: Configuration) {
+        add(ConfigurationTextViewHolder.UiModel(R.string.configuration_nozzle_count))
+        add(
+            if (configuration.nozzleCount == null) {
+                ConfigurationNoSelectionViewHolder.UiModel(R.string.configuration_no_nozzle_count_set)
+            } else {
+                TODO()
+            }
+        )
+    }
+
+    private fun MutableList<ConfigurationListItem>.addNozzleDistanceSection(configuration: Configuration) {
+        add(ConfigurationTextViewHolder.UiModel(R.string.configuration_nozzle_distance))
+        add(
+            if (configuration.nozzleDistance == null) {
+                ConfigurationNoSelectionViewHolder.UiModel(R.string.configuration_no_nozzle_distance_set)
+            } else {
+                TODO()
+            }
+        )
+    }
+
     sealed class Event {
         object NavigateToNozzlePicker : Event()
+        object NavigateToWheelRadiusPicker : Event()
+        object NavigateToScrewCountPicker : Event()
+        object NavigateToNozzleCountPicker : Event()
+        object NavigateToNozzleDistancePicker : Event()
         object CloseScreen : Event()
         object ShowErrorSnackbar : Event()
     }

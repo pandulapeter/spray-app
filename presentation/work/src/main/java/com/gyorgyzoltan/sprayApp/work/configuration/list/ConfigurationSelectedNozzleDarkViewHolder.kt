@@ -8,12 +8,12 @@ import com.gyorgyzoltan.sprayApp.main.shared.list.BaseViewHolder
 import com.gyorgyzoltan.sprayApp.main.shared.utilities.color
 import com.gyorgyzoltan.sprayApp.model.nozzle.Nozzle
 import com.gyorgyzoltan.sprayApp.work.R
-import com.gyorgyzoltan.sprayApp.work.databinding.ItemConfigurationSelectedNozzleBinding
+import com.gyorgyzoltan.sprayApp.work.databinding.ItemConfigurationSelectedNozzleDarkBinding
 
-internal class ConfigurationSelectedNozzleViewHolder private constructor(
-    binding: ItemConfigurationSelectedNozzleBinding,
+internal class ConfigurationSelectedNozzleDarkViewHolder private constructor(
+    binding: ItemConfigurationSelectedNozzleDarkBinding,
     onItemClicked: () -> Unit
-) : BaseViewHolder<ItemConfigurationSelectedNozzleBinding, ConfigurationSelectedNozzleViewHolder.UiModel>(binding) {
+) : BaseViewHolder<ItemConfigurationSelectedNozzleDarkBinding, ConfigurationSelectedNozzleDarkViewHolder.UiModel>(binding) {
 
     init {
         binding.root.setOnClickListener {
@@ -25,22 +25,22 @@ internal class ConfigurationSelectedNozzleViewHolder private constructor(
 
     override fun bind(uiModel: UiModel) {
         super.bind(uiModel)
-        binding.nozzle.setBackgroundColor(itemView.context.color(uiModel.nozzle?.color?.value ?: R.color.transparent))
+        binding.card.setCardBackgroundColor(itemView.context.color(uiModel.nozzle?.color?.value ?: R.color.transparent))
     }
 
     data class UiModel(
         val nozzle: Nozzle?
     ) : ConfigurationListItem {
 
-        override val id = "selectedNozzle"
+        override val id = "selectedNozzleDark"
     }
 
     companion object {
         fun create(
             parent: ViewGroup,
             onItemClicked: () -> Unit
-        ) = ConfigurationSelectedNozzleViewHolder(
-            binding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_configuration_selected_nozzle, parent, false),
+        ) = ConfigurationSelectedNozzleDarkViewHolder(
+            binding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_configuration_selected_nozzle_dark, parent, false),
             onItemClicked = onItemClicked
         )
     }
