@@ -21,19 +21,22 @@ internal class ScrewCountPickerViewModel(
     override val items = screwCount.map { screwCount ->
         listOf(
             ScrewCountHintViewHolder.UiModel(),
-            ScrewCountDoneButtonViewHolder.UiModel(isScrewCountValid())
+            ScrewCountDoneButtonViewHolder.UiModel(screwCount.isValidScrewCount)
         )
     }.asLiveData()
     private val _events = MutableLiveData<Consumable<Event>>()
     val events: LiveData<Consumable<Event>> = _events
 
     fun onDoneButtonPressed() {
-        if (isScrewCountValid()) {
-            setScrewCount(screwCount.value)
+        screwCount.value.let { screwCount ->
+            if (screwCount.isValidScrewCount) {
+                setScrewCount(screwCount)
+                _events.value = Consumable(Event.CloseScreen)
+            }
         }
     }
 
-    private fun isScrewCountValid() = screwCount.value > 0
+    private val Int.isValidScrewCount get() = this > MINIMUM_SCREW_COUNT
 
     sealed class Event {
         object CloseScreen : Event()
@@ -41,5 +44,6 @@ internal class ScrewCountPickerViewModel(
 
     companion object {
         const val DEFAULT_SCREW_COUNT = 0
+        const val MINIMUM_SCREW_COUNT = 0
     }
 }

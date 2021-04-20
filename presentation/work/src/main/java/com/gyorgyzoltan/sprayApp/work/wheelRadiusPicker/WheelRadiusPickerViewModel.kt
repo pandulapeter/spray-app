@@ -21,19 +21,22 @@ internal class WheelRadiusPickerViewModel(
     override val items = wheelRadius.map { wheelRadius ->
         listOf(
             WheelRadiusHintViewHolder.UiModel(),
-            WheelRadiusDoneButtonViewHolder.UiModel(isWheelRadiusValid())
+            WheelRadiusDoneButtonViewHolder.UiModel(wheelRadius.isValidWheelRadius)
         )
     }.asLiveData()
     private val _events = MutableLiveData<Consumable<Event>>()
     val events: LiveData<Consumable<Event>> = _events
 
     fun onDoneButtonPressed() {
-        if (isWheelRadiusValid()) {
-            setWheelRadius(wheelRadius.value)
+        wheelRadius.value.let { wheelRadius ->
+            if (wheelRadius.isValidWheelRadius) {
+                setWheelRadius(wheelRadius)
+                _events.value = Consumable(Event.CloseScreen)
+            }
         }
     }
 
-    private fun isWheelRadiusValid() = wheelRadius.value > 0f
+    private val Float.isValidWheelRadius get() = this > MINIMUM_WHEEL_RADIUS
 
     sealed class Event {
         object CloseScreen : Event()
@@ -41,5 +44,6 @@ internal class WheelRadiusPickerViewModel(
 
     companion object {
         const val DEFAULT_WHEEL_RADIUS = 0f
+        const val MINIMUM_WHEEL_RADIUS = 0f
     }
 }

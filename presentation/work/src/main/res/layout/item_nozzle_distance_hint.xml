@@ -6,9 +6,9 @@
 
         <variable
             name="uiModel"
-            type="com.gyorgyzoltan.sprayApp.work.wheelRadiusPicker.list.WheelRadiusHintViewHolder.UiModel" />
+            type="com.gyorgyzoltan.sprayApp.work.nozzleDistancePicker.list.NozzleDistanceHintViewHolder.UiModel" />
 
-        <import type="com.gyorgyzoltan.sprayApp.work.wheelRadiusPicker.WheelRadiusPickerViewModel" />
+        <import type="com.gyorgyzoltan.sprayApp.work.nozzleDistancePicker.NozzleDistancePickerViewModel" />
 
     </data>
 
@@ -20,7 +20,7 @@
         android:layout_marginTop="@dimen/content_padding"
         android:layout_marginEnd="@dimen/large_content_padding"
         android:layout_marginRight="@dimen/large_content_padding"
-        android:text="@{@string/wheel_radius_hint(WheelRadiusPickerViewModel.MINIMUM_WHEEL_RADIUS)}"
-        tools:text="@string/wheel_radius_hint" />
+        android:text="@{@string/nozzle_distance_hint(NozzleDistancePickerViewModel.MINIMUM_NOZZLE_DISTANCE)}"
+        tools:text="@string/nozzle_distance_hint" />
 
 </layout>

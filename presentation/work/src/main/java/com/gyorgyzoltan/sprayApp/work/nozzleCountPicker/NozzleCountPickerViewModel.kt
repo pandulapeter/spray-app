@@ -18,22 +18,25 @@ internal class NozzleCountPickerViewModel(
 ) : ListViewModel<NozzleCountPickerListItem>() {
 
     private val nozzleCount = MutableStateFlow(initialNozzleCount)
-    override val items = nozzleCount.map {
+    override val items = nozzleCount.map { nozzleCount ->
         listOf(
             NozzleCountHintViewHolder.UiModel(),
-            NozzleCountDoneButtonViewHolder.UiModel(isNozzleCountValid())
+            NozzleCountDoneButtonViewHolder.UiModel(nozzleCount.isValidNozzleCount)
         )
     }.asLiveData()
     private val _events = MutableLiveData<Consumable<Event>>()
     val events: LiveData<Consumable<Event>> = _events
 
     fun onDoneButtonPressed() {
-        if (isNozzleCountValid()) {
-            setNozzleCount(nozzleCount.value)
+        nozzleCount.value.let { nozzleCount ->
+            if (nozzleCount.isValidNozzleCount) {
+                setNozzleCount(nozzleCount)
+                _events.value = Consumable(Event.CloseScreen)
+            }
         }
     }
 
-    private fun isNozzleCountValid() = nozzleCount.value > 0
+    private val Int.isValidNozzleCount get() = this in MINIMUM_NOZZLE_COUNT..MAXIMUM_NOZZLE_COUNT
 
     sealed class Event {
         object CloseScreen : Event()
@@ -41,5 +44,7 @@ internal class NozzleCountPickerViewModel(
 
     companion object {
         const val DEFAULT_NOZZLE_COUNT = 0
+        const val MINIMUM_NOZZLE_COUNT = 1
+        const val MAXIMUM_NOZZLE_COUNT = 64
     }
 }

@@ -10,10 +10,10 @@ import com.gyorgyzoltan.sprayApp.work.nozzleDistancePicker.NozzleDistancePickerF
 import com.gyorgyzoltan.sprayApp.work.nozzlePicker.NozzlePickerFragment
 import com.gyorgyzoltan.sprayApp.work.screwCountPicker.ScrewCountPickerFragment
 import com.gyorgyzoltan.sprayApp.work.wheelRadiusPicker.WheelRadiusPickerFragment
-import org.koin.core.context.KoinContextHandler
+import org.koin.core.context.GlobalContext
 
 class WorkContainerFragment : ContainerFragment({
-    if (KoinContextHandler.get().get<IsConfigurationSetUseCase>().invoke()) {
+    if (GlobalContext.get().get<IsConfigurationSetUseCase>().invoke()) {
         WorkFragment.newInstance()
     } else {
         ConfigurationFragment.newInstance()
@@ -60,10 +60,10 @@ class WorkContainerFragment : ContainerFragment({
         newInstance = { NozzleCountPickerFragment.newInstance(currentNozzleCount) }
     )
 
-    internal fun navigateToNozzleDistancePicker() = childFragmentManager.handleReplace(
+    internal fun navigateToNozzleDistancePicker(currentNozzleDistance: Float?) = childFragmentManager.handleReplace(
         addToBackStack = true,
         transitionType = TransitionType.MODAL,
-        newInstance = NozzleDistancePickerFragment.Companion::newInstance
+        newInstance = { NozzleDistancePickerFragment.newInstance(currentNozzleDistance) }
     )
 
     companion object {

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="uiModel"
             type="com.gyorgyzoltan.sprayApp.work.screwCountPicker.list.ScrewCountHintViewHolder.UiModel" />
+
+        <import type="com.gyorgyzoltan.sprayApp.work.screwCountPicker.ScrewCountPickerViewModel" />
 
     </data>
 
@@ -17,6 +20,7 @@
         android:layout_marginTop="@dimen/content_padding"
         android:layout_marginEnd="@dimen/large_content_padding"
         android:layout_marginRight="@dimen/large_content_padding"
-        android:text="@string/screw_count_hint" />
+        android:text="@{@string/screw_count_hint(ScrewCountPickerViewModel.MINIMUM_SCREW_COUNT)}"
+        tools:text="@string/screw_count_hint" />
 
 </layout>
