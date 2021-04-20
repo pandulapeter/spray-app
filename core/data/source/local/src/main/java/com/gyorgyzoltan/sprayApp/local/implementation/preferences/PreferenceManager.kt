@@ -1,8 +1,7 @@
-package com.gyorgyzoltan.sprayApp.repository.preferences
+package com.gyorgyzoltan.sprayApp.local.implementation.preferences
 
 interface PreferenceManager {
 
     var hasSeenTutorial: Boolean
-    var isConfigurationSet: Boolean
     var selectedNozzleName: String
 }

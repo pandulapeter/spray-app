@@ -14,28 +14,10 @@ internal class NetworkingManagerImpl : NetworkingManager {
         .client(
             OkHttpClient.Builder()
                 .addInterceptor(
-                    RetrosheetInterceptor.Builder()
-                        .setLogging(true)
-                        .addSheet(
-                            NozzleResponse.SHEET_NAME,
-                            NozzleResponse.KEY_NAME,
-                            NozzleResponse.TYPE,
-                            NozzleResponse.COLOR,
-                            NozzleResponse.DEBIT_AT_1_BAR,
-                            NozzleResponse.DEBIT_AT_2_BAR,
-                            NozzleResponse.DEBIT_AT_3_BAR,
-                            NozzleResponse.DEBIT_AT_4_BAR,
-                            NozzleResponse.DEBIT_AT_5_BAR,
-                            NozzleResponse.DEBIT_AT_6_BAR,
-                            NozzleResponse.DEBIT_AT_7_BAR,
-                            NozzleResponse.DEBIT_AT_8_BAR
-                        )
-                        .addSheet(
-                            NozzleTypeResponse.SHEET_NAME,
-                            NozzleTypeResponse.KEY_NAME,
-                            NozzleTypeResponse.KEY_IMAGE_URL
-                        )
-                        .build()
+                    RetrosheetInterceptor.Builder().run {
+                        NozzleResponse.addSheet(this)
+                        NozzleTypeResponse.addSheet(this)
+                    }.build()
                 )
                 .build()
         )

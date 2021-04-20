@@ -1,4 +1,4 @@
-package com.gyorgyzoltan.sprayApp.repository.preferences
+package com.gyorgyzoltan.sprayApp.local.implementation.preferences
 
 import android.content.Context
 import kotlin.properties.ReadWriteProperty
@@ -8,7 +8,6 @@ internal class PreferenceManagerImpl(context: Context) : PreferenceManager {
 
     private val preferences = context.applicationContext.getSharedPreferences("preferences", Context.MODE_PRIVATE)
     override var hasSeenTutorial by MutablePreferenceFieldDelegate.Boolean("hasSeenTutorial")
-    override var isConfigurationSet by MutablePreferenceFieldDelegate.Boolean("isConfigurationSet")
     override var selectedNozzleName by MutablePreferenceFieldDelegate.String("selectedNozzleName")
 
     private sealed class MutablePreferenceFieldDelegate<T>(protected val key: kotlin.String) : ReadWriteProperty<PreferenceManagerImpl, T> {

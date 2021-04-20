@@ -1,10 +1,10 @@
 package com.gyorgyzoltan.sprayApp.domain.configuration
 
-import com.gyorgyzoltan.sprayApp.repository.preferences.PreferenceManager
+import com.gyorgyzoltan.sprayApp.repository.repository.configuration.ConfigurationRepository
 
 class IsConfigurationSetUseCase(
-    private val preferenceManager: PreferenceManager
+    private val configurationRepository: ConfigurationRepository
 ) {
 
-    operator fun invoke() = preferenceManager.isConfigurationSet
+    operator fun invoke() = configurationRepository.isConfigurationSet
 }
