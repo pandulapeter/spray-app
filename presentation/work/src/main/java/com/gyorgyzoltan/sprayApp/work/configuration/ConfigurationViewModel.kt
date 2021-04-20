@@ -32,12 +32,20 @@ internal class ConfigurationViewModel(
     override val shouldShowErrorView = configuration().map { it is DataState.Error && it.data == null }.asLiveData()
     private val _events = MutableLiveData<Consumable<Event>>()
     val events: LiveData<Consumable<Event>> = _events
+    private var currentWheelRadius: Float? = null
+    private var currentScrewCount: Int? = null
+    private var currentNozzleCount: Int? = null
+    private var currentNozzleDistance: Float? = null
 
     init {
         configuration().onEach {
             if (it is DataState.Error && it.data != null) {
                 _events.value = Consumable(Event.ShowErrorSnackbar)
             }
+            currentWheelRadius = it.data?.wheelRadius
+            currentScrewCount = it.data?.screwCount
+            currentNozzleCount = it.data?.nozzleCount
+            currentNozzleDistance = it.data?.nozzleDistance
         }.launchIn(viewModelScope)
         loadData(false)
     }
@@ -53,10 +61,10 @@ internal class ConfigurationViewModel(
     fun onNoSelectionItemClicked(hintResourceId: Int) {
         _events.value = when (hintResourceId) {
             R.string.configuration_no_nozzle_selected -> Consumable(Event.NavigateToNozzlePicker)
-            R.string.configuration_no_wheel_radius_set -> Consumable(Event.NavigateToWheelRadiusPicker)
-            R.string.configuration_no_screw_count_set -> Consumable(Event.NavigateToScrewCountPicker)
-            R.string.configuration_no_nozzle_count_set -> Consumable(Event.NavigateToNozzleCountPicker)
-            R.string.configuration_no_nozzle_distance_set -> Consumable(Event.NavigateToNozzleDistancePicker)
+            R.string.configuration_no_wheel_radius_set -> Consumable(Event.NavigateToWheelRadiusPicker(currentWheelRadius))
+            R.string.configuration_no_screw_count_set -> Consumable(Event.NavigateToScrewCountPicker(currentScrewCount))
+            R.string.configuration_no_nozzle_count_set -> Consumable(Event.NavigateToNozzleCountPicker(currentNozzleCount))
+            R.string.configuration_no_nozzle_distance_set -> Consumable(Event.NavigateToNozzleDistancePicker(currentNozzleDistance))
             else -> throw  IllegalArgumentException("Invalid hint resource ID: $hintResourceId")
         }
     }
@@ -135,10 +143,10 @@ internal class ConfigurationViewModel(
 
     sealed class Event {
         object NavigateToNozzlePicker : Event()
-        object NavigateToWheelRadiusPicker : Event()
-        object NavigateToScrewCountPicker : Event()
-        object NavigateToNozzleCountPicker : Event()
-        object NavigateToNozzleDistancePicker : Event()
+        data class NavigateToWheelRadiusPicker(val currentWheelRadius: Float?) : Event()
+        data class NavigateToScrewCountPicker(val currentScrewCount: Int?) : Event()
+        data class NavigateToNozzleCountPicker(val currentNozzleCount: Int?) : Event()
+        data class NavigateToNozzleDistancePicker(val currentNozzleDistance: Float?) : Event()
         object CloseScreen : Event()
         object ShowErrorSnackbar : Event()
     }

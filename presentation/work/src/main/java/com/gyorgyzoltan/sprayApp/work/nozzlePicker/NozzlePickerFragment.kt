@@ -14,7 +14,6 @@ internal class NozzlePickerFragment : ListFragment<NozzlePickerViewModel, Nozzle
     titleResourceId = R.string.nozzle_picker_title,
     subtitleResourceId = R.string.nozzle_picker_subtitle
 ) {
-
     override val viewModel by viewModel<NozzlePickerViewModel>()
 
     override fun createAdapter() = NozzlePickerAdapter(

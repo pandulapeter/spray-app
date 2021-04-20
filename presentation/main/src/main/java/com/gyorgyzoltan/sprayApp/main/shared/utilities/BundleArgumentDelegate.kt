@@ -12,4 +12,11 @@ sealed class BundleArgumentDelegate<T>(protected val key: String, protected val 
 
         override fun setValue(thisRef: Bundle?, property: KProperty<*>, value: kotlin.Boolean) = thisRef?.putBoolean(key, value) ?: Unit
     }
+
+    class Float(key: String, defaultValue: kotlin.Float = -1f) : BundleArgumentDelegate<kotlin.Float>(key, defaultValue) {
+
+        override fun getValue(thisRef: Bundle?, property: KProperty<*>) = thisRef?.getFloat(key, defaultValue) ?: defaultValue
+
+        override fun setValue(thisRef: Bundle?, property: KProperty<*>, value: kotlin.Float) = thisRef?.putFloat(key, value) ?: Unit
+    }
 }

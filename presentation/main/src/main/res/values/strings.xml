@@ -48,6 +48,7 @@
     <!-- Wheel radius picker -->
     <string name="wheel_radius_picker_title">Wheel radius</string>
     <string name="wheel_radius_picker_subtitle">Provide the radius of the wheel</string>
+    <string name="wheel_radius_hint">Measure the distance between the center of the wheel and the sensor. The accuracy of this value is important for measuring speed.\n\nEnter the value in centimeters.</string>
 
     <!-- Screw count picker -->
     <string name="screw_count_picker_title">Screw count</string>

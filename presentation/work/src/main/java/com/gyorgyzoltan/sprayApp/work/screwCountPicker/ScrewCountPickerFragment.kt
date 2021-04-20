@@ -15,7 +15,6 @@ internal class ScrewCountPickerFragment : ListFragment<ScrewCountPickerViewModel
     titleResourceId = R.string.screw_count_picker_title,
     subtitleResourceId = R.string.screw_count_picker_subtitle
 ) {
-
     override val viewModel by viewModel<ScrewCountPickerViewModel>()
 
     override fun createAdapter() = ScrewCountPickerAdapter(

@@ -42,10 +42,10 @@ class WorkContainerFragment : ContainerFragment({
         newInstance = NozzlePickerFragment.Companion::newInstance
     )
 
-    internal fun navigateToWheelRadiusPicker() = childFragmentManager.handleReplace(
+    internal fun navigateToWheelRadiusPicker(currentWheelRadius: Float?) = childFragmentManager.handleReplace(
         addToBackStack = true,
         transitionType = TransitionType.MODAL,
-        newInstance = WheelRadiusPickerFragment.Companion::newInstance
+        newInstance = { WheelRadiusPickerFragment.newInstance(currentWheelRadius) }
     )
 
     internal fun navigateToScrewCountPicker() = childFragmentManager.handleReplace(

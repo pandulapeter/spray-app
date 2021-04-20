@@ -15,7 +15,6 @@ internal class NozzleDistancePickerFragment : ListFragment<NozzleDistancePickerV
     titleResourceId = R.string.nozzle_distance_picker_title,
     subtitleResourceId = R.string.nozzle_distance_picker_subtitle
 ) {
-
     override val viewModel by viewModel<NozzleDistancePickerViewModel>()
 
     override fun createAdapter() = NozzleDistancePickerAdapter(
