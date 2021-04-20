@@ -2,7 +2,7 @@ object Versions {
 
     // App
     const val APP_VERSION_CODE = 1
-    const val APP_VERSION_NAME = "0.0.2"
+    const val APP_VERSION_NAME = "0.0.3"
 
     // Project
     const val MIN_SDK_VERSION = 23
