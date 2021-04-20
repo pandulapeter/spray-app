@@ -9,14 +9,10 @@ internal fun NozzleType.toEntity() = NozzleTypeEntity(
     imageUrl = imageUrl
 )
 
-internal fun NozzleTypeEntity.toNozzleType(): NozzleType? = name?.let { name ->
-    imageUrl?.let { imageUrl ->
-        NozzleType(
-            name = name,
-            imageUrl = imageUrl
-        )
-    }
-}
+internal fun NozzleTypeEntity.toNozzleType() = NozzleType(
+    name = name,
+    imageUrl = imageUrl
+)
 
 internal fun NozzleTypeResponse.toNozzleType(): NozzleType? = name?.let { name ->
     imageUrl?.let { imageUrl ->

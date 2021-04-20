@@ -21,5 +21,8 @@ object Dependencies {
     const val RECYCLER_VIEW = "androidx.recyclerview:recyclerview:${Versions.RECYCLER_VIEW}"
     const val RETROFIT = "com.squareup.retrofit2:retrofit:${Versions.RETROFIT}"
     const val RETROFIT_CONVERTER = "com.squareup.retrofit2:converter-moshi:${Versions.RETROFIT}"
+    const val ROOM = "androidx.room:room-runtime:${Versions.ROOM}"
+    const val ROOM_ANNOTATION_PROCESSOR = "androidx.room:room-compiler:${Versions.ROOM}"
+    const val ROOM_KTX = "androidx.room:room-ktx:${Versions.ROOM}"
     const val SWIPE_REFRESH_LAYOUT = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.SWIPE_REFRESH_LAYOUT}"
 }
