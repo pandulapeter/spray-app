@@ -3,6 +3,7 @@ package com.gyorgyzoltan.sprayApp
 import android.app.Application
 import com.gyorgyzoltan.sprayApp.debugMenu.DebugMenu
 import com.gyorgyzoltan.sprayApp.domain.domainModule
+import com.gyorgyzoltan.sprayApp.domain.nozzle.RefreshNozzlesUseCase
 import com.gyorgyzoltan.sprayApp.help.featureHelpModule
 import com.gyorgyzoltan.sprayApp.local.localSourceModule
 import com.gyorgyzoltan.sprayApp.remote.remoteSourceModule
@@ -10,11 +11,16 @@ import com.gyorgyzoltan.sprayApp.repository.repositoryModule
 import com.gyorgyzoltan.sprayApp.statistics.featureStatisticsModule
 import com.gyorgyzoltan.sprayApp.tutorial.featureTutorialModule
 import com.gyorgyzoltan.sprayApp.work.featureWorkModule
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
 @Suppress("unused")
 class SprayAppApplication : Application() {
+
+    private val refreshNozzles by inject<RefreshNozzlesUseCase>()
 
     override fun onCreate() {
         super.onCreate()
@@ -34,5 +40,6 @@ class SprayAppApplication : Application() {
             applicationId = BuildConfig.APPLICATION_ID,
             buildDate = BuildConfig.BUILD_DATE
         )
+        GlobalScope.launch { refreshNozzles(true) }
     }
 }

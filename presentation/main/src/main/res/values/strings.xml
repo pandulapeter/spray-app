@@ -43,7 +43,7 @@
     <string name="configuration_nozzle_count_format_plural">%1$d nozzles</string>
     <string name="configuration_no_nozzle_count_set">No nozzle count set</string>
     <string name="configuration_nozzle_distance">Nozzle distance:</string>
-    <string name="configuration_nozzle_distance_format">%1$.2f m</string>
+    <string name="configuration_nozzle_distance_format">%1$.2f cm</string>
     <string name="configuration_no_nozzle_distance_set">No nozzle distance set</string>
 
     <!-- Nozzle picker -->
@@ -69,7 +69,7 @@
     <!-- Nozzle distance picker -->
     <string name="nozzle_distance_picker_title">Nozzle distance</string>
     <string name="nozzle_distance_picker_subtitle">Provide the distance between the nozzles</string>
-    <string name="nozzle_distance_hint">Measure the distance between two consecutive nozzles on the sprayer.\n\nEnter the value in meters that is larger than %1$.0f m.</string>
+    <string name="nozzle_distance_hint">Measure the distance between two consecutive nozzles on the sprayer.\n\nEnter a value between %1$.0f cm and %2$.0f cm.</string>
 
     <!-- Connection -->
     <string name="work_placeholder"><b>Coming soon…</b>\n\n• Work mode (automatic / manual / test)\n• Pairing / connection flow</string>

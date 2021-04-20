@@ -6,6 +6,5 @@ import com.gyorgyzoltan.sprayApp.repository.repository.configuration.Configurati
 class SetNozzleUseCase(
     private val configurationRepository: ConfigurationRepository
 ) {
-
     operator fun invoke(nozzle: Nozzle) = configurationRepository.setNozzle(nozzle)
 }

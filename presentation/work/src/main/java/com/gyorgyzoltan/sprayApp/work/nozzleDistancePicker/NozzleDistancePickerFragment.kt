@@ -22,6 +22,7 @@ internal class NozzleDistancePickerFragment : ListFragment<NozzleDistancePickerV
 
     override fun createAdapter() = NozzleDistancePickerAdapter(
         scope = viewModel.viewModelScope,
+        onNozzleDistanceChanged = viewModel::onNozzleDistanceChanged,
         onDoneButtonPressed = viewModel::onDoneButtonPressed
     )
 

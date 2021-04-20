@@ -4,10 +4,10 @@ import com.gyorgyzoltan.sprayApp.model.nozzle.Nozzle
 
 data class Configuration(
     val nozzle: Nozzle? = null,
-    val wheelRadius: Float? = null, // In cm
+    val wheelRadius: Float? = null,
     val screwCount: Int? = null,
-    val nozzleCount: Int? = null, // min 1, max 64
-    val nozzleDistance: Float? = null // In m
+    val nozzleCount: Int? = null,
+    val nozzleDistance: Float? = null
 ) {
     val isValid = nozzle != null && wheelRadius != null && screwCount != null && nozzleCount != null && nozzleDistance != null
 }

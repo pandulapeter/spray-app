@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import com.gyorgyzoltan.sprayApp.main.shared.list.BaseViewHolder
 import com.gyorgyzoltan.sprayApp.work.R
 import com.gyorgyzoltan.sprayApp.work.databinding.ItemNozzleDistanceHintBinding
+import com.gyorgyzoltan.sprayApp.work.nozzleDistancePicker.NozzleDistancePickerViewModel
 
 class NozzleDistanceHintViewHolder private constructor(
     binding: ItemNozzleDistanceHintBinding
@@ -16,6 +17,8 @@ class NozzleDistanceHintViewHolder private constructor(
     ) : NozzleDistancePickerListItem {
 
         override val id: String = "hint"
+        val minimumValue = NozzleDistancePickerViewModel.MINIMUM_NOZZLE_DISTANCE
+        val maximumValue = NozzleDistancePickerViewModel.MAXIMUM_NOZZLE_DISTANCE
     }
 
     companion object {

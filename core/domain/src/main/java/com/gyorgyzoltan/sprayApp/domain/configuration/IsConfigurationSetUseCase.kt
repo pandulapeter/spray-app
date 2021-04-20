@@ -5,6 +5,5 @@ import com.gyorgyzoltan.sprayApp.repository.repository.configuration.Configurati
 class IsConfigurationSetUseCase(
     private val configurationRepository: ConfigurationRepository
 ) {
-
     operator fun invoke() = configurationRepository.isConfigurationSet
 }

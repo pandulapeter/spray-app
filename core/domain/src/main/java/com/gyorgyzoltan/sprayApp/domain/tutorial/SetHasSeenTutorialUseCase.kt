@@ -5,7 +5,6 @@ import com.gyorgyzoltan.sprayApp.repository.repository.tutorial.TutorialReposito
 class SetHasSeenTutorialUseCase(
     private val tutorialRepository: TutorialRepository
 ) {
-
     operator fun invoke() {
         tutorialRepository.hasSeenTutorial = true
     }

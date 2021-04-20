@@ -5,6 +5,5 @@ import com.gyorgyzoltan.sprayApp.repository.repository.configuration.Configurati
 class SetNozzleCountUseCase(
     private val configurationRepository: ConfigurationRepository
 ) {
-
     operator fun invoke(nozzleCount: Int) = configurationRepository.setNozzleCount(nozzleCount)
 }

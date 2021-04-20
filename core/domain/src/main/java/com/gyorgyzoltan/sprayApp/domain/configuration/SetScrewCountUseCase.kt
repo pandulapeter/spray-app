@@ -5,6 +5,5 @@ import com.gyorgyzoltan.sprayApp.repository.repository.configuration.Configurati
 class SetScrewCountUseCase(
     private val configurationRepository: ConfigurationRepository
 ) {
-
     operator fun invoke(screwCount: Int) = configurationRepository.setScrewCount(screwCount)
 }

@@ -5,6 +5,5 @@ import com.gyorgyzoltan.sprayApp.repository.repository.configuration.Configurati
 class RefreshConfigurationUseCase(
     private val configurationRepository: ConfigurationRepository
 ) {
-
     suspend operator fun invoke(isForceRefresh: Boolean) = configurationRepository.refresh(isForceRefresh)
 }

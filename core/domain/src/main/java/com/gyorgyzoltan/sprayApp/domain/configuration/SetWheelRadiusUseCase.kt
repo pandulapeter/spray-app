@@ -5,6 +5,5 @@ import com.gyorgyzoltan.sprayApp.repository.repository.configuration.Configurati
 class SetWheelRadiusUseCase(
     private val configurationRepository: ConfigurationRepository
 ) {
-
     operator fun invoke(wheelRadius: Float) = configurationRepository.setWheelRadius(wheelRadius)
 }

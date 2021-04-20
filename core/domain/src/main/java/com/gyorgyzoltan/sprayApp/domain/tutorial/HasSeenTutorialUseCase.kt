@@ -5,6 +5,5 @@ import com.gyorgyzoltan.sprayApp.repository.repository.tutorial.TutorialReposito
 class HasSeenTutorialUseCase(
     private val tutorialRepository: TutorialRepository
 ) {
-
     operator fun invoke() = tutorialRepository.hasSeenTutorial
 }
