@@ -1,4 +1,4 @@
-apply from: "$rootDir${BaseModules.ANDROID_LIBRARY}"
+apply from: "$rootDir${BaseModules.KOTLIN_LIBRARY}"
 
 dependencies {
 

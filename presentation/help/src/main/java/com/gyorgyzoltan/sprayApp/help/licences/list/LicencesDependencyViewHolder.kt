@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.gyorgyzoltan.sprayApp.help.R
 import com.gyorgyzoltan.sprayApp.help.databinding.ItemLicencesDependencyBinding
-import com.gyorgyzoltan.sprayApp.model.dependency.Dependency
+import com.gyorgyzoltan.sprayApp.model.Dependency
 import com.gyorgyzoltan.sprayApp.main.shared.list.BaseViewHolder
 
 internal class LicencesDependencyViewHolder private constructor(

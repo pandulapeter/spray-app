@@ -1,0 +1,17 @@
+apply from: "$rootDir${BaseModules.ANDROID_LIBRARY}"
+apply plugin: Plugins.KOTLIN_KAPT
+
+dependencies {
+
+    // Service locator
+    implementation Dependencies.KOIN
+
+    // Module dependencies
+    implementation project(Modules.DATA_MODEL)
+    implementation project(Modules.DATA_SOURCE_LOCAL)
+
+    // Database
+    implementation Dependencies.ROOM
+    implementation Dependencies.ROOM_KTX
+    kapt Dependencies.ROOM_ANNOTATION_PROCESSOR
+}

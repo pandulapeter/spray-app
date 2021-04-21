@@ -13,7 +13,7 @@ dependencies {
     // Module dependencies
     implementation project(Modules.DATA_MODEL)
     implementation project(Modules.DOMAIN)
-    implementation project(Modules.DEBUG_MENU)
+    implementation project(Modules.PRESENTATION_DEBUG_MENU)
 
     // Coroutines
     implementation Dependencies.COROUTINES

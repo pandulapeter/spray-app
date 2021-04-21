@@ -1,9 +1,10 @@
 package com.gyorgyzoltan.sprayApp.repository.repository.configuration
 
-import com.gyorgyzoltan.sprayApp.local.implementation.preferences.PreferenceManager
+import com.gyorgyzoltan.sprayApp.local.PreferenceManager
 import com.gyorgyzoltan.sprayApp.model.Configuration
-import com.gyorgyzoltan.sprayApp.model.shared.DataState
 import com.gyorgyzoltan.sprayApp.model.nozzle.Nozzle
+import com.gyorgyzoltan.sprayApp.model.shared.DataState
+import com.gyorgyzoltan.sprayApp.repository.model.ConfigurationImpl
 import com.gyorgyzoltan.sprayApp.repository.repository.nozzle.NozzleRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
@@ -14,7 +15,7 @@ internal class ConfigurationRepositoryImpl(
     private val nozzleRepository: NozzleRepository
 ) : ConfigurationRepository {
 
-    private val configuration = MutableStateFlow(Configuration())
+    private val configuration = MutableStateFlow<Configuration>(ConfigurationImpl())
     override val currentConfiguration = combine(
         configuration,
         nozzleRepository.nozzles
@@ -60,7 +61,7 @@ internal class ConfigurationRepositoryImpl(
         screwCount: Int? = null,
         nozzleCount: Int? = null,
         nozzleDistance: Float? = null
-    ) = Configuration(
+    ): Configuration = ConfigurationImpl(
         nozzle = nozzle ?: configuration.value.nozzle ?: nozzleRepository.nozzles.value.data?.firstOrNull { it.name == preferenceManager.nozzleName },
         wheelRadius = wheelRadius ?: configuration.value.wheelRadius ?: if (preferenceManager.isWheelRadiusSet) preferenceManager.wheelRadius else null,
         screwCount = screwCount ?: configuration.value.screwCount ?: if (preferenceManager.isScrewCountSet) preferenceManager.screwCount else null,

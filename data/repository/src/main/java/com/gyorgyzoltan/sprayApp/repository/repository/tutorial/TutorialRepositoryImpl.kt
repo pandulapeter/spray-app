@@ -1,6 +1,6 @@
 package com.gyorgyzoltan.sprayApp.repository.repository.tutorial
 
-import com.gyorgyzoltan.sprayApp.local.implementation.preferences.PreferenceManager
+import com.gyorgyzoltan.sprayApp.local.PreferenceManager
 
 internal class TutorialRepositoryImpl(
     private val preferenceManager: PreferenceManager

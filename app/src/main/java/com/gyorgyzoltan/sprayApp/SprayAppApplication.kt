@@ -7,8 +7,8 @@ import com.gyorgyzoltan.sprayApp.domain.domainModule
 import com.gyorgyzoltan.sprayApp.domain.nozzle.RefreshNozzlesUseCase
 import com.gyorgyzoltan.sprayApp.domain.tutorial.HasSeenTutorialUseCase
 import com.gyorgyzoltan.sprayApp.help.featureHelpModule
-import com.gyorgyzoltan.sprayApp.local.localSourceModule
-import com.gyorgyzoltan.sprayApp.remote.remoteSourceModule
+import com.gyorgyzoltan.sprayApp.localImpl.localSourceModule
+import com.gyorgyzoltan.sprayApp.remoteImpl.remoteSourceModule
 import com.gyorgyzoltan.sprayApp.repository.repositoryModule
 import com.gyorgyzoltan.sprayApp.statistics.featureStatisticsModule
 import com.gyorgyzoltan.sprayApp.tutorial.featureTutorialModule

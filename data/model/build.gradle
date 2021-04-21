@@ -1,7 +1,1 @@
-apply from: "$rootDir${BaseModules.ANDROID_LIBRARY}"
-
-dependencies {
-
-    // Annotations
-    implementation Dependencies.ANNOTATION
-}
+apply from: "$rootDir${BaseModules.KOTLIN_LIBRARY}"

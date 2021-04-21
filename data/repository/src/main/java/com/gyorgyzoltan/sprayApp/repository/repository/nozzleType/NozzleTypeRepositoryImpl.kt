@@ -1,10 +1,8 @@
 package com.gyorgyzoltan.sprayApp.repository.repository.nozzleType
 
-import com.gyorgyzoltan.sprayApp.local.localSource.nozzleType.NozzleTypeLocalSource
+import com.gyorgyzoltan.sprayApp.local.NozzleTypeLocalSource
 import com.gyorgyzoltan.sprayApp.model.nozzle.NozzleType
-import com.gyorgyzoltan.sprayApp.remote.remoteSource.nozzleType.NozzleTypeRemoteSource
-import com.gyorgyzoltan.sprayApp.repository.mapper.toEntity
-import com.gyorgyzoltan.sprayApp.repository.mapper.toNozzleType
+import com.gyorgyzoltan.sprayApp.remote.NozzleTypeRemoteSource
 
 internal class NozzleTypeRepositoryImpl(
     private val nozzleTypeLocalSource: NozzleTypeLocalSource,
@@ -26,9 +24,9 @@ internal class NozzleTypeRepositoryImpl(
         }
     }
 
-    private suspend fun loadNozzleTypesFromLocal() = nozzleTypeLocalSource.getNozzleTypes().map { it.toNozzleType() }
+    private suspend fun loadNozzleTypesFromLocal() = nozzleTypeLocalSource.getNozzleTypes()
 
-    private suspend fun loadNozzleTypesFromRemote() = nozzleTypeRemoteSource.getNozzleTypes().mapNotNull { it.toNozzleType() }.also { nozzleTypes ->
-        nozzleTypeLocalSource.saveNozzleTypes(nozzleTypes.map { it.toEntity() })
+    private suspend fun loadNozzleTypesFromRemote() = nozzleTypeRemoteSource.getNozzleTypes().also { nozzleTypes ->
+        nozzleTypeLocalSource.saveNozzleTypes(nozzleTypes)
     }
 }

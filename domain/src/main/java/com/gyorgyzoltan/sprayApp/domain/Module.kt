@@ -8,6 +8,7 @@ import com.gyorgyzoltan.sprayApp.domain.configuration.SetNozzleDistanceUseCase
 import com.gyorgyzoltan.sprayApp.domain.configuration.SetNozzleUseCase
 import com.gyorgyzoltan.sprayApp.domain.configuration.SetScrewCountUseCase
 import com.gyorgyzoltan.sprayApp.domain.configuration.SetWheelRadiusUseCase
+import com.gyorgyzoltan.sprayApp.domain.dependency.GetDependenciesUseCase
 import com.gyorgyzoltan.sprayApp.domain.nozzle.NozzlesUseCase
 import com.gyorgyzoltan.sprayApp.domain.nozzle.RefreshNozzlesUseCase
 import com.gyorgyzoltan.sprayApp.domain.tutorial.HasSeenTutorialUseCase
@@ -25,6 +26,9 @@ val domainModule = module {
     factory { SetNozzleDistanceUseCase(get()) }
     factory { SetScrewCountUseCase(get()) }
     factory { SetWheelRadiusUseCase(get()) }
+
+    // Dependency
+    factory { GetDependenciesUseCase(get()) }
 
     // Nozzle
     factory { NozzlesUseCase(get()) }

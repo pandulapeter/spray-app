@@ -69,6 +69,8 @@ dependencies {
     // Module dependencies
     implementation project(Modules.DATA_SOURCE_LOCAL)
     implementation project(Modules.DATA_SOURCE_REMOTE)
+    implementation project(Modules.DATA_SOURCE_LOCAL_IMPL)
+    implementation project(Modules.DATA_SOURCE_REMOTE_IMPL)
     implementation project(Modules.DATA_REPOSITORY)
     implementation project(Modules.DOMAIN)
     implementation project(Modules.PRESENTATION_MAIN)
@@ -76,7 +78,7 @@ dependencies {
     implementation project(Modules.PRESENTATION_WORK)
     implementation project(Modules.PRESENTATION_STATISTICS)
     implementation project(Modules.PRESENTATION_HELP)
-    implementation project(Modules.DEBUG_MENU)
+    implementation project(Modules.PRESENTATION_DEBUG_MENU)
 
     // UI
     implementation Dependencies.APP_COMPAT

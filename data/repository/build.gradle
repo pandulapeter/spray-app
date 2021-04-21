@@ -1,16 +1,15 @@
-apply from: "$rootDir${BaseModules.ANDROID_LIBRARY}"
+apply from: "$rootDir${BaseModules.KOTLIN_LIBRARY}"
 
 dependencies {
 
     // Service locator
     implementation Dependencies.KOIN
 
+    // Coroutines
+    implementation Dependencies.COROUTINES
+
     // Module dependencies
     implementation project(Modules.DATA_MODEL)
     implementation project(Modules.DATA_SOURCE_LOCAL)
     implementation project(Modules.DATA_SOURCE_REMOTE)
-    implementation project(Modules.DEBUG_MENU)
-
-    // Coroutines
-    implementation Dependencies.COROUTINES
 }

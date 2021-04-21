@@ -1,0 +1,6 @@
+apply plugin: Plugins.JAVA_LIBRARY
+apply plugin: Plugins.KOTLIN
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}

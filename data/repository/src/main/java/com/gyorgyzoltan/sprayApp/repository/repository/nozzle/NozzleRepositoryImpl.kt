@@ -1,21 +1,21 @@
 package com.gyorgyzoltan.sprayApp.repository.repository.nozzle
 
-import com.gyorgyzoltan.sprayApp.local.localSource.nozzle.NozzleLocalSource
+import com.gyorgyzoltan.sprayApp.local.NozzleColorLocalSource
+import com.gyorgyzoltan.sprayApp.local.NozzleStubLocalSource
 import com.gyorgyzoltan.sprayApp.model.nozzle.Nozzle
-import com.gyorgyzoltan.sprayApp.model.nozzle.NozzleColor
 import com.gyorgyzoltan.sprayApp.model.nozzle.NozzleType
 import com.gyorgyzoltan.sprayApp.model.shared.DataState
 import com.gyorgyzoltan.sprayApp.model.shared.RepositoryNotInitializedException
-import com.gyorgyzoltan.sprayApp.remote.remoteSource.nozzle.NozzleRemoteSource
-import com.gyorgyzoltan.sprayApp.repository.mapper.toEntity
-import com.gyorgyzoltan.sprayApp.repository.mapper.toNozzle
+import com.gyorgyzoltan.sprayApp.remote.NozzleStubRemoteSource
 import com.gyorgyzoltan.sprayApp.repository.repository.nozzleType.NozzleTypeRepository
 import com.gyorgyzoltan.sprayApp.repository.utilities.toDataState
+import com.gyorgyzoltan.sprayApp.repository.utilities.toNozzleImpl
 import kotlinx.coroutines.flow.MutableStateFlow
 
 internal class NozzleRepositoryImpl(
-    private val nozzleLocalSource: NozzleLocalSource,
-    private val nozzleRemoteSource: NozzleRemoteSource,
+    private val nozzleColorLocalSource: NozzleColorLocalSource,
+    private val nozzleStubLocalSource: NozzleStubLocalSource,
+    private val nozzleStubRemoteSource: NozzleStubRemoteSource,
     private val nozzleTypeRepository: NozzleTypeRepository
 ) : NozzleRepository {
 
@@ -44,23 +44,23 @@ internal class NozzleRepositoryImpl(
         emptyList()
     }
 
-    private suspend fun loadNozzlesFromLocal(nozzleTypes: List<NozzleType>) = NozzleColor.values().toList().let { nozzleColors ->
-        nozzleLocalSource.getNozzles().mapNotNull {
-            it.toNozzle(
+    private suspend fun loadNozzlesFromLocal(nozzleTypes: List<NozzleType>) = nozzleColorLocalSource.getNozzleColors().let { nozzleColors ->
+        nozzleStubLocalSource.getNozzleStubs().mapNotNull {
+            it.toNozzleImpl(
                 nozzleTypes = nozzleTypes,
                 nozzleColors = nozzleColors
             )
         }
     }
 
-    private suspend fun loadNozzlesFromRemote(nozzleTypes: List<NozzleType>) = NozzleColor.values().toList().let { nozzleColors ->
-        nozzleRemoteSource.getNozzles().mapNotNull {
-            it.toNozzle(
+    private suspend fun loadNozzlesFromRemote(nozzleTypes: List<NozzleType>) = nozzleColorLocalSource.getNozzleColors().let { nozzleColors ->
+        nozzleStubRemoteSource.getNozzleStubs().mapNotNull {
+            it.toNozzleImpl(
                 nozzleTypes = nozzleTypes,
                 nozzleColors = nozzleColors
             )
         }.also { nozzles ->
-            nozzleLocalSource.saveNozzles(nozzles.map { it.toEntity() })
+            nozzleStubLocalSource.saveNozzleStubs(nozzles)
         }
     }
 }

@@ -7,5 +7,5 @@ import org.koin.dsl.module
 
 val featureHelpModule = module {
     viewModel { HelpViewModel() }
-    viewModel { LicencesViewModel() }
+    viewModel { LicencesViewModel(get()) }
 }
