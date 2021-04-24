@@ -59,13 +59,7 @@ fun View.showSnackbar(
     }
 }.show()
 
-fun View.openUrl(url: String) = Intent(Intent.ACTION_VIEW, Uri.parse(url)).let { intent ->
-    if (intent.resolveActivity(context.packageManager) != null) {
-        context.startActivity(intent)
-    } else {
-        showSnackbar(R.string.app_not_found)
-    }
-}
+fun Context.openUrl(url: String) = startActivity(Intent.createChooser(Intent(Intent.ACTION_VIEW, Uri.parse(url)), null))
 
 inline fun <T> LiveData<Consumable<T>>.observeEvents(viewLifecycleOwner: LifecycleOwner, crossinline blockNonNullValueFunction: (T) -> Unit) {
     observe(viewLifecycleOwner, Observer {

@@ -14,7 +14,7 @@ internal class LicencesFragment : ListFragment<LicencesViewModel, LicencesListIt
 
     override fun createAdapter() = LicencesAdapter(viewModel.viewModelScope, ::onLicenceSelected)
 
-    private fun onLicenceSelected(url: String) = binding.recyclerView.openUrl(url)
+    private fun onLicenceSelected(url: String) = context?.openUrl(url)
 
     companion object {
         fun newInstance() = LicencesFragment()

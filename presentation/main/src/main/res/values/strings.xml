@@ -3,7 +3,6 @@
     <!-- General -->
     <string name="app_name">SprayApp</string>
     <string name="back">Back</string>
-    <string name="app_not_found">No application can handle this link</string>
     <string name="general_error">Cannot refresh data</string>
     <string name="general_try_again">Try again</string>
     <string name="general_close_confirmation_title">Are you sure?</string>

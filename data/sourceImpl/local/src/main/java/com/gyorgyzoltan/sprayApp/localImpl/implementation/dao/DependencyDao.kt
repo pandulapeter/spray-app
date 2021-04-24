@@ -9,49 +9,49 @@ internal class DependencyDao {
         DependencyEntity(
             typeResourceId = R.string.licences_apache,
             title = "Kotlin",
-            copyright = "Copyright 2010-2020 JetBrains s.r.o.",
-            url = "https://github.com/JetBrains/kotlin/tree/master/license"
+            copyright = "Copyright 2010-2021 JetBrains s.r.o.",
+            url = "https://github.com/JetBrains/kotlin/tree/master"
         ),
         DependencyEntity(
             typeResourceId = R.string.licences_apache,
             title = "Kotlin Coroutines",
-            copyright = "Copyright 2010-2020 JetBrains s.r.o.",
-            url = "https://github.com/JetBrains/kotlin/tree/master/license"
+            copyright = "Copyright 2010-2021 JetBrains s.r.o.",
+            url = "https://github.com/JetBrains/kotlin/tree/master"
         ),
         DependencyEntity(
             typeResourceId = R.string.licences_apache,
             title = "AndroidX AppCompat",
-            copyright = "Copyright (C) 2020 The Android Open Source Project",
+            copyright = "Copyright (C) 2021 The Android Open Source Project",
             url = "https://developer.android.com/jetpack/androidx/releases/appcompat"
         ),
         DependencyEntity(
             typeResourceId = R.string.licences_apache,
             title = "AndroidX Lifecycle",
-            copyright = "Copyright (C) 2020 The Android Open Source Project",
+            copyright = "Copyright (C) 2021 The Android Open Source Project",
             url = "https://developer.android.com/jetpack/androidx/releases/lifecycle"
         ),
         DependencyEntity(
             typeResourceId = R.string.licences_apache,
             title = "Android Material Components",
-            copyright = "Copyright (C) 2020 The Android Open Source Project",
-            url = "https://github.com/material-components/material-components-android/blob/master/LICENSE"
+            copyright = "Copyright (C) 2021 The Android Open Source Project",
+            url = "https://github.com/material-components/material-components-android/blob/master"
         ),
         DependencyEntity(
             typeResourceId = R.string.licences_apache,
             title = "Constraint Layout",
-            copyright = "Copyright (C) 2020 The Android Open Source Project",
+            copyright = "Copyright (C) 2021 The Android Open Source Project",
             url = "https://developer.android.com/jetpack/androidx/releases/constraintlayout"
         ),
         DependencyEntity(
             typeResourceId = R.string.licences_apache,
             title = "Recycler View",
-            copyright = "Copyright (C) 2020 The Android Open Source Project",
+            copyright = "Copyright (C) 2021 The Android Open Source Project",
             url = "https://developer.android.com/jetpack/androidx/releases/recyclerview"
         ),
         DependencyEntity(
             typeResourceId = R.string.licences_apache,
             title = "Koin",
-            copyright = "",
+            copyright = "Copyright (C) 2021 Koin",
             url = "https://github.com/InsertKoinIO/koin"
         ),
         DependencyEntity(

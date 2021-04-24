@@ -42,7 +42,7 @@ internal class HelpFragment : ListFragment<HelpViewModel, HelpListItem>(R.string
         try {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(DEEPLINK_URL_PREFIX + packageName)))
         } catch (_: ActivityNotFoundException) {
-            binding.recyclerView.openUrl(FULL_URL_PREFIX + packageName)
+            context?.openUrl(FULL_URL_PREFIX + packageName)
         }
     }
 
