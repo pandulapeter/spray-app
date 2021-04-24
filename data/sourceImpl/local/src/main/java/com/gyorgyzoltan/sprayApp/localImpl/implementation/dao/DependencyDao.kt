@@ -52,7 +52,19 @@ internal class DependencyDao {
             typeResourceId = R.string.licences_apache,
             title = "Koin",
             copyright = "",
-            url = "https://github.com/InsertKoinIO/koin",
+            url = "https://github.com/InsertKoinIO/koin"
+        ),
+        DependencyEntity(
+            typeResourceId = R.string.licences_apache,
+            title = "Retrosheet",
+            copyright = "theapache64",
+            url = "https://github.com/theapache64/retrosheet"
+        ),
+        DependencyEntity(
+            typeResourceId = R.string.licences_apache,
+            title = "Coil",
+            copyright = "Copyright 2021 Coil Contributors",
+            url = "https://github.com/coil-kt/coil"
         )
     )
 }
