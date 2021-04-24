@@ -11,7 +11,6 @@ object Versions {
     const val JAVA = 1.8
 
     // Libraries
-    const val ANNOTATION = "1.2.0"
     const val APP_COMPAT = "1.3.0-rc01"
     const val BEAGLE = "2.6.0"
     const val COIL = "1.1.1"

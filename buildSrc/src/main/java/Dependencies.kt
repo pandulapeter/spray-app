@@ -1,5 +1,4 @@
 object Dependencies {
-    const val ANNOTATION = "androidx.annotation:annotation:${Versions.ANNOTATION}"
     const val APP_COMPAT = "androidx.appcompat:appcompat:${Versions.APP_COMPAT}"
     const val BEAGLE_UI = "com.github.pandulapeter.beagle:ui-drawer:${Versions.BEAGLE}"
     const val BEAGLE_CRASH_LOGGER = "com.github.pandulapeter.beagle:log-crash:${Versions.BEAGLE}"
