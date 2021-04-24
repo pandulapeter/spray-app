@@ -9,12 +9,12 @@ dependencies {
     // Module dependencies
     implementation project(Modules.DATA_MODEL)
     implementation project(Modules.DATA_SOURCE_REMOTE)
-    implementation project(Modules.DATA_SOURCE_RETROSHEET) // TODO: implementation "com.theapache64:retrosheet:1.2.3"
 
     // Networking
     implementation Dependencies.OK_HTTP
     implementation Dependencies.RETROFIT
     implementation Dependencies.RETROFIT_CONVERTER
+    implementation Dependencies.RETRSHEET
     implementation Dependencies.MOSHI
     kapt Dependencies.MOSHI_CODEGEN
 }

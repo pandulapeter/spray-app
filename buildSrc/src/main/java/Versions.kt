@@ -16,7 +16,6 @@ object Versions {
     const val COIL = "1.1.1"
     const val CONSTRAINT_LAYOUT = "2.0.4"
     const val COROUTINES = "1.4.3"
-    const val FAST_CSV = "1.0.3"
     const val GRADLE = "4.1.3"
     const val KOIN = "2.2.2"
     const val LIFECYCLE = "2.3.1"
@@ -26,6 +25,7 @@ object Versions {
     const val PAGER_INDICATOR = "1.0.3"
     const val RECYCLER_VIEW = "1.2.0"
     const val RETROFIT = "2.9.0"
+    const val RETRSHEET = "2.0.0-alpha04"
     const val ROOM = "2.2.6"
     const val SWIPE_REFRESH_LAYOUT = "1.1.0"
 }

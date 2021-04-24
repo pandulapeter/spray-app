@@ -4,7 +4,6 @@ include ":data:source:local" // Modules.DATA_SOURCE_LOCAL
 include ":data:source:remote" // Modules.DATA_SOURCE_REMOTE
 include ":data:sourceImpl:local" // Modules.DATA_SOURCE_LOCAL_IMPL
 include ":data:sourceImpl:remote" // Modules.DATA_SOURCE_REMOTE_IMPL
-include ":data:sourceImpl:retrosheet" // Modules.DATA_SOURCE_RETROSHEET
 include ":domain" // Modules.DOMAIN
 include ":presentation:main" // Modules.PRESENTATION_MAIN
 include ":presentation:tutorial" // Modules.PRESENTATION_TUTORIAL

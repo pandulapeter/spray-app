@@ -1,8 +1,8 @@
 package com.gyorgyzoltan.sprayApp.remoteImpl.implementation
 
+import com.github.theapache64.retrosheet.RetrosheetInterceptor
 import com.gyorgyzoltan.sprayApp.remoteImpl.model.response.NozzleStubResponse
 import com.gyorgyzoltan.sprayApp.remoteImpl.model.response.NozzleTypeResponse
-import com.theapache64.retrosheet.RetrosheetInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory

@@ -1,9 +1,9 @@
 package com.gyorgyzoltan.sprayApp.remoteImpl.model.response
 
+import com.github.theapache64.retrosheet.RetrosheetInterceptor
 import com.gyorgyzoltan.sprayApp.remoteImpl.model.NozzleStubImpl
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import com.theapache64.retrosheet.RetrosheetInterceptor
 
 @JsonClass(generateAdapter = true)
 internal data class NozzleStubResponse(
