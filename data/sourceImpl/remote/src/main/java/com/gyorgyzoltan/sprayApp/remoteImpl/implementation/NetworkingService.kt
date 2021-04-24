@@ -13,5 +13,5 @@ internal interface NetworkingService {
 
     @Read("SELECT *")
     @GET(NozzleStubResponse.SHEET_NAME)
-    suspend fun getNozzles(): List<NozzleStubResponse>
+    suspend fun getNozzleStubs(): List<NozzleStubResponse>
 }
