@@ -64,7 +64,8 @@ dependencies {
 
     // Service locator
     implementation Dependencies.KOIN
-    implementation Dependencies.KOIN_VIEW_MODEL
+    implementation Dependencies.KOIN_ANDROID
+    implementation Dependencies.COROUTINES
 
     // Module dependencies
     implementation project(Modules.DATA_SOURCE_LOCAL)

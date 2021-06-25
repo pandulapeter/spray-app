@@ -4,7 +4,7 @@ apply plugin: Plugins.KOTLIN_KAPT
 dependencies {
 
     // Service locator
-    implementation Dependencies.KOIN
+    implementation Dependencies.KOIN_ANDROID
 
     // Module dependencies
     implementation project(Modules.DATA_MODEL)
@@ -14,7 +14,7 @@ dependencies {
     implementation Dependencies.OK_HTTP
     implementation Dependencies.RETROFIT
     implementation Dependencies.RETROFIT_CONVERTER
-    implementation Dependencies.RETRSHEET
+    implementation Dependencies.RETROSHEET
     implementation Dependencies.MOSHI
     kapt Dependencies.MOSHI_CODEGEN
 }

@@ -3,7 +3,6 @@ package com.gyorgyzoltan.sprayApp.work.screwCountPicker.list
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.EditText
-import androidx.core.view.children
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.gyorgyzoltan.sprayApp.main.shared.list.BaseViewHolder
@@ -29,7 +28,11 @@ class ScrewCountInputViewHolder private constructor(
 
     override fun bind(uiModel: UiModel) {
         super.bind(uiModel)
-        binding.numberPicker.children.iterator().forEach { if (it is EditText) it.filters = arrayOfNulls(0) }
+        binding.numberPicker.run {
+            (0 until childCount).forEach { index ->
+                getChildAt(index).let { if (it is EditText) it.filters = arrayOfNulls(0) }
+            }
+        }
     }
 
     data class UiModel(

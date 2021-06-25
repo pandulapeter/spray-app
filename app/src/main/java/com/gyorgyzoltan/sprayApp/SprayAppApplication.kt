@@ -13,18 +13,21 @@ import com.gyorgyzoltan.sprayApp.repository.repositoryModule
 import com.gyorgyzoltan.sprayApp.statistics.featureStatisticsModule
 import com.gyorgyzoltan.sprayApp.tutorial.featureTutorialModule
 import com.gyorgyzoltan.sprayApp.work.featureWorkModule
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
 @Suppress("unused")
-class SprayAppApplication : Application() {
+class SprayAppApplication : Application(), CoroutineScope {
 
     private val refreshNozzles by inject<RefreshNozzlesUseCase>()
     private val isConfigurationSet by inject<IsConfigurationSetUseCase>()
     private val hasSeenTutorial by inject<HasSeenTutorialUseCase>()
+    override val coroutineContext = SupervisorJob() + Dispatchers.Default
 
     override fun onCreate() {
         super.onCreate()
@@ -45,7 +48,7 @@ class SprayAppApplication : Application() {
             buildDate = BuildConfig.BUILD_DATE
         )
         if (isConfigurationSet() || !hasSeenTutorial()) {
-            GlobalScope.launch { refreshNozzles(true) }
+            launch { refreshNozzles(true) }
         }
     }
 }
